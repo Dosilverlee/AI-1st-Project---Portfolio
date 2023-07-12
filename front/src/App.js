@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useReducer, createContext } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Container, Col, Row } from "react-bootstrap";
 
 import * as Api from "./api";
 import { loginReducer } from "./reducer";
@@ -9,6 +10,8 @@ import LoginForm from "./components/user/LoginForm";
 import Network from "./components/user/Network";
 import RegisterForm from "./components/user/RegisterForm";
 import Portfolio from "./components/Portfolio";
+import UserList from "./components/UserList";
+import Mainpage from "./components/Mainpage";
 
 export const UserStateContext = createContext(null);
 export const DispatchContext = createContext(null);
@@ -57,14 +60,13 @@ function App() {
       <UserStateContext.Provider value={userState}>
         <Router>
           <Header />
-          <Routes>
-            <Route path="/" exact element={<Portfolio />} />
-            <Route path="/login" element={<LoginForm />} />
-            <Route path="/register" element={<RegisterForm />} />
-            <Route path="/users/:userId" element={<Portfolio />} />
-            <Route path="/network" element={<Network />} />
-            <Route path="*" element={<Portfolio />} />
-          </Routes>
+            <Routes>
+              <Route path="/" exact element={<Mainpage />} />
+              <Route path="/login" element={<LoginForm />} />
+              <Route path="/register" element={<RegisterForm />} />
+              <Route path="/users/:userId" element={<Mainpage />} />
+              <Route path="*" element={<Mainpage />} />
+            </Routes>
         </Router>
       </UserStateContext.Provider>
     </DispatchContext.Provider>
