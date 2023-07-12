@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Container, Row } from "react-bootstrap";
+import { Container, Col, Row } from "react-bootstrap";
 
 import * as Api from "../../api";
 import UserCard from "./UserCard";
@@ -23,13 +23,11 @@ function Network() {
   }, [userState, navigate]);
 
   return (
-    <Container fluid>
-      <Row xs="auto" className="jusify-content-center">
+      <Col>
         {users.map((user) => (
           <UserCard key={user.id} user={user} isNetwork />
         ))}
-      </Row>
-    </Container>
+      </Col>
   );
 }
 
