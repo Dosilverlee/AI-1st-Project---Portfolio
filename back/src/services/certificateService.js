@@ -1,4 +1,4 @@
-import { Certificate } from "../db"; // from을 폴더(db) 로 설정 시, 디폴트로 index.js 로부터 import함.
+import { Certificate } from "../db/models/Certificate"; 
 
 class certificateService {
   // 자격 이력 추가
@@ -30,13 +30,13 @@ class certificateService {
 
     // 반환할 loginuser 객체를 위한 변수 설정
     const id = certificateData._id;
-    const uid = certificateData.id;
+    const userIdFromData = certificateData.id;
     const title = certificateData.title;
     const description = certificateData.description;
 
     const certificateDataResult = {
       id,
-      uid,
+      userId: userIdFromData,
       title,
       description,
       errorMessage: null,

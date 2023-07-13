@@ -1,4 +1,4 @@
-import { Award } from "../db"; // from을 폴더(db) 로 설정 시, 디폴트로 index.js 로부터 import함.
+import { Award } from "../db/models/Award"; 
 
 class awardService {
   // 수상 이력 추가
@@ -30,13 +30,13 @@ class awardService {
 
     // 반환할 loginuser 객체를 위한 변수 설정
     const id = awardData._id;
-    const uid = awardData.id;
+    const userIdFromData = awardData.id;
     const title = awardData.title;
     const description = awardData.description;
 
     const awardDataResult = {
       id,
-      uid,
+      userId: userIdFromData,
       title,
       description,
       errorMessage: null,

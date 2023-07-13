@@ -61,4 +61,14 @@ awardRouter.delete('/awards/:id', async (req, res, next) => {
 
 });
 
+awardRouter.get('/awards', async (req, res, next) => {
+  try {
+    res.send('테스트입니다.')
+  } catch(e) {
+    console.log(e);
+    next(e);
+  }
+
+});
+
 export { awardRouter };
