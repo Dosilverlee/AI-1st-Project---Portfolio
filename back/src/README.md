@@ -3,8 +3,13 @@
 3.services/에서 실제로 모델의 메서드를 활용해서, 데이터를 만들기(findOne으로 데이터를 찾아서 가공하는 등)
 4.routers/에서 각 경로별로 service를 활용하기
 
-작동구조
-1)프론트에서 값 그릴때, mongoDB의 _id값을 요소의 ID에 삽입
+전체 작동구조
+1)(기존재)로그인 성공하면 userlist를 반환
+2)(기존재)카드 클릭시  유저페이지로 요청 onClick={() => navigate(`/users/${user.id}`)}
+3)쿼리 파라매터의 uuid값을 가져와 award, certificate, project, education에서 활용하기
+
+세부 작동구조
+1)
 2)차후 해당값 요청해서 가져올때, href="_id" 경로로 요청
 3)req.parmas._id 값으로 몽고DB에서 값 찾기
 4)찾은 값 그리기

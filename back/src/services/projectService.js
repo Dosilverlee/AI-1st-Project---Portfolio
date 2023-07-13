@@ -29,12 +29,14 @@ class projectService {
     }
 
     // 반환할 loginuser 객체를 위한 변수 설정
-    const id = projectData.id;
+    const id = projectData._id;
+    const userId = projectData.id;
     const title = projectData.title;
     const description = projectData.description;
 
     const projectDataResult = {
       id,
+      userId,
       title,
       description,
       errorMessage: null,
@@ -45,7 +47,6 @@ class projectService {
 
   // 프로젝트 이력 수정하기
   static async setProject({ id, toUpdate }) {
-    id = mongoose.Types.ObjectId(id); // 문자열 형태의 id를 ObjectId로 변환
     let projectData = await Project.findOne({ _id: id });
   
     if (!projectData) {
@@ -55,12 +56,12 @@ class projectService {
   
     // 모든 변경사항을 한번에 적용하기 위해 필드를 한번에 업데이트
     const projectResult = await Project.updateOne({ _id: id }, toUpdate);
-  
+    
     return projectResult;
   }
 
-  static async deleteProject({ userId }) {
-    const projectData = await Project.findOne({ userId });
+  static async deleteProject({ id }) {
+    const projectData = await Project.findOne({ _id: id });
 
     if (!projectData) {
       const errorMessage =

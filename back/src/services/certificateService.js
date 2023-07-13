@@ -30,11 +30,13 @@ class certificateService {
 
     // 반환할 loginuser 객체를 위한 변수 설정
     const id = certificateData._id;
+    const userId = certificateData.id;
     const title = certificateData.title;
     const description = certificateData.description;
 
     const certificateDataResult = {
       id,
+      userId,
       title,
       description,
       errorMessage: null,
@@ -45,7 +47,6 @@ class certificateService {
 
   // 자격 이력 수정하기
   static async setCertificate({ id, toUpdate }) {
-    id = mongoose.Types.ObjectId(id); // 문자열 형태의 id를 ObjectId로 변환
     let certificateData = await Certificate.findOne({ _id: id });
   
     if (!certificateData) {
@@ -59,8 +60,8 @@ class certificateService {
     return certificateResult;
   }
 
-  static async deleteCertificate({ userId }) {
-    const certificateData = await Certificate.findOne({ userId });
+  static async deleteCertificate({ id }) {
+    const certificateData = await Certificate.findOne({ _id: id });
 
     if (!certificateData) {
       const errorMessage =

@@ -3,10 +3,9 @@ import { certificateService } from "../services/certificateService";
 
 const certificateRouter = Router();
 
-certificateRouter.get('/:userId', async (req, res, next) => {
+certificateRouter.get('certificates/:id', async (req, res, next) => {
   try {
-    const userId = req.params.userId
-    // href="event.target.id"
+    const userId = req.params.id
     const result = await certificateService.getCertificateByUserId(userId)
   
     res.status(200).json(result)
@@ -17,10 +16,9 @@ certificateRouter.get('/:userId', async (req, res, next) => {
 
 });
 
-certificateRouter.post('/:userId', async (req, res, next) => {
+certificateRouter.post('certificates/:id', async (req, res, next) => {
   try {
-    const userId = req.params.userId;
-    // href="event.target.id"
+    const userId = req.params.id;
     const title = req.body.title;
     const description = req.body.description;
   
@@ -34,14 +32,14 @@ certificateRouter.post('/:userId', async (req, res, next) => {
 
 });
 
-certificateRouter.put('/:userId', async (req, res, next) => {
+certificateRouter.put('certificates/:id', async (req, res, next) => {
   try {
-    const userId = req.params.userId
+    const userId = req.params.id
     const updateTitle = req.body.title
     const updateDescription = req.body.description
     const updateField = { updateTitle, updateDescription }
   
-    const result = await certificateService.setCertificate({ _id : userId, toUpdate: updateField })
+    const result = await certificateService.setCertificate({ id : userId, toUpdate: updateField })
   
     res.status(200).json(result)
   } catch(e) {
@@ -51,25 +49,16 @@ certificateRouter.put('/:userId', async (req, res, next) => {
 
 });
 
-certificateRouter.delete('/:userId', async (req, res, next) => {
+certificateRouter.delete('certificates/:id', async (req, res, next) => {
   try {
+    // 클라이언트가 요청한 _id값 받아오기
     const result = await certificateService.deleteCertificate()
-    // href="event.target.id"
     res.status(200).json(result)
   } catch(e) {
     console.log(e);
     next(e);
   }  
 
-});
-
-certificateRouter.get('/', async (req, res, next) => {
-  try {
-    res.send('certificate입니다.')
-  } catch(e) {
-    console.log(e);
-    next(e);
-  }
 });
 
 export { certificateRouter };

@@ -13,8 +13,7 @@ class awardService {
     const newAward = { userId, title, description };
 
     // db에 저장
-    const createdNewAward = await Award.create(newAward);;
-    createdNewAward.errorMessage = null;
+    const createdNewAward = await Award.create(newAward);
 
     return createdNewAward;
   }
@@ -30,12 +29,14 @@ class awardService {
     }
 
     // 반환할 loginuser 객체를 위한 변수 설정
-    const id = awardData.id;
+    const id = awardData._id;
+    const userId = awardData.id;
     const title = awardData.title;
     const description = awardData.description;
 
     const awardDataResult = {
       id,
+      userId,
       title,
       description,
       errorMessage: null,
@@ -44,8 +45,8 @@ class awardService {
     return awardDataResult;
   }
 
+  // 수상 이력 수정하기
   static async setAward({ id, toUpdate }) {
-    id = mongoose.Types.ObjectId(id); // 문자열 형태의 id를 ObjectId로 변환
     let awardData = await Award.findOne({ _id: id });
   
     if (!awardData) {
@@ -59,8 +60,8 @@ class awardService {
     return awardResult;
   }
 
-  static async deleteAward({ userId }) {
-    const awardData = await Award.findOne({ userId });
+  static async deleteAward({ id }) {
+    const awardData = await Award.findOne({ _id: id });
 
     if (!awardData) {
       const errorMessage =

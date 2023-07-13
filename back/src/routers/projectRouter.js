@@ -3,10 +3,9 @@ import { projectService } from "../services/projectService";
 
 const projectRouter = Router();
 
-projectRouter.get('/:userId', async (req, res, next) => {
+projectRouter.get('/project/:id', async (req, res, next) => {
   try {
-    const userId = req.params.userId
-    // href="event.target.id"
+    const userId = req.params.id
     const result = await projectService.getProjectByUserId()
   
     res.status(200).json(result)
@@ -17,10 +16,9 @@ projectRouter.get('/:userId', async (req, res, next) => {
 
 });
 
-projectRouter.post('/:userId', async (req, res, next) => {
+projectRouter.post('/project/:id', async (req, res, next) => {
   try {
-    const userId = req.params.userId;
-    // href="event.target.id"
+    const userId = req.params.id;
     const title = req.body.title;
     const description = req.body.description;
   
@@ -34,14 +32,14 @@ projectRouter.post('/:userId', async (req, res, next) => {
 
 });
 
-projectRouter.put('/:userId', async (req, res, next) => {
+projectRouter.put('/project/:id', async (req, res, next) => {
   try {
-    const userId = req.params.userId
+    const userId = req.params.id
     const updateTitle = req.body.title
     const updateDescription = req.body.description
     const updateField = { updateTitle, updateDescription }
   
-    const result = await projectService.setProject({ _id : userId, toUpdate: updateField })
+    const result = await projectService.setProject({ id : userId, toUpdate: updateField })
   
     res.status(200).json(result)
   } catch(e) {
@@ -51,25 +49,16 @@ projectRouter.put('/:userId', async (req, res, next) => {
 
 });
 
-projectRouter.delete('/:userId'), async (req, res, next) => {
+projectRouter.delete('/project/:id', async (req, res, next) => {
   try {
+    // 클라이언트가 요청한 _id값 받아오기
     const result = await projectService.deleteProject()
-    // href="event.target.id"
     res.status(200).json(result)
   } catch(e) {
     console.log(e);
     next(e);
   }
 
-};
-
-projectRouter.get('/', async (req, res, next) => {
-  try {
-    res.send('project입니다.')
-  } catch(e) {
-    console.log(e);
-    next(e);
-  }
-})
+});
 
 export { projectRouter };
