@@ -9,7 +9,7 @@ projectRouter.get('/:userId', async (req, res, next) => {
     // href="event.target.id"
     const result = await projectService.getProjectByUserId()
   
-    res.status(200).json(data)
+    res.status(200).json(result)
   } catch(e) {
     console.log(e);
     next(e);
@@ -26,7 +26,7 @@ projectRouter.post('/:userId', async (req, res, next) => {
   
     const result = await projectService.addProject(userId, title, description)
   
-    res.status(200).json(data)
+    res.status(200).json(result)
   } catch(e) {
     console.log(e);
     next(e);
