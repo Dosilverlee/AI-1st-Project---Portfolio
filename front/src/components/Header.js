@@ -1,7 +1,9 @@
 import React, { useContext } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import Nav from "react-bootstrap/Nav";
+import { Nav, Row, Col } from "react-bootstrap";
 import { UserStateContext, DispatchContext } from "../App";
+
+const logoURL = "https://cdn-api.elice.io/api/file/3673edf6a20247778d4087c3a253846b/elice%20x%20KDT.png?se=2100-12-31T00%3A00%3A00Z&sp=r&sv=2021-12-02&sr=b&sig=oD7MEb1zoao6hCZo7jTvhON0qP5o4qPg0yOanEjbL98%3D"
 
 function Header() {
   const navigate = useNavigate();
@@ -25,17 +27,28 @@ function Header() {
 
   return (
     <Nav activeKey={location.pathname}>
-      <Nav.Item>
-        <Nav.Link onClick={() => navigate("/")}>이미지</Nav.Link>
-      </Nav.Item>
-      <Nav.Item>
-        <Nav.Link onClick={() => navigate("/")}>나의 페이지</Nav.Link>
-      </Nav.Item>
-      {isLogin && (
-        <Nav.Item>
-          <Nav.Link onClick={logout}>로그아웃</Nav.Link>
-        </Nav.Item>
-      )}
+      <Row className="col align-self-start">
+        <img
+          style={{ width: "8rem", height: "8rem" }}
+          src={logoURL}
+        />
+      </Row>
+      <Row className="col align-self-end">
+        <Row >
+          <img
+              style={{ width: "8rem", height: "8rem" }}
+              src={logoURL}
+          />
+        </Row>
+        <Row>
+          <Col>
+            <Nav.Link onClick={() => navigate("/")}>나의 페이지</Nav.Link>
+          </Col>
+          <Col>
+            {isLogin && (<Nav.Link onClick={logout}>로그아웃</Nav.Link>)}
+          </Col>
+        </Row>
+      </Row>
     </Nav>
   );
 }
