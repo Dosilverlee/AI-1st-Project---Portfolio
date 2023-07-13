@@ -1,5 +1,4 @@
 import { Project } from "../db"; // from을 폴더(db) 로 설정 시, 디폴트로 index.js 로부터 import함.
-import { v4 as uuidv4 } from "uuid";
 
 class projectService {
   // 프로젝트 이력 추가
@@ -11,8 +10,6 @@ class projectService {
       return { errorMessage };
     }
 
-    // id 는 유니크 값 부여
-    const id = uuidv4();
     const newProject = { id, userId, title, description };
 
     // db에 저장
@@ -47,8 +44,9 @@ class projectService {
   }
 
   // 프로젝트 이력 수정하기
-  static async setProject({ title, toUpdate }) {
-    let projectData = await Project.findOne({ title : title });
+  static async setProject({ id, toUpdate }) {
+    id = mongoose.Types.ObjectId(id); // 문자열 형태의 id를 ObjectId로 변환
+    let projectData = await Project.findOne({ _id: id });
   
     if (!projectData) {
       const errorMessage = "프로젝트 이력이 없습니다. 다시 한 번 확인해 주세요.";
@@ -56,13 +54,13 @@ class projectService {
     }
   
     // 모든 변경사항을 한번에 적용하기 위해 필드를 한번에 업데이트
-    const projectResult = await Project.updateOne({ title: title }, toUpdate);
+    const projectResult = await Project.updateOne({ _id: id }, toUpdate);
   
     return projectResult;
   }
 
-  static async deleteProject({ title }) {
-    const projectData = await Project.findOne({ title });
+  static async deleteProject({ userId }) {
+    const projectData = await Project.findOne({ userId });
 
     if (!projectData) {
       const errorMessage =

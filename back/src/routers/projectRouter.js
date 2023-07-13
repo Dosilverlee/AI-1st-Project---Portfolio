@@ -6,7 +6,7 @@ const projectRouter = Router();
 projectRouter.get('/:userId', async (req, res, next) => {
   try {
     const userId = req.params.userId
-
+    // href="event.target.id"
     const result = await projectService.getProjectByUserId()
   
     res.status(200).json(data)
@@ -20,6 +20,7 @@ projectRouter.get('/:userId', async (req, res, next) => {
 projectRouter.post('/:userId', async (req, res, next) => {
   try {
     const userId = req.params.userId;
+    // href="event.target.id"
     const title = req.body.title;
     const description = req.body.description;
   
@@ -40,9 +41,9 @@ projectRouter.put('/:userId', async (req, res, next) => {
     const updateDescription = req.body.description
     const updateField = { updateTitle, updateDescription }
   
-    const result = await projectService.setProject({ title, toUpdate: updateField })
+    const result = await projectService.setProject({ _id : userId, toUpdate: updateField })
   
-    res.status(200).json(data)
+    res.status(200).json(result)
   } catch(e) {
     console.log(e);
     next(e);
@@ -53,8 +54,8 @@ projectRouter.put('/:userId', async (req, res, next) => {
 projectRouter.delete('/:userId'), async (req, res, next) => {
   try {
     const result = await projectService.deleteProject()
-
-    res.status(200).json(data)
+    // href="event.target.id"
+    res.status(200).json(result)
   } catch(e) {
     console.log(e);
     next(e);

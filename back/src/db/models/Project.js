@@ -11,11 +11,6 @@ class Project {
     return project;
   }
 
-  static async findAll() {
-    const project = await ProjectModel.find({});
-    return project;
-  }
-
   static async update({ userId, fieldToUpdate, newValue }) {
     const filter = { id: userId };
     const update = { [fieldToUpdate]: newValue };

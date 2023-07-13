@@ -11,11 +11,6 @@ class Certificate {
     return certificate;
   }
 
-  static async findAll() {
-    const certificate = await CertificateModel.find({});
-    return certificate;
-  }
-
   static async update({ userId, fieldToUpdate, newValue }) {
     const filter = { id: userId };
     const update = { [fieldToUpdate]: newValue };
