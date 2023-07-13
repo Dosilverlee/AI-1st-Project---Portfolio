@@ -35,9 +35,9 @@ awardRouter.post('/awards/:id', async (req, res, next) => {
 awardRouter.put('/awards/:id', async (req, res, next) => {
   try {
     const userId = req.params.id;
-    const updateTitle = req.body.title
-    const updateDescription = req.body.description
-    const updateField = { updateTitle, updateDescription }
+    const updateTitle = req.body.title;
+    const updateDescription = req.body.description;
+    const updateField = { updateTitle, updateDescription };
   
     const result = await awardService.setAward({ id : userId, toUpdate: updateField });
   
@@ -58,7 +58,7 @@ awardRouter.delete('/awards/:id', async (req, res, next) => {
     console.log(e);
     next(e);
   }
-  
+
 });
 
 export { awardRouter };

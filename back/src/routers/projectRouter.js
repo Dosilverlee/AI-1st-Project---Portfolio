@@ -34,10 +34,10 @@ projectRouter.post('/project/:id', async (req, res, next) => {
 
 projectRouter.put('/project/:id', async (req, res, next) => {
   try {
-    const userId = req.params.id
-    const updateTitle = req.body.title
-    const updateDescription = req.body.description
-    const updateField = { updateTitle, updateDescription }
+    const userId = req.params.id;
+    const updateTitle = req.body.title;
+    const updateDescription = req.body.description;
+    const updateField = { updateTitle, updateDescription };
   
     const result = await projectService.setProject({ id : userId, toUpdate: updateField })
   

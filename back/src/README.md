@@ -3,17 +3,12 @@
 3.services/에서 실제로 모델의 메서드를 활용해서, 데이터를 만들기(findOne으로 데이터를 찾아서 가공하는 등)
 4.routers/에서 각 경로별로 service를 활용하기
 
-전체 작동구조
+작동 구조
 1)(기존재)로그인 성공하면 userlist를 반환
-2)(기존재)카드 클릭시  유저페이지로 요청 onClick={() => navigate(`/users/${user.id}`)}
-3)쿼리 파라매터의 uuid값을 가져와 award, certificate, project, education에서 활용하기
+2)(기존재)카드 클릭시 유저페이지로 요청 onClick={() => navigate(`/users/${user.id}`)}
+3)생성 / 검색 요청시 : 라우트 파라매터의 uuid값을 가져와 award, certificate, project, education에서 활용하기
+4)수정 / 삭제요청시 : 프론트에서 get등으로 값 받아와 그려줄때, mongoDB의 _id를 요소의 id에 심어놓고, 프론트에서 요청할때 이 _id를 보내면, _id로 DB에서 값 찾아 지우기
 
-세부 작동구조
-1)
-2)차후 해당값 요청해서 가져올때, href="_id" 경로로 요청
-3)req.parmas._id 값으로 몽고DB에서 값 찾기
-4)찾은 값 그리기
 
 작업 진행중인 부분
-1.각 메서드의 작동 관련 디테일
-2.변수명 수정
+테스트 진행예정

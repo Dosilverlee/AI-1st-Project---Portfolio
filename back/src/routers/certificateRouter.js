@@ -34,10 +34,10 @@ certificateRouter.post('certificates/:id', async (req, res, next) => {
 
 certificateRouter.put('certificates/:id', async (req, res, next) => {
   try {
-    const userId = req.params.id
-    const updateTitle = req.body.title
-    const updateDescription = req.body.description
-    const updateField = { updateTitle, updateDescription }
+    const userId = req.params.id;
+    const updateTitle = req.body.title;
+    const updateDescription = req.body.description;
+    const updateField = { updateTitle, updateDescription };
   
     const result = await certificateService.setCertificate({ id : userId, toUpdate: updateField })
   
