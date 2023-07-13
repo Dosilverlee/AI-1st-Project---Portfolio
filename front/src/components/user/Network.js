@@ -23,11 +23,11 @@ function Network() {
   }, [userState, navigate]);
 
   return (
-      <Col>
-        {users.map((user) => (
-          <UserCard key={user.id} user={user} isNetwork />
-        ))}
-      </Col>
+    <Col>
+      {users.map((user) => (
+        <UserCard key={user.id} user={user} isNetwork />
+      ))}
+    </Col>
   );
 }
 

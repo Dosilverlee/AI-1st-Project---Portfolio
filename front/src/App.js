@@ -10,7 +10,6 @@ import LoginForm from "./components/user/LoginForm";
 import Network from "./components/user/Network";
 import RegisterForm from "./components/user/RegisterForm";
 import Portfolio from "./components/Portfolio";
-import UserList from "./components/UserList";
 import Mainpage from "./components/Mainpage";
 
 export const UserStateContext = createContext(null);

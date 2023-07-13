@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Container, Col, Row } from "react-bootstrap";
 
 import { UserStateContext } from "../App";
@@ -8,7 +8,6 @@ import User from "./user/User";
 import Projects from "./Project/Projects";
 
 function Portfolio() {
-  const navigate = useNavigate();
   const params = useParams();
   // useState 훅을 통해 portfolioOwner 상태를 생성함.
   const [portfolioOwner, setPortfolioOwner] = useState(null);
@@ -29,12 +28,6 @@ function Portfolio() {
   };
 
   useEffect(() => {
-    // 전역 상태의 user가 null이라면 로그인이 안 된 상태이므로, 로그인 페이지로 돌림.
-    if (!userState.user) {
-      navigate("/login", { replace: true });
-      return;
-    }
-
     if (params.userId) {
       // 만약 현재 URL이 "/users/:userId" 라면, 이 userId를 유저 id로 설정함.
       const ownerId = params.userId;
@@ -46,7 +39,7 @@ function Portfolio() {
       // 해당 유저 id로 fetchPorfolioOwner 함수를 실행함.
       fetchPorfolioOwner(ownerId);
     }
-  }, [params, userState, navigate]);
+  }, [params, userState]);
 
   if (!isFetchCompleted) {
     return "loading...";
