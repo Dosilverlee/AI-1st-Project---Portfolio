@@ -11,18 +11,18 @@ class Project {
     return project;
   }
 
-  static async update({ userId, fieldToUpdate, newValue }) {
+  static async update({ userId, updateField }) {
     const filter = { userId: userId };
-    const update = { [fieldToUpdate]: newValue };
+    const update = { $set: updateField };
     const option = { returnOriginal: false };
-
+  
     const updatedProject = await ProjectModel.findOneAndUpdate(
       filter,
       update,
       option
     );
     return updatedProject;
-  }
+  }  
 }
 
 export { Project };

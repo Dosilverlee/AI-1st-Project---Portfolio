@@ -11,18 +11,18 @@ class Certificate {
     return certificate;
   }
 
-  static async update({ userId, fieldToUpdate, newValue }) {
+  static async update({ userId, updateField }) {
     const filter = { userId: userId };
-    const update = { [fieldToUpdate]: newValue };
+    const update = { $set: updateField };
     const option = { returnOriginal: false };
-
+  
     const updatedCertificate = await CertificateModel.findOneAndUpdate(
       filter,
       update,
       option
     );
     return updatedCertificate;
-  }
+  }  
 }
 
 export { Certificate };

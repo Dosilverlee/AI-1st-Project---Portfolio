@@ -3,7 +3,7 @@ import { Certificate } from "../db"; // from을 폴더(db) 로 설정 시, 디�
 class certificateService {
   // 자격 이력 추가
   static async addCertificate({ userId, title, description }) {
-    const certificateData = await Certificate.findOne({ userId });
+    const certificateData = await Certificate.findByUserId({ userId });
     if (certificateData) {
       const errorMessage =
         "이미 등록된 자격 사항입니다.";
@@ -21,7 +21,7 @@ class certificateService {
   // 자격 이력 가져오기
   static async getCertificateByUserId({ userId }) {
     // userID로 수상이력 가져오기
-    const certificateData = await Certificate.findOne({ userId });
+    const certificateData = await Certificate.findByUserId({ userId });
     if (!certificateData) {
       const errorMessage =
         "자격 사항 없음";
@@ -47,7 +47,7 @@ class certificateService {
 
   // 자격 이력 수정하기
   static async setCertificate({ id, toUpdate }) {
-    let certificateData = await Certificate.findOne({ _id: id });
+    let certificateData = await Certificate.findByUserId({ _id: id });
   
     if (!certificateData) {
       const errorMessage = "자격 이력이 없습니다. 다시 한 번 확인해 주세요.";
@@ -55,13 +55,13 @@ class certificateService {
     }
   
     // 모든 변경사항을 한번에 적용하기 위해 필드를 한번에 업데이트
-    const certificateResult = await Certificate.updateOne({ _id: id }, toUpdate);
+    const certificateResult = await Certificate.update({ userId: awardData.userId, updateField: toUpdate });
   
     return certificateResult;
   }
 
   static async deleteCertificate({ id }) {
-    const certificateData = await Certificate.findOne({ _id: id });
+    const certificateData = await Certificate.findByUserId({ _id: id });
 
     if (!certificateData) {
       const errorMessage =

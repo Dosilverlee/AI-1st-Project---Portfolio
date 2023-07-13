@@ -3,7 +3,7 @@ import { Project } from "../db"; // from을 폴더(db) 로 설정 시, 디폴트
 class projectService {
   // 프로젝트 이력 추가
   static async addProject({ userId, title, description }) {
-    const projectData = await Project.findOne({ userId });
+    const projectData = await Project.findByUserId({ userId });
     if (projectData) {
       const errorMessage =
         "이미 등록된 프로젝트 이력입니다.";
@@ -21,7 +21,7 @@ class projectService {
   // 프로젝트 이력 가져오기
   static async getProjectByUserId({ userId }) {
     // userID로 수상이력 가져오기
-    const projectData = await Project.findOne({ userId });
+    const projectData = await Project.findByUserId({ userId });
     if (!projectData) {
       const errorMessage =
         "프로젝트 이력 없음";
@@ -47,7 +47,7 @@ class projectService {
 
   // 프로젝트 이력 수정하기
   static async setProject({ id, toUpdate }) {
-    let projectData = await Project.findOne({ _id: id });
+    let projectData = await Project.findByUserId({ _id: id });
   
     if (!projectData) {
       const errorMessage = "프로젝트 이력이 없습니다. 다시 한 번 확인해 주세요.";
@@ -55,13 +55,13 @@ class projectService {
     }
   
     // 모든 변경사항을 한번에 적용하기 위해 필드를 한번에 업데이트
-    const projectResult = await Project.updateOne({ _id: id }, toUpdate);
+    const projectResult = await Project.updateOne({ userId: awardData.userId, updateField: toUpdate });
     
     return projectResult;
   }
 
   static async deleteProject({ id }) {
-    const projectData = await Project.findOne({ _id: id });
+    const projectData = await Project.findByUserId({ _id: id });
 
     if (!projectData) {
       const errorMessage =

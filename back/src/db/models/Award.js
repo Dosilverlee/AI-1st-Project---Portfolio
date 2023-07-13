@@ -11,18 +11,18 @@ class Award {
     return award;
   }
 
-  static async update({ userId, fieldToUpdate, newValue }) {
+  static async update({ userId, updateField }) {
     const filter = { userId: userId };
-    const update = { [fieldToUpdate]: newValue };
+    const update = { $set: updateField };
     const option = { returnOriginal: false };
-
+  
     const updatedAward = await AwardModel.findOneAndUpdate(
       filter,
       update,
       option
     );
     return updatedAward;
-  }
+  }  
 }
 
 export { Award };
