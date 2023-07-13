@@ -30,13 +30,13 @@ class projectService {
 
     // 반환할 loginuser 객체를 위한 변수 설정
     const id = projectData._id;
-    const userId = projectData.id;
+    const uid = projectData.id;
     const title = projectData.title;
     const description = projectData.description;
 
     const projectDataResult = {
       id,
-      userId,
+      uid,
       title,
       description,
       errorMessage: null,

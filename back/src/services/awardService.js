@@ -30,13 +30,13 @@ class awardService {
 
     // 반환할 loginuser 객체를 위한 변수 설정
     const id = awardData._id;
-    const userId = awardData.id;
+    const uid = awardData.id;
     const title = awardData.title;
     const description = awardData.description;
 
     const awardDataResult = {
       id,
-      userId,
+      uid,
       title,
       description,
       errorMessage: null,

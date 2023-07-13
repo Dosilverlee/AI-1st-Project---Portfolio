@@ -30,13 +30,13 @@ class certificateService {
 
     // 반환할 loginuser 객체를 위한 변수 설정
     const id = certificateData._id;
-    const userId = certificateData.id;
+    const uid = certificateData.id;
     const title = certificateData.title;
     const description = certificateData.description;
 
     const certificateDataResult = {
       id,
-      userId,
+      uid,
       title,
       description,
       errorMessage: null,
