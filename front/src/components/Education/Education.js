@@ -53,3 +53,5 @@ function Education({ education, setEducations, isEditable }) {
 }
 
 export default Education;
+
+//git merge
