@@ -9,16 +9,8 @@ const educationRouter = Router();
  */
 educationRouter.get("/education/:userId", async (req, res, next)=> {
     try {
-        if (is.emptyObject(req.body)) {
-          throw new Error(
-            "headers의 Content-Type을 application/json으로 설정해주세요"
-          );
-        }
-
-        //console.log(req.body);
         const userId = req.params.userId;
-        
-        const currentEducationInfo = await educationService.getEducationById(userId);
+        const currentEducationInfo = await educationService.getEducationsByUserId(userId);
 
         if (currentEducationInfo.errorMessage){
             throw new Error(currentEducationInfo.errorMessage);
@@ -32,12 +24,11 @@ educationRouter.get("/education/:userId", async (req, res, next)=> {
 });
 
 //학력 내역 추가
-educationRouter.post("/education/:id", async (req, res, next)=> {
+educationRouter.post("/education/:userId", async (req, res, next)=> {
     try{
-        console.log(req.body);
-        const userId = req.params.id;
-        const title = req.body.title;
-        const description = req.body.description;
+        // const { params: {userId}, body: {title, description}} = req;
+        const {userId} = req.params;
+        const {title, description} = req.body;
 
         const education = await educationService.addEducation({userId, title, description});
         res.status(200).json(education);

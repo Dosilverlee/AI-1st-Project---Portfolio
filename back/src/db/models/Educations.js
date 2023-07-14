@@ -1,7 +1,20 @@
 import { EducationModel } from "../schemas/education";
 
 class Education {
-  static async create({newEducation}) {
+  /**
+   * @params filter: object임 
+   * @return 리스트
+   * js-doc
+   */
+  static async find(filter) {
+    const educations = await EducationModel.find(filter);
+    return educations;
+  }
+
+  /**
+   * @params newEducation: Object
+   */
+  static async create(newEducation) {
     const createdEducation = await EducationModel.create(newEducation);
     return createdEducation;
   }

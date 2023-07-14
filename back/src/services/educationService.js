@@ -1,17 +1,34 @@
 import { Education } from "../db"; // from을 폴더(db) 로 설정 시, 디폴트로 index.js 로부터 import함.
 
 class educationService { //학력 내역 추가
+
+    /**
+     * @desciption 학력 추가 api
+     * 한명의 유저가 여러개의 학력을 가질 수 있따 -> find 필요 없음
+     * title 중복도 허용한다.
+     */
     static async addEducation({userId, title, description}){
-        const education = await Education.findById({ userId });
-        /*if (education){
-            const errorMessage = "중복된 학력 내역이 있습니다.";
-            return { errorMessage };
-        }*/
-    
+        // const education = await Education.find({ userId }); 
+
         const newEducation = { userId, title, description};
         const createdNewEducation = await Education.create(newEducation); //{}제거
+
         createdNewEducation.errorMessage = null; //문제 없이 DB 저장되었으므로 에러X
         return createdNewEducation;
+    }
+
+    static async getEducationsByUserId( userId ){
+        const educations = await Education.find({userId});    //[]
+        
+        if(educations.length < 1){
+            const errorMessage = "학력 내역이 없습니다." 
+            return { errorMessage };
+        }
+        
+        return {
+            educations,
+            errorMessage: null
+        }
     }
 
     //학력 내역 가져오기
