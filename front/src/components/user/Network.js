@@ -20,13 +20,19 @@ function Network() {
   const total = users.length;
   const numPages = Math.ceil(total / limit);
 
-  // const Pagination = (total, limit, page, setPage) => {
-  //   const numPages = Math.ceil(total/limit);
-  // }
-
   useEffect(() => {
+    function shuffle(sourceArray) {
+      for (var i = 0; i < sourceArray.length - 1; i++) {
+          var j = i + Math.floor(Math.random() * (sourceArray.length - i));
+  
+          var temp = sourceArray[j];
+          sourceArray[j] = sourceArray[i];
+          sourceArray[i] = temp;
+      }
+      return sourceArray;
+    }
     // "userlist" 엔드포인트로 GET 요청을 하고, users를 response의 data로 세팅함.
-    Api.get("userlist").then((res) => setUsers(res.data));
+    Api.get("userlist").then((res) => setUsers(shuffle(res.data)));
   }, [userState, navigate]);
 
   useEffect(() => {
