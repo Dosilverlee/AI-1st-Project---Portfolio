@@ -5,7 +5,6 @@ import { errorMiddleware } from "./middlewares/errorMiddleware";
 import { awardRouter } from "./routers/awardRouter";
 import { certificateRouter } from "./routers/certificateRouter"
 import { projectRouter } from "./routers/projectRouter"
-
 const app = express();
 
 // CORS 에러 방지

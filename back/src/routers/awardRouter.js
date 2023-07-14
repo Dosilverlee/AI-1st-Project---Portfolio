@@ -1,13 +1,13 @@
 import { Router } from "express";
 import { awardService } from "../services/awardService";
+import { login_required } from "../middlewares/login_required";
 
 const awardRouter = Router();
 
-awardRouter.get('/awards/:id', async (req, res, next) => {
+awardRouter.get('/awards/:userId', async (req, res, next) => {
   try {
-    const userId = req.params.id
-    const result = await awardService.getAwardByUserId(userId)
-  
+    const userId = req.params.userId
+    const result = await awardService.getAwardByUserId({ userId })
     res.status(200).json(result)
   } catch(e) {
     console.log(e);
@@ -16,9 +16,10 @@ awardRouter.get('/awards/:id', async (req, res, next) => {
 
 });
 
-awardRouter.post('/awards/:id', async (req, res, next) => {
+
+awardRouter.post('/awards/:userId', login_required, async (req, res, next) => {
   try {
-    const userId = req.params.id; 
+    const userId = req.params.userId; 
     const title = req.body.title;
     const description = req.body.description;
 
@@ -32,27 +33,27 @@ awardRouter.post('/awards/:id', async (req, res, next) => {
 
 });
 
-awardRouter.put('/awards/:id', async (req, res, next) => {
+awardRouter.put('/awards/:userId', login_required, async (req, res, next) => {
+  console.log(req.body);
   try {
-    const userId = req.params.id;
-    const updateTitle = req.body.title;
-    const updateDescription = req.body.description;
-    const updateField = { updateTitle, updateDescription };
-  
-    const result = await awardService.setAward({ id : userId, toUpdate: updateField });
-  
+    const id = req.body.id;
+    const title = req.body.title;
+    const description = req.body.description;
+    const result = await awardService.setAward({ id, toUpdate: { title, description } });
+
     res.status(200).json(result)
   } catch(e) {
     console.log(e);
     next(e);
   }
-
 });
 
-awardRouter.delete('/awards/:id', async (req, res, next) => {
+
+awardRouter.delete('/awards/:userId', login_required, async (req, res, next) => {
   try {
     // 클라이언트가 요청한 _id값 받아오기
-    const result = await awardService.deleteAward()
+    const id = req.body.id;
+    const result = await awardService.deleteAward({ id });
     res.status(200).json(result)
   } catch(e) {
     console.log(e);

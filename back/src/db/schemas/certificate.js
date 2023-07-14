@@ -11,7 +11,8 @@ const CertificateSchema = new Schema(
       required: true,
     },
     description: {
-
+      type: String,
+      required: true,
     },
   }
 );
