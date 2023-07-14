@@ -1,7 +1,7 @@
 import { EducationModel } from "../schemas/education";
 
 class Education {
-  static async create({ newEducation }) {
+  static async create({newEducation}) {
     const createdEducation = await EducationModel.create(newEducation);
     return createdEducation;
   }
