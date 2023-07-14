@@ -61,21 +61,6 @@ function LoginForm() {
 
   return (
     <Container>
-      <div
-        style={{
-          display: "inline-block",
-          paddingTop: "10px",
-          paddingRight: "60px",
-          paddingLeft: "10px",
-          paddingBottom: "60px",
-          width: "40%",
-          border: "1px solid grey",
-          textAlign: "left",
-          borderRadius: "5px"
-        }}
-      >
-        <span>자격증</span>
-      </div>
       <Row className="justify-content-md-center mt-5">
         <Col lg={8}>
           <Form onSubmit={handleSubmit}>
