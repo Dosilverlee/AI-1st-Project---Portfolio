@@ -11,6 +11,7 @@ function Educations({ portfolioOwnerId, isEditable }) {
     useEffect(() => {
       Api.get(`collegeName/${portfolioOwnerId}`)
         .then((res) => setEducations(res.data))
+        setIsAdding(false);
     }, [portfolioOwnerId]);
   
   return (

@@ -7,6 +7,7 @@ import { UserStateContext } from "../App";
 import * as Api from "../api";
 import User from "./user/User";
 import Projects from "./Project/Projects";
+import Awards from "./award/Awards";
 
 function Portfolio() {
   const params = useParams();
@@ -56,6 +57,12 @@ function Portfolio() {
       </Row>
       <Row>
         <Educations 
+            portfolioOwnerId={portfolioOwner.id}
+            isEditable={portfolioOwner.id === userState.user?.id}
+        />
+      </Row>
+      <Row>
+        <Awards
             portfolioOwnerId={portfolioOwner.id}
             isEditable={portfolioOwner.id === userState.user?.id}
         />
