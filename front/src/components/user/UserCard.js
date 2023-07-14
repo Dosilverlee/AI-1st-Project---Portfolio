@@ -36,7 +36,9 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
           <Card.Link
             className="mt-3"
             href="#"
-            onClick={() => navigate(`/users/${user.id}`)}
+            onClick={() => {
+              navigate(`/users/${user.id}`);
+            }}
           >
             프로필 보러가기
           </Card.Link>

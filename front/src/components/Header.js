@@ -29,12 +29,12 @@ function Header() {
   return (
     <Nav activeKey={location.pathname}>
       <Row className="col align-self-start">
-        <img
+        <a href="/"><img
           style={{ width: "8.8rem", height: "2rem" }}
           src={Logo}
-        />
+        /></a>
       </Row>
-      <Row className="col align-self-end">
+      {isLogin && (<Row className="col align-self-end">
         <Row >
           <img
               style={{ width: "4rem", height: "4rem" }}
@@ -46,10 +46,10 @@ function Header() {
             <Nav.Link onClick={() => navigate("/")}>나의 페이지</Nav.Link>
           </Col>
           <Col>
-            {isLogin && (<Nav.Link onClick={logout}>로그아웃</Nav.Link>)}
+            <Nav.Link onClick={logout}>로그아웃</Nav.Link>
           </Col>
         </Row>
-      </Row>
+      </Row>)}
     </Nav>
   );
 }
