@@ -6,8 +6,14 @@ class Education {
     return createdEducation;
   }
 
+  static async findEducationsByUserId({ userId }) {
+    const educations = await EducationModel.find({ userId })
+    return educations;
+  }
+
   static async findById({ userId }) {
     const education = await EducationModel.findOne({ userId });
+
     return education;
   }
 

@@ -4,9 +4,10 @@ import { educationService } from "../services/educationService";
 
 const educationRouter = Router();
 
-
-//학력 불러오기
-educationRouter.get("/education/:id", async (req, res, next)=> {
+/**
+ * @description 특정 유저의 학력들 (복수) 조회하기
+ */
+educationRouter.get("/education/:userId", async (req, res, next)=> {
     try {
         if (is.emptyObject(req.body)) {
           throw new Error(
@@ -15,7 +16,7 @@ educationRouter.get("/education/:id", async (req, res, next)=> {
         }
 
         //console.log(req.body);
-        const userId = req.params.id;
+        const userId = req.params.userId;
         
         const currentEducationInfo = await educationService.getEducationById(userId);
 
@@ -25,6 +26,7 @@ educationRouter.get("/education/:id", async (req, res, next)=> {
 
         res.status(200).json(currentEducationInfo);
     }catch(error){
+        console.log(error)
         next(error);
     }
 });
