@@ -30,8 +30,14 @@ function AwardAddForm({ portfolioOwnerId, setAwards, setIsAdding }) {
     setIsAdding(false);
   };
 
+  const [text, setText] = useState();
+
+  console.log(text);
+
   return (
     <Form onSubmit={handleSubmit}>
+      
+
       <Form.Group controlId="formBasicTitle">
         <Form.Control
           type="text"
