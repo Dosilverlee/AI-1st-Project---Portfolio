@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Container, Col, Row } from "react-bootstrap";
+import Awards from "./award/Awards"
 
 import { UserStateContext } from "../App";
 import * as Api from "../api";
@@ -61,10 +62,11 @@ function Portfolio() {
           />
         </Col>
         <Col>
-
-          <div style={{ textAlign: "center" }}>
-            학력 목록, 수상이력 목록, 프로젝트 목록, 자격증 목록 만들기
-          </div>
+        <Awards
+            portfolioOwnerId={portfolioOwner.id}
+            isEditable={portfolioOwner.id === userState.user?.id}
+          />
+          
 
         </Col>
       </Row>
