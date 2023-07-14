@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Form, Card, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
 
-function UserEditForm({ user, setIsEditing, setUser }) {
+function UserEditForm({ user, setIsEditing, setUser, isNetwork }) {
   //useState로 name 상태를 생성함.
   const [name, setName] = useState(user.name);
   //useState로 email 상태를 생성함.
