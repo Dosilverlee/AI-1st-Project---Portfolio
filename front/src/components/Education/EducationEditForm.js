@@ -63,7 +63,6 @@ function EducationEditForm({ currentEducation, setEducations, setIsEditing }) {
               checked={graduation === 1}
               onChange={() => setGraduation(1)}
               onBlur={() => setGraduation(1)}
-              onBlur=
             />
             <Form.Check
               inline
@@ -81,8 +80,8 @@ function EducationEditForm({ currentEducation, setEducations, setIsEditing }) {
               id={`inline-radio-3`}
               checked={graduation === 3}
               onChange={() => setGraduation(3)}
-              onBlur=
-            />{() => setGraduation(3)}
+              onBlur={() => setGraduation(3)}
+            />
             <Form.Check
               inline
               type={"radio"}

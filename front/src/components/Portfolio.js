@@ -1,8 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Container, Col, Row } from "react-bootstrap";
-import Education from "./Education/Education";
-import EducationEditForm from "./Education/EducationEditForm";
+import Educations from "./Education/Educations";
 
 import { UserStateContext } from "../App";
 import * as Api from "../api";
@@ -65,8 +64,7 @@ function Portfolio() {
         <Col>
 
           <div style={{ textAlign: "center" }}>
-            {/* <Education /> */}
-            <EducationEditForm />
+            <Educations />
           </div>
 
         </Col>
