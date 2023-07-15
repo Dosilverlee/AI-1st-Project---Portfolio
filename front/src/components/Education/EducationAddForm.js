@@ -16,14 +16,14 @@ function EducationAddForm({ portfolioOwnerId, setEducations, setIsAdding }) {
     const user_id = portfolioOwnerId;
 
     // "Education/create" 엔드포인트로 post요청함.
-    await Api.post("Education/create", {
+    await Api.post("Educations", {
       user_id: portfolioOwnerId,
       title,
       description,
     });
 
     // "Educationlist/유저id" 엔드포인트로 get요청함.
-    const res = await Api.get("Educationlist", user_id);
+    const res = await Api.get("Educations", user_id);
     // Educations를 response의 data로 세팅함.
     setEducations(res.data);
     // Education을 추가하는 과정이 끝났으므로, isAdding을 false로 세팅함.
