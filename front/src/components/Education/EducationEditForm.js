@@ -17,7 +17,7 @@ function EducationEditForm({ currentEducation, setEducations, setIsEditing }) {
     };
 
     // 폼 데이터를 API로 전송
-    Api.post("education", formData)
+    Api.post("educations", formData)
       .then((response) => {
         // 성공적으로 처리된 경우
         console.log("학력 정보가 업데이트되었습니다.");
