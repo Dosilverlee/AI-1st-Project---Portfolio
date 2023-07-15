@@ -36,10 +36,10 @@ awardRouter.post('/awards/:userId', login_required, async (req, res, next) => {
 awardRouter.put('/awards/:userId', login_required, async (req, res, next) => {
   console.log(req.body);
   try {
-    const id = req.body.id;
+    const awardId = req.body.id;
     const title = req.body.title;
     const description = req.body.description;
-    const result = await awardService.setAward({ id, toUpdate: { title, description } });
+    const result = await awardService.setAward({ awardId, toUpdate: { title, description } });
 
     res.status(200).json(result)
   } catch(e) {
@@ -52,8 +52,8 @@ awardRouter.put('/awards/:userId', login_required, async (req, res, next) => {
 awardRouter.delete('/awards/:userId', login_required, async (req, res, next) => {
   try {
     // 클라이언트가 요청한 _id값 받아오기
-    const id = req.body.id;
-    const result = await awardService.deleteAward({ id });
+    const awardId = req.body.id;
+    const result = await awardService.deleteAward({ awardId });
     res.status(200).json(result)
   } catch(e) {
     console.log(e);

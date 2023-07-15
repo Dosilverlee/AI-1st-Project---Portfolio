@@ -1,6 +1,5 @@
 import { ProjectModel } from "../schemas/project";
-import { Types } from "mongoose";
-const { ObjectId } = Types;
+import { ObjectTypeHandler } from "../typeHandler";
 
 class Project {
   static async create(newProject) {
@@ -14,7 +13,7 @@ class Project {
   }
 
   static async findById(id) {
-    const Project = await ProjectModel.findOne(ObjectId(id));
+    const Project = await ProjectModel.findOne(ObjectTypeHandler(id));
     return Project;
   }
 

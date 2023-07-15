@@ -1,6 +1,5 @@
 import { AwardModel } from "../schemas/award";
-import { Types } from "mongoose";
-const { ObjectId } = Types;
+import { ObjectTypeHandler } from "../typeHandler";
 
 class Award {
   static async create(newAward) {
@@ -14,7 +13,7 @@ class Award {
   }
 
   static async findById(id) {
-    const award = await AwardModel.findOne(ObjectId(id));
+    const award = await AwardModel.findOne(ObjectTypeHandler(id));
     return award;
   }
 

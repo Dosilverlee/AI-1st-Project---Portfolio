@@ -1,6 +1,5 @@
 import { CertificateModel } from "../schemas/certificate";
-import { Types } from "mongoose";
-const { ObjectId } = Types;
+import { ObjectTypeHandler } from "../typeHandler";
 
 class Certificate {
   static async create(newCertificate) {
@@ -14,7 +13,7 @@ class Certificate {
   }
 
   static async findById(id) {
-    const Certificate = await CertificateModel.findOne(ObjectId(id));
+    const Certificate = await CertificateModel.findOne(ObjectTypeHandler(id));
     return Certificate;
   }
 

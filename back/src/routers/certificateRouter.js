@@ -36,10 +36,10 @@ certificateRouter.post('/certificates/:userId', login_required, async (req, res,
 certificateRouter.put('/certificates/:userId', login_required, async (req, res, next) => {
   console.log(req.body);
   try {
-    const id = req.body.id;
+    const certificateId = req.body.id;
     const title = req.body.title;
     const description = req.body.description;
-    const result = await certificateService.setCertificate({ id, toUpdate: { title, description } });
+    const result = await certificateService.setCertificate({ certificateId, toUpdate: { title, description } });
 
     res.status(200).json(result)
   } catch(e) {
@@ -52,8 +52,8 @@ certificateRouter.put('/certificates/:userId', login_required, async (req, res, 
 certificateRouter.delete('/certificates/:userId', login_required, async (req, res, next) => {
   try {
     // 클라이언트가 요청한 _id값 받아오기
-    const id = req.body.id;
-    const result = await certificateService.deleteCertificate({ id });
+    const certificateId = req.body.id;
+    const result = await certificateService.deleteCertificate({ certificateId });
     res.status(200).json(result)
   } catch(e) {
     console.log(e);
