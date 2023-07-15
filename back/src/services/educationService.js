@@ -1,97 +1,65 @@
-import { Education } from "../db"; // from을 폴더(db) 로 설정 시, 디폴트로 index.js 로부터 import함.
+import { Education } from "../db/models/Award"; 
 
-class educationService { //학력 내역 추가
-
-    /**
-     * @desciption 학력 추가 api
-     * 한명의 유저가 여러개의 학력을 가질 수 있따 -> find 필요 없음
-     * title 중복도 허용한다.
-     */
-    static async addEducation({userId, title, description}){
-        // const education = await Education.find({ userId }); 
-
-        const newEducation = { userId, title, description};
-        const createdNewEducation = await Education.create(newEducation); //{}제거
-
-        createdNewEducation.errorMessage = null; //문제 없이 DB 저장되었으므로 에러X
-        return createdNewEducation;
+class EducationService {
+  //학력 이력 추가
+  static async addEducation({ userId, title, description }) {
+    const EducationData = await Education.findByUserId(userId);
+    if (EducationData.length > 1) {
+      const errorMessage =
+        "이미 등록된 수상이력입니다.";
+      return { errorMessage };
     }
 
-    static async getEducationsByUserId( userId ){
-        const educations = await Education.find({userId});    //[]
-        
-        if(educations.length < 1){
-            const errorMessage = "학력 내역이 없습니다." 
-            return { errorMessage };
-        }
-        
-        return {
-            educations,
-            errorMessage: null
-        }
+    const newEducation = { userId, title, description };
+
+    // db에 저장
+    const createdNewEducation = await Education.create(newEducation);
+
+    return createdNewEducation;
+  }
+
+  // 학력 이력 가져오기
+  static async getEducationByUserId({ userId }) {
+    // userID로 학력 이력 가져오기
+    const educationData = await Education.findByUserId(userId);
+    if (educationData.length === 0) {
+      return [];
     }
 
-    //학력 내역 가져오기
-    static async getEducationById({ userId }){
-        const educationData = await Education.findById({ userId }); //userId가 userId인 education
-        if(!educationData){
-            const errorMessage = "학력 내역이 없습니다." 
-            return { errorMessage };
-        }
+    // 모든 학력 이력을 배열로 변환
+    const educationDataResult = educationData.map(education => ({
+      id: education._id,
+      userId: education.userId,
+      title: education.title,
+      description: education.description,
+    }));
 
-        const id = educationData._id; //id가져오기
-        const userIdData = educationData.id;
-        const title = educationData.title;
-        const description = educationData.description;
+    return educationDataResult;
+  }
 
-        const EducationDataSet ={
-            id,
-            userId: userIdData,
-            title,
-            description,
-            errorMessage: null,
-        };
-        return EducationDataSet;
+  // 학력 이력 수정하기
+  static async setAward({ id, toUpdate }) {
+    let educationData = await Education.findById(id);
+
+    if (educationData === 0) {
+      const errorMessage = "학력 이력이 없습니다. 다시 한 번 확인해 주세요.";
+      return { errorMessage };
     }
-    
-    //학력 내역 수정
-    static async setEducation({ id, toUpdate }){
 
-        let education = await Education.findById({ _id: id});
+    const updatedAward = await Award.update(id, toUpdate);
+    return updatedAward;
+  }
 
-        if(!education){
-            const errorMessage = "학력 내역이 없습니다. 다시 한 번 확인해주세요.";
-            return { errorMessage };
-        }
-
-        /*
-        //업데이트 대상에 title이 있다면, 업데이트 진행
-        if (toUpdate.title){
-            const newValue = toUpdate.title;
-            education = await Education.update({ userId: id, fieldToUpdate, newValue });
-        }
-
-        //업데이트 대상에 description이 있다면, 업데이트 진행
-        if (toUpdate.description){
-            const newValue = toUpdate.description;
-            education = await Education.update({ userId: id, fieldToUpdate: newValue });
-        }
-        */
-       const userId = education.userId;
-       const updatedEducation = await Education.update({userId, updatedField: toUpdate});
-
-        return updatedEducation;
-
+  // 수상 이력 삭제하기
+  static async deleteAward({ id }) {
+    let awardData = await Award.findById(id);
+  
+    if (awardData === 0) {
+      throw new Error("삭제할 이력이 없습니다.");
     }
-    static async deleteEducation({ id }){
-        const educationData = await Education.findById({ _id: id});
-        if(!educationData){
-            const errorMessage = "삭제하려는 내역이 없습니다.";
-            return { errorMessage };
-        }
-        await educationData.remove();
-        return;
-    }
+    const deletedEducation = await Education.findByIdAndRemove(id);
+    return deletedEducation;
+  }
 }
 
-export { educationService };
+export { EducationService };
