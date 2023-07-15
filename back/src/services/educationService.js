@@ -1,4 +1,4 @@
-import { Education } from "../db/models/Award"; 
+import { Education } from "../db/models/Educations"; 
 
 class EducationService {
   //학력 이력 추가

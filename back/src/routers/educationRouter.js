@@ -19,9 +19,8 @@ educationRouter.get('/educations/:userId', async (req, res, next) => {
 
 educationRouter.post('/educations/:userId', login_required, async (req, res, next) => {
   try {
-    const userId = req.params.userId; 
-    const title = req.body.title;
-    const description = req.body.description;
+    const {userId} = req.params; //구조 분해 할당
+    const {title, description} = req.body;
 
     const result = await educationService.addEducation({userId, title, description})
 
@@ -36,12 +35,9 @@ educationRouter.post('/educations/:userId', login_required, async (req, res, nex
 educationRouter.put('/educations/:userId', login_required, async (req, res, next) => {
   console.log(req.body);
   try {
-    const id = req.body.id;
-    const title = req.body.title;
-    const description = req.body.description;
+    const { id, title, description } =req.body; //구조 분해 할당
     const result = await educationService.setEducation({ id, toUpdate: { title, description } });
-
-    res.status(200).json(result)
+esult)
   } catch(e) {
     console.log(e);
     next(e);
