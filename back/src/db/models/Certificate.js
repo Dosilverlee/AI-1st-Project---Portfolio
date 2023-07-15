@@ -18,6 +18,11 @@ class Certificate {
     return Certificate;
   }
 
+  static async findByTitleDescription(title, description) {
+    const Certificate = await CertificateModel.findOne({ title, description});
+    return Certificate;
+  }
+
   static async update(id, updateField) {
     const filter = { _id: ObjectId(id) };
     const update = { $set: updateField };

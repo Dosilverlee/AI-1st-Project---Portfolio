@@ -18,6 +18,11 @@ class Project {
     return Project;
   }
 
+  static async findByTitleDescription(title, description) {
+    const Project = await ProjectModel.findOne({ title, description});
+    return Project;
+  }
+
   static async update(id, updateField) {
     const filter = { _id: ObjectId(id) };
     const update = { $set: updateField };

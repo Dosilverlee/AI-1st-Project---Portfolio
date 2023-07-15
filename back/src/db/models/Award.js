@@ -18,6 +18,11 @@ class Award {
     return award;
   }
 
+  static async findByTitleDescription(title, description) {
+    const award = await AwardModel.findOne({ title, description});
+    return award;
+  }
+
   static async update(id, updateField) {
     const filter = { _id: ObjectId(id) };
     const update = { $set: updateField };

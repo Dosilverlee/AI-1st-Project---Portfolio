@@ -3,8 +3,8 @@ import { Award } from "../db/models/Award";
 class awardService {
   // 수상 이력 추가
   static async addAward({ userId, title, description }) {
-    const awardData = await Award.findByUserId(userId);
-    if (awardData.length > 1) {
+    const awardData = await Award.findByTitleDescription(title, description);
+    if (awardData) {
       const errorMessage =
         "이미 등록된 수상이력입니다.";
       return { errorMessage };

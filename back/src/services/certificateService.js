@@ -3,7 +3,7 @@ import { Certificate } from "../db/models/Certificate";
 class certificateService {
   // 수상 이력 추가
   static async addCertificate({ userId, title, description }) {
-    const certificateData = await Certificate.findByUserId(userId);
+    const certificateData = await Certificate.findByTitleDescription(title, description);
     if (certificateData.length > 1) {
       const errorMessage =
         "이미 등록된 자격이력입니다.";
