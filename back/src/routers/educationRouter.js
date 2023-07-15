@@ -37,7 +37,8 @@ educationRouter.put('/educations/:userId', login_required, async (req, res, next
   try {
     const { id, title, description } =req.body; //구조 분해 할당
     const result = await educationService.setEducation({ id, toUpdate: { title, description } });
-esult)
+
+    res.status(200).json(result);
   } catch(e) {
     console.log(e);
     next(e);

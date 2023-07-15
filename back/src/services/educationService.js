@@ -22,7 +22,7 @@ class EducationService {
   static async getEducationByUserId({ userId }) {
     // userID로 학력 이력 가져오기
     const educationData = await Education.findByUserId(userId);
-    if (educationData.length === 0) {
+    if (educationData.length == 0) {
       return [];
     }
 
