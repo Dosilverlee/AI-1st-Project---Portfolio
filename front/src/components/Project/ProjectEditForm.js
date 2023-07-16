@@ -3,10 +3,11 @@ import { Button, Form, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
 
 function ProjectEditForm({ currentProject, setProjects, setIsEditing }) {
+  const { title:projectTitle, description:projectDesc } = currentProject;
   //useState로 title 상태를 생성함.
-  const [title, setTitle] = useState(currentProject.title);
+  const [title, setTitle] = useState(projectTitle);
   //useState로 description 상태를 생성함.
-  const [description, setDescription] = useState(currentProject.description);
+  const [description, setDescription] = useState(projectDesc);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,7 +24,7 @@ function ProjectEditForm({ currentProject, setProjects, setIsEditing }) {
     });
 
     // "awardlist/유저id" 엔드포인트로 GET 요청함.
-    const res = await Api.get("projectlist", user_id);
+    const res = await Api.get("projects", user_id);
     // awards를 response의 data로 세팅함.
     setProjects(res.data);
     // 편집 과정이 끝났으므로, isEditing을 false로 세팅함.

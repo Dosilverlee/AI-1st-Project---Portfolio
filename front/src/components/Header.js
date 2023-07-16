@@ -4,8 +4,6 @@ import { Nav, Row, Col } from "react-bootstrap";
 import { UserStateContext, DispatchContext } from "../App";
 import Logo from '../assets/logo.png'
 
-const logoURL = "https://cdn-api.elice.io/api/file/3673edf6a20247778d4087c3a253846b/elice%20x%20KDT.png?se=2100-12-31T00%3A00%3A00Z&sp=r&sv=2021-12-02&sr=b&sig=oD7MEb1zoao6hCZo7jTvhON0qP5o4qPg0yOanEjbL98%3D"
-
 function Header() {
   const navigate = useNavigate();
   const location = useLocation();
