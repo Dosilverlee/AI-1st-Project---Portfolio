@@ -1,10 +1,13 @@
-import React, { useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Container, Col, Row } from "react-bootstrap";
 import { UserStateContext } from "../App";
-
+import { throttle } from "lodash";
+import styled from "styled-components"
 import Portfolio from "./Portfolio";
 import Network from "./user/Network";
+
+import scroll_to_top_button from "../assets/scroll_to_top_button.png"
 
 function Mainpage() {
   const navigate = useNavigate();
@@ -19,6 +22,35 @@ function Mainpage() {
     }
   }, [params, userState, navigate]);
 
+  function ScrollToTopButton() {
+    const useScrollToggle = () => {
+      const [scrollFlag, setScrollFlag] = useState(false);
+  
+      const updateScroll = () => {
+        const { scrollY } = window;
+        scrollY > 10 ? setScrollFlag(true) : setScrollFlag(false);
+      };
+      const handleScroll = throttle(updateScroll, 100);
+  
+      useEffect(()=> {
+        window.addEventListener("scroll", handleScroll);
+        return () => {
+          window.removeEventListener("scroll", handleScroll);
+        };
+      }, []);
+      return scrollFlag;
+    };
+
+    const scrollFlag = useScrollToggle(false);
+    const moveToTop = () => (document.documentElement.scrollTop = 0);
+    
+    return (scrollFlag && (
+      <div style={{position:'fixed', bottom:'1rem', right:'1rem'}}>
+        <img src={scroll_to_top_button} onClick={moveToTop} style={{cursor:'pointer'}} />
+      </div>
+    ));
+  };
+
   return (
     <Container className="col align-self-center">
       <Row>
@@ -29,6 +61,7 @@ function Mainpage() {
           <Network />
         </Col>
       </Row>
+      <ScrollToTopButton  />
     </Container>
   );
 }

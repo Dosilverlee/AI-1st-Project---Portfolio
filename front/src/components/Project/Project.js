@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import ProjectCard from "./ProjectCard";
 import ProjectEditForm from "./ProjectEditForm";
 
@@ -6,7 +6,7 @@ function Project({ project, setProjects, isEditable }) {
   //useState로 isEditing 상태를 생성함.
   const [isEditing, setIsEditing] = useState(false);
   return (
-    <>
+    <Fragment>
       {isEditing ? (
         <ProjectEditForm
           currentProject={project}
@@ -20,7 +20,7 @@ function Project({ project, setProjects, isEditable }) {
           setIsEditing={setIsEditing}
         />
       )}
-    </>
+    </Fragment>
   );
 }
 
