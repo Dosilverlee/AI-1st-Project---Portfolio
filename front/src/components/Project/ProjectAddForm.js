@@ -16,14 +16,14 @@ function ProjectAddForm({ portfolioOwnerId, setProjects, setIsAdding }) {
     const user_id = portfolioOwnerId;
 
     // "award/create" 엔드포인트로 post요청함.
-    await Api.post("projects/", {
+    await Api.post(`projects/${user_id}`, {
       user_id,
       title,
       description,
     });
 
     // "awardlist/유저id" 엔드포인트로 get요청함.
-    const res = await Api.get("projects", user_id);
+    const res = await Api.get(`projects/${user_id}`);
     // awards를 response의 data로 세팅함.
     setProjects(res.data);
     // award를 추가하는 과정이 끝났으므로, isAdding을 false로 세팅함.
