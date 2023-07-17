@@ -1,6 +1,5 @@
 import { CertificateModel } from "../schemas/certificate";
-import { Types } from "mongoose";
-const { ObjectId } = Types;
+import { ObjectTypeHandler } from "../typeHandler";
 
 class Certificate {
   static async create(newCertificate) {
@@ -14,12 +13,17 @@ class Certificate {
   }
 
   static async findById(id) {
-    const Certificate = await CertificateModel.findOne(ObjectId(id));
+    const Certificate = await CertificateModel.findOne(ObjectTypeHandler(id));
+    return Certificate;
+  }
+
+  static async findByTitleDescription(userId, title, description) {
+    const Certificate = await CertificateModel.findOne({ userId, title, description});
     return Certificate;
   }
 
   static async update(id, updateField) {
-    const filter = { _id: ObjectId(id) };
+    const filter = { _id: ObjectTypeHandler(id) };
     const update = { $set: updateField };
     const option = { returnOriginal: false };
 
@@ -32,7 +36,7 @@ class Certificate {
   }
 
   static async findByIdAndRemove(id) {
-    const filter = { _id: ObjectId(id) };
+    const filter = { _id: ObjectTypeHandler(id) };
     const deletedCertificate = await CertificateModel.findOneAndDelete(filter);
     return deletedCertificate;
   }

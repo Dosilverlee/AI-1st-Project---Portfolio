@@ -1,6 +1,5 @@
 import { ProjectModel } from "../schemas/project";
-import { Types } from "mongoose";
-const { ObjectId } = Types;
+import { ObjectTypeHandler } from "../typeHandler";
 
 class Project {
   static async create(newProject) {
@@ -14,12 +13,17 @@ class Project {
   }
 
   static async findById(id) {
-    const Project = await ProjectModel.findOne(ObjectId(id));
+    const Project = await ProjectModel.findOne(ObjectTypeHandler(id));
+    return Project;
+  }
+
+  static async findByTitleDescription(userId, title, description) {
+    const Project = await ProjectModel.findOne({ userId, title, description});
     return Project;
   }
 
   static async update(id, updateField) {
-    const filter = { _id: ObjectId(id) };
+    const filter = { _id: ObjectTypeHandler(id) };
     const update = { $set: updateField };
     const option = { returnOriginal: false };
 
@@ -32,7 +36,7 @@ class Project {
   }
 
   static async findByIdAndRemove(id) {
-    const filter = { _id: ObjectId(id) };
+    const filter = { _id: ObjectTypeHandler(id) };
     const deletedProject = await ProjectModel.findOneAndDelete(filter);
     return deletedProject;
   }
