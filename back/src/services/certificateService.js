@@ -59,7 +59,7 @@ class certificateService {
     if (certificateData === 0) {
       throw new Error("삭제할 이력이 없습니다.");
     }
-    const deletedCertificate = await Certificate.findByIdAndRemove(id);
+    const deletedCertificate = await Certificate.findByIdAndRemove(certificateData.id);
     return deletedCertificate;
   }
 }

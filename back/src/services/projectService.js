@@ -57,7 +57,7 @@ class projectService {
     if (projectData.length === 0) {
       throw new Error("삭제할 이력이 없습니다.");
     }
-    const deletedProject = await Project.findByIdAndRemove(id);
+    const deletedProject = await Project.findByIdAndRemove(certificateData.id);
     return deletedProject;
   }
 }

@@ -60,7 +60,7 @@ class awardService {
     if (awardData === 0) {
       throw new Error("삭제할 이력이 없습니다.");
     }
-    const deletedAward = await Award.findByIdAndRemove(id);
+    const deletedAward = await Award.findByIdAndRemove(awardData.id);
     return deletedAward;
   }
 }
