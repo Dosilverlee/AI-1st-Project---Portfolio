@@ -10,7 +10,7 @@ class awardService {
       return { errorMessage };
     }
 
-    const newAward = { userId, title, description };
+    const newAward = { userId, title, description, date, institute };
 
     // db에 저장
     const createdNewAward = await Award.create(newAward);
@@ -32,6 +32,8 @@ class awardService {
       userId: award.userId,
       title: award.title,
       description: award.description,
+      date : award.date,
+      institute : award.institute,
     }));
 
     return awardDataResult;

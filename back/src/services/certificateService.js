@@ -10,7 +10,7 @@ class certificateService {
       return { errorMessage };
     }
 
-    const newCertificate = { userId, title, description };
+    const newCertificate = { userId, title, description, date, institute };
 
     // db에 저장
     const createdNewCertificate = await Certificate.create(newCertificate);
@@ -32,6 +32,8 @@ class certificateService {
       userId: certificate.userId,
       title: certificate.title,
       description: certificate.description,
+      date : award.date,
+      institute : award.institute,
     }));
 
     return certificateDataResult;

@@ -22,8 +22,10 @@ certificateRouter.post('/certificates/:userId', login_required, async (req, res,
     const userId = req.params.userId; 
     const title = req.body.title;
     const description = req.body.description;
+    const date = req.body.date;
+    const institute = req.body.institute;
 
-    const result = await certificateService.addCertificate({userId, title, description})
+    const result = await certificateService.addCertificate({userId, title, description, date, institute})
 
     res.status(200).json({result})
   } catch(e) {
@@ -39,7 +41,10 @@ certificateRouter.put('/certificates/:userId', login_required, async (req, res, 
     const certificateId = req.body.id;
     const title = req.body.title;
     const description = req.body.description;
-    const result = await certificateService.setCertificate({ certificateId, toUpdate: { title, description } });
+    const date = req.body.date;
+    const institute = req.body.institute;
+    
+    const result = await certificateService.setCertificate({ certificateId, toUpdate: { title, description, date, institute } });
 
     res.status(200).json(result)
   } catch(e) {
