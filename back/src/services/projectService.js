@@ -46,7 +46,7 @@ class projectService {
       return { errorMessage };
     }
 
-    const updatedProject = await Project.update(id, toUpdate);
+    const updatedProject = await Project.update(projectData.id, toUpdate);
     return updatedProject;
   }
 

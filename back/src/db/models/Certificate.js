@@ -23,7 +23,7 @@ class Certificate {
   }
 
   static async update(id, updateField) {
-    const filter = { _id: ObjectId(id) };
+    const filter = { _id: ObjectTypeHandler(id) };
     const update = { $set: updateField };
     const option = { returnOriginal: false };
 
@@ -36,7 +36,7 @@ class Certificate {
   }
 
   static async findByIdAndRemove(id) {
-    const filter = { _id: ObjectId(id) };
+    const filter = { _id: ObjectTypeHandler(id) };
     const deletedCertificate = await CertificateModel.findOneAndDelete(filter);
     return deletedCertificate;
   }

@@ -5,7 +5,7 @@ const { ObjectId } = Types;
  * @param {String} element - String을 입력하면 ObjectId을 반환
  */
 function ObjectTypeHandler(element) {
-  ObjectId(element)
+  return ObjectId(element);
 }
 
 export { ObjectTypeHandler };

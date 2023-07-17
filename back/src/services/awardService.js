@@ -48,7 +48,8 @@ class awardService {
       return { errorMessage };
     }
 
-    const updatedAward = await Award.update(id, toUpdate);
+    const updatedAward = await Award.update(awardData.id, toUpdate);
+
     return updatedAward;
   }
 

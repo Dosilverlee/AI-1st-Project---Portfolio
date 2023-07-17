@@ -17,7 +17,7 @@ awardRouter.get('/awards/:userId', async (req, res, next) => {
 });
 
 
-awardRouter.post('/awards/:userId', async (req, res, next) => {
+awardRouter.post('/awards/:userId', login_required, async (req, res, next) => {
   try {
     const userId = req.params.userId; 
     const title = req.body.title;
@@ -36,7 +36,6 @@ awardRouter.post('/awards/:userId', async (req, res, next) => {
 });
 
 awardRouter.put('/awards/:userId', login_required, async (req, res, next) => {
-  console.log(req.body);
   try {
     const awardId = req.body.id;
     const title = req.body.title;

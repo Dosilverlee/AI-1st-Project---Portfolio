@@ -23,7 +23,7 @@ class Award {
   }
 
   static async update(id, updateField) {
-    const filter = { _id: ObjectId(id) };
+    const filter = { _id: ObjectTypeHandler(id) };
     const update = { $set: updateField };
     const option = { returnOriginal: false };
 
@@ -36,7 +36,7 @@ class Award {
   }
 
   static async findByIdAndRemove(id) {
-    const filter = { _id: ObjectId(id) };
+    const filter = { _id: ObjectTypeHandler(id) };
     const deletedAward = await AwardModel.findOneAndDelete(filter);
     return deletedAward;
   }

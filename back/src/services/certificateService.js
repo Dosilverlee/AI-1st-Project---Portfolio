@@ -48,7 +48,7 @@ class certificateService {
       return { errorMessage };
     }
 
-    const updatedCertificate = await Certificate.update(id, toUpdate);
+    const updatedCertificate = await Certificate.update(certificateData.id, toUpdate);
     return updatedCertificate;
   }
 
