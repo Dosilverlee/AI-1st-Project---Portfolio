@@ -17,7 +17,7 @@ awardRouter.get('/awards/:userId', async (req, res, next) => {
 });
 
 
-awardRouter.post('/awards/:userId', async (req, res, next) => {
+awardRouter.post('/awards/:userId', login_required, async (req, res, next) => {
   try {
     const userId = req.params.userId; 
     const title = req.body.title;
