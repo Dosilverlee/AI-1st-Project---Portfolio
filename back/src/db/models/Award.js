@@ -17,8 +17,8 @@ class Award {
     return award;
   }
 
-  static async findByTitleDescription(title, description) {
-    const award = await AwardModel.findOne({ title, description});
+  static async findByTitleDescription(userId, title, description) {
+    const award = await AwardModel.findOne({ userId, title, description});
     return award;
   }
 

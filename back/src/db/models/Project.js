@@ -17,8 +17,8 @@ class Project {
     return Project;
   }
 
-  static async findByTitleDescription(title, description) {
-    const Project = await ProjectModel.findOne({ title, description});
+  static async findByTitleDescription(userId, title, description) {
+    const Project = await ProjectModel.findOne({ userId, title, description});
     return Project;
   }
 
