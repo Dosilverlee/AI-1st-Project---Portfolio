@@ -2,7 +2,7 @@ import { Award } from "../db/models/Award";
 
 class awardService {
   // 수상 이력 추가
-  static async addAward({ userId, title, description }) {
+  static async addAward({ userId, title, description, date, institute }) {
     const awardData = await Award.findByTitleDescription(title, description);
     if (awardData) {
       const errorMessage =

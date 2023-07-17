@@ -17,13 +17,13 @@ awardRouter.get('/awards/:userId', async (req, res, next) => {
 });
 
 
-awardRouter.post('/awards/:userId', login_required, async (req, res, next) => {
+awardRouter.post('/awards/:userId', async (req, res, next) => {
   try {
     const userId = req.params.userId; 
     const title = req.body.title;
     const description = req.body.description;
-    const date = req.body.date;
-    const institute = req.body.institute;
+    const date = (req.body.date) ? req.body.date : "이력 없음";
+    const institute = (req.body.institute) ? req.body.institute : "이력 없음";
 
     const result = await awardService.addAward({userId, title, description, date, institute})
 
@@ -41,9 +41,9 @@ awardRouter.put('/awards/:userId', login_required, async (req, res, next) => {
     const awardId = req.body.id;
     const title = req.body.title;
     const description = req.body.description;
-    const date = req.body.date;
-    const institute = req.body.institute;
-    
+    const date = (req.body.date) ? req.body.date : "이력 없음";
+    const institute = (req.body.institute) ? req.body.institute : "이력 없음";
+
     const result = await awardService.setAward({ awardId, toUpdate: { title, description, date, institute } });
 
     res.status(200).json(result)

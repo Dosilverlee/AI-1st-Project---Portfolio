@@ -22,8 +22,8 @@ certificateRouter.post('/certificates/:userId', login_required, async (req, res,
     const userId = req.params.userId; 
     const title = req.body.title;
     const description = req.body.description;
-    const date = req.body.date;
-    const institute = req.body.institute;
+    const date = (req.body.date) ? req.body.date : "이력 없음";
+    const institute = (req.body.institute) ? req.body.institute : "이력 없음";
 
     const result = await certificateService.addCertificate({userId, title, description, date, institute})
 
@@ -41,9 +41,9 @@ certificateRouter.put('/certificates/:userId', login_required, async (req, res, 
     const certificateId = req.body.id;
     const title = req.body.title;
     const description = req.body.description;
-    const date = req.body.date;
-    const institute = req.body.institute;
-    
+    const date = (req.body.date) ? req.body.date : "이력 없음";
+    const institute = (req.body.institute) ? req.body.institute : "이력 없음";
+
     const result = await certificateService.setCertificate({ certificateId, toUpdate: { title, description, date, institute } });
 
     res.status(200).json(result)
