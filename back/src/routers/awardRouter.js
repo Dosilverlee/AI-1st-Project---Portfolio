@@ -26,8 +26,9 @@ awardRouter.post('/awards/:userId', async (req, res, next) => {
     const institute = (req.body.institute) ? req.body.institute : "이력 없음";
 
     const result = await awardService.addAward({userId, title, description, date, institute})
+    console.log(result)
 
-    res.status(200).json({result})
+    res.status(201).json({result})
   } catch(e) {
     console.log(e);
     next(e);
@@ -58,7 +59,7 @@ awardRouter.delete('/awards/:userId', async (req, res, next) => {
     // 클라이언트가 요청한 _id값 받아오기
     const awardId = req.body.id;
     const result = await awardService.deleteAward({ awardId });
-    res.status(200).json(result)
+    res.status(204).json(result)
   } catch(e) {
     console.log(e);
     next(e);

@@ -27,7 +27,7 @@ certificateRouter.post('/certificates/:userId', login_required, async (req, res,
 
     const result = await certificateService.addCertificate({userId, title, description, date, institute})
 
-    res.status(200).json({result})
+    res.status(201).json({result})
   } catch(e) {
     console.log(e);
     next(e);
@@ -59,7 +59,7 @@ certificateRouter.delete('/certificates/:userId', login_required, async (req, re
     // 클라이언트가 요청한 _id값 받아오기
     const certificateId = req.body.id;
     const result = await certificateService.deleteCertificate({ certificateId });
-    res.status(200).json(result)
+    res.status(204).json(result)
   } catch(e) {
     console.log(e);
     next(e);
