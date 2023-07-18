@@ -106,7 +106,7 @@ class EducationService {
   }
 
   // 학력 이력 수정하기
-  static async setAward({ id, toUpdate }) {
+  static async setEducation({ id, toUpdate }) {
     let educationData = await Education.findById(id);
 
     if (educationData === 0) {
@@ -114,15 +114,15 @@ class EducationService {
       return { errorMessage };
     }
 
-    const updatedAward = await Award.update(id, toUpdate);
-    return updatedAward;
+    const updatedEducation= await Education.update(id, toUpdate);
+    return updatedEducation;
   }
 
   // 수상 이력 삭제하기
-  static async deleteAward({ id }) {
-    let awardData = await Award.findById(id);
+  static async deleteEducation({ id }) {
+    let educationData = await Education.findById(id);
   
-    if (awardData === 0) {
+    if (educationData === 0) {
       throw new Error("삭제할 이력이 없습니다.");
     }
     const deletedEducation = await Education.findByIdAndRemove(id);
