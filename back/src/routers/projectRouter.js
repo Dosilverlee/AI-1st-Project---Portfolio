@@ -17,7 +17,7 @@ projectRouter.get('/projects/:userId', async (req, res, next) => {
 });
 
 
-projectRouter.post('/projects/:userId', login_required, async (req, res, next) => {
+projectRouter.post('/projects/:userId', async (req, res, next) => {
   try {
     const userId = req.params.userId; 
     const title = req.body.title;

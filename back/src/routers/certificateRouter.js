@@ -17,7 +17,7 @@ certificateRouter.get('/certificates/:userId', async (req, res, next) => {
 });
 
 
-certificateRouter.post('/certificates/:userId', login_required, async (req, res, next) => {
+certificateRouter.post('/certificates/:userId', async (req, res, next) => {
   try {
     const userId = req.params.userId; 
     const title = req.body.title;
