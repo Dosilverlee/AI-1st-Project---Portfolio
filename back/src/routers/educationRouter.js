@@ -53,7 +53,7 @@ educationRouter.put('/educations/:userId', login_required, async (req, res, next
 educationRouter.delete('/educations/:userId', async (req, res, next) => {
   try {
     // 클라이언트가 요청한 _id값 받아오기
-    const educationId = req.parmas.id;
+    const educationId = req.params.id;
     const result = await educationService.deleteEducation({ educationId });
     res.status(200).json(result)
   } catch(e) {
