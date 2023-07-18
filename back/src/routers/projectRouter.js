@@ -17,7 +17,7 @@ projectRouter.get('/projects/:userId', async (req, res, next) => {
 });
 
 
-projectRouter.post('/projects/:userId', login_required, async (req, res, next) => {
+projectRouter.post('/projects/:userId', async (req, res, next) => {
   try {
     const userId = req.params.userId; 
     const title = req.body.title;
@@ -33,10 +33,11 @@ projectRouter.post('/projects/:userId', login_required, async (req, res, next) =
 
 });
 
-projectRouter.put('/projects/:userId', login_required, async (req, res, next) => {
+projectRouter.put('/projects/:userId/:projectId', login_required, async (req, res, next) => {
   console.log(req.body);
   try {
-    const projectId = req.body.id;
+    const userId = req.params.userId;
+    const projectId = req.params.projectId;
     const title = req.body.title;
     const description = req.body.description;
     const result = await projectService.setProject({ projectId, toUpdate: { title, description } });
@@ -49,10 +50,10 @@ projectRouter.put('/projects/:userId', login_required, async (req, res, next) =>
 });
 
 
-projectRouter.delete('/projects/:userId', login_required, async (req, res, next) => {
+projectRouter.delete('/projects/:userId/:projectId', login_required, async (req, res, next) => {
   try {
     // 클라이언트가 요청한 _id값 받아오기
-    const projectId = req.body.id;
+    const projectId = req.params.projectId;
     const result = await projectService.deleteProject({ projectId });
     res.status(204).json(result)
   } catch(e) {
