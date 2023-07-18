@@ -36,9 +36,10 @@ awardRouter.post('/awards/:userId', login_required, async (req, res, next) => {
 
 });
 
-awardRouter.put('/awards/:userId', login_required, async (req, res, next) => {
+awardRouter.put('/awards/:userId/:awardId', login_required, async (req, res, next) => {
   try {
-    const awardId = req.body.id;
+    const userId = req.params.userId;
+    const awardId = req.params.awardId;
     const title = req.body.title;
     const description = req.body.description;
     const date = (req.body.date) ? req.body.date : "이력 없음";
@@ -57,7 +58,7 @@ awardRouter.put('/awards/:userId', login_required, async (req, res, next) => {
 awardRouter.delete('/awards/:userId/:awardId', async (req, res, next) => {
   try {
     // 클라이언트가 요청한 _id값 받아오기
-    const { userId, awardId } = req.params;
+    const awardId = req.params.awardId;
     const result = await awardService.deleteAward({ awardId });
     res.status(204).json(result)
   } catch(e) {
