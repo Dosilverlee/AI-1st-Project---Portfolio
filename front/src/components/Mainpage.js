@@ -52,14 +52,14 @@ function Mainpage() {
 
   return (
     <Container className="col align-self-center">
-      <Row>
+      {userState.user && (<Row>
         <Col className="col align-self-start" sm="8">
           <Portfolio />
         </Col>
         <Col className="col align-self-end" sm="4">
           <Network />
         </Col>
-      </Row>
+      </Row>)}
       <ScrollToTopButton  />
     </Container>
   );
