@@ -16,9 +16,11 @@ const CertificateSchema = new Schema(
     },
     date: {
       type: String,
+      required: false,
     },
     institute: {
       type: String,
+      required: false,
     },
   }
 );
