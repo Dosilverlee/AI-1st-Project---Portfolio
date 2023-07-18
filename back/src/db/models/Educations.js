@@ -20,9 +20,8 @@ class Education {
     return education;
   }
 
-  static async findEducationByTitleAndDescription(title, descirption){
-    const education = await EducationModel.findOne({ title, descirption});
-    console.log(education);
+  static async findEducationByTitleAndDescription(userId, title, descirption){
+    const education = await EducationModel.findOne({ userId, title, descirption});
     return education;
   }
 
