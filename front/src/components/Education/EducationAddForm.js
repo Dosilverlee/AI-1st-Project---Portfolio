@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Form, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
 
-function EducationAddForm({ portfolioOwnerId, setEducations, setIsAdding }) {
+function EducationAddForm({  educations, portfolioOwnerId, setEducations, setIsAdding }) {
   //useState로 title 상태를 생성함.
   const [title, setTitle] = useState("");
   //useState로 description 상태를 생성함.
@@ -15,17 +15,57 @@ function EducationAddForm({ portfolioOwnerId, setEducations, setIsAdding }) {
     // portfolioOwnerId를 user_id 변수에 할당함.
     const user_id = portfolioOwnerId;
 
-    // "Education/create" 엔드포인트로 post요청함.
-    await Api.post("Educations", {
-      user_id: portfolioOwnerId,
-      title,
-      description,
-    });
+    // // "Education/create" 엔드포인트로 post요청함.
+    // await Api.post("educations/"+portfolioOwnerId, {
+    //   user_id: portfolioOwnerId,
+    //   title,
+    //   description,
+    // }); * 아래 정리 된 Api.post 이용하기 ↓
 
-    // "Educationlist/유저id" 엔드포인트로 get요청함.
-    const res = await Api.get("Educations", user_id);
+    // await Api.post ( "Educations", {
+    //   user_id,
+    //   title,
+    //   description
+    // });
+
+    // {
+    //   user_id,
+    //   title,
+    //   description
+    // }
+
+    // // "Educationlist/유저id" 엔드포인트로 get요청함.
+    // const res = await Api.get("educations", user_id);
     // Educations를 response의 data로 세팅함.
-    setEducations(res.data);
+
+    // id
+    // title
+    // description 
+    // 이라는 것을 가진 배열
+// const mockdata =
+//     [
+//       {
+//         id: 1,
+//         title: "대학",
+//         description: "전공"
+//       },
+//     ];
+//     // map <- 반복을 시켜줌 
+
+// educations : 우리가 등록한 학력 정보들을 모아놓음
+
+const copyEducations = [...educations];
+
+copyEducations.push(
+  {
+    id: educations.length + 1,
+    title,
+    description,
+  }
+);
+
+    setEducations(copyEducations);
+
     // Education을 추가하는 과정이 끝났으므로, isAdding을 false로 세팅함.
     setIsAdding(false);
   };

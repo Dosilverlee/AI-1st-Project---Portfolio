@@ -2,32 +2,38 @@ import React, { useState } from "react";
 import { Button, Form, Card, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
 
+const Grade = ["재학중", "학사 졸업", "석사 졸업", "박사 졸업"];
+
 function EducationEditForm({ currentEducation, setEducations, setIsEditing }) {
   const [college, setCollege] = useState("");
   const [major, setMajor] = useState("");
   const [graduation, setGraduation] = useState("");
+  // const { college, major, graduation } = formData;
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const formData = {
-      college: college,
-      major: major,
-      graduation: graduation,
+      college,
+      major,
+      graduation,
     };
 
     // 폼 데이터를 API로 전송
     Api.post("educations", formData)
-      .then((response) => {
+      .then(async (response) => {
         // 성공적으로 처리된 경우
         console.log("학력 정보가 업데이트되었습니다.");
         // 필요한 업데이트 작업 수행
         // ...
+        const res = await Api.get("education");
+        setEducations(res.data);
+
         setIsEditing(false);
       })
       .catch((error) => {
         // 에러 발생 시 처리
-        console.log("학력 정보 업데이트 중 에러 발생:", error);
+        // console.log("학력 정보 업데이트 중 에러 발생:", error);
       });
   };
 
@@ -53,8 +59,8 @@ function EducationEditForm({ currentEducation, setEducations, setIsEditing }) {
               onChange={(e) => setMajor(e.target.value)}
               onBlur={(e) => setMajor(e.target.value)}
             />
-          </Form.Group>
-          <Form.Group controlId="useEditName" className="mb-3">
+          {/* </Form.Group> */}
+          {/* <Form.Group controlId="useEditName" className="mb-3">
             <Form.Check
               inline
               type={"radio"}
@@ -90,7 +96,7 @@ function EducationEditForm({ currentEducation, setEducations, setIsEditing }) {
               checked={graduation === 4}
               onChange={() => setGraduation(4)}
               onBlur={() => setGraduation(4)}
-            />
+            /> */}
           </Form.Group>
           <Form.Group as={Row} className="mt-3 text-center">
             <Col sm={{ span: 12 }}>
