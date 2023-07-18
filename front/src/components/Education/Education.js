@@ -18,6 +18,7 @@ function Education ({ education, setEducations, isEditable }) {
           education = {education}
           setIsEditing = {setIsEditing}
           isEditable = {isEditable}
+          setEducations={setEducations}
         />
       )}
     </>

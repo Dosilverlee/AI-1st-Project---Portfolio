@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "react-bootstrap";
 
 export default function CommonButton({ 
     handleDelete,
@@ -7,16 +8,17 @@ export default function CommonButton({
     fontColor
 }) {
     return (
-    <div>
-    <button
+    <Button
         onClick={handleDelete}
-        tyle ={{
-            backgorund: bgColor,
+        style ={{
+            background: bgColor,
             Color: fontColor,
         }}
+        variant="outline-info"
+        size="sm"
+        className="mr-3"
     >
         {buttonText}
-    </button>
-    </div>
+    </Button>
     );
 }
