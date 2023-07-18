@@ -1,6 +1,5 @@
 import { AwardModel } from "../schemas/award";
-import { Types } from "mongoose";
-const { ObjectId } = Types;
+import { ObjectTypeHandler } from "../typeHandler";
 
 class Award {
   static async create(newAward) {
@@ -14,12 +13,17 @@ class Award {
   }
 
   static async findById(id) {
-    const award = await AwardModel.findOne(ObjectId(id));
+    const award = await AwardModel.findOne(ObjectTypeHandler(id));
+    return award;
+  }
+
+  static async findByTitleDescription(userId, title, description) {
+    const award = await AwardModel.findOne({ userId, title, description});
     return award;
   }
 
   static async update(id, updateField) {
-    const filter = { _id: ObjectId(id) };
+    const filter = { _id: ObjectTypeHandler(id) };
     const update = { $set: updateField };
     const option = { returnOriginal: false };
 
@@ -32,7 +36,7 @@ class Award {
   }
 
   static async findByIdAndRemove(id) {
-    const filter = { _id: ObjectId(id) };
+    const filter = { _id: ObjectTypeHandler(id) };
     const deletedAward = await AwardModel.findOneAndDelete(filter);
     return deletedAward;
   }

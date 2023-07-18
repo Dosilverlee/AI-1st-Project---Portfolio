@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Card, Row, Button, Col } from "react-bootstrap";
 
-function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
+function UserCard({ user, setIsEditing, isEditable, setIsAdding, isNetwork }) {
   const navigate = useNavigate();
   return (
     <Card className="mb-2 ms-3 mr-5">
