@@ -29,12 +29,12 @@ function AwardAddForm({ portfolioOwnerId, setAwards, setIsAdding }) {
     });
 
   //   // "awardlist/유저id" 엔드포인트로 get요청함.
-  //   const res = await Api.get("awards", user_id);
+    const res = await Api.get("awards", user_id);
   //   console.log(res);
   //   // awards를 response의 data로 세팅함.
-  //   setAwards(res.data);
+    setAwards(res.data);
   //   // award를 추가하는 과정이 끝났으므로, isAdding을 false로 세팅함.
-  //   setIsAdding(false);
+    setIsAdding(false);
   };
 
   
