@@ -17,7 +17,7 @@ certificateRouter.get('/certificates/:userId', async (req, res, next) => {
 });
 
 
-certificateRouter.post('/certificates/:userId', login_required, async (req, res, next) => {
+certificateRouter.post('/certificates/:userId', async (req, res, next) => {
   try {
     const userId = req.params.userId; 
     const title = req.body.title;
@@ -35,10 +35,11 @@ certificateRouter.post('/certificates/:userId', login_required, async (req, res,
 
 });
 
-certificateRouter.put('/certificates/:userId', login_required, async (req, res, next) => {
+certificateRouter.put('/certificates/:userId/:certificateId', login_required, async (req, res, next) => {
   console.log(req.body);
   try {
-    const certificateId = req.body.id;
+    const userId = req.params.userId;
+    const certificateId = req.params.certificateId;
     const title = req.body.title;
     const description = req.body.description;
     const date = (req.body.date) ? req.body.date : "이력 없음";
@@ -54,10 +55,9 @@ certificateRouter.put('/certificates/:userId', login_required, async (req, res, 
 });
 
 
-certificateRouter.delete('/certificates/:userId', login_required, async (req, res, next) => {
+certificateRouter.delete('/certificates/:userId/:certificateId', login_required, async (req, res, next) => {
   try {
-    // 클라이언트가 요청한 _id값 받아오기
-    const certificateId = req.body.id;
+    const certificateId = req.params.certificateId;
     const result = await certificateService.deleteCertificate({ certificateId });
     res.status(204).json(result)
   } catch(e) {

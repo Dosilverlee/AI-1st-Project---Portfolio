@@ -32,8 +32,8 @@ class certificateService {
       userId: certificate.userId,
       title: certificate.title,
       description: certificate.description,
-      date : award.date,
-      institute : award.institute,
+      date : certificate.date,
+      institute : certificate.institute,
     }));
 
     return certificateDataResult;

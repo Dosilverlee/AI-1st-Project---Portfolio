@@ -34,12 +34,15 @@ educationRouter.post('/educations/:userId', login_required, async (req, res, nex
 
 });
 
-educationRouter.put('/educations/:userId', login_required, async (req, res, next) => {
+educationRouter.put('/educations/:userId/:educationId', login_required, async (req, res, next) => {
+  console.log(req.body);
   try {
-    const educationId = req.params.id;
-    const { title, description } = req.body;
+    const userId = req.params.userId;
+    const educationId = req.params.educationId;
+    const title = req.body.title;
+    const description = req.body.description;
     const graduation = (req.body.graduation) ? req.body.graduation : 0;
-
+    
     const result = await educationService.setEducation({ educationId, toUpdate: { title, description, graduation} });
 
     res.status(200).json(result);
@@ -49,11 +52,10 @@ educationRouter.put('/educations/:userId', login_required, async (req, res, next
   }
 });
 
-
-educationRouter.delete('/educations/:userId', async (req, res, next) => {
+educationRouter.delete('/educations/:userId/:educationId', login_required, async (req, res, next) => {
   try {
     // 클라이언트가 요청한 _id값 받아오기
-    const educationId = req.params.id;
+    const educationId = req.params.educationId;
     const result = await educationService.deleteEducation({ educationId });
     res.status(200).json(result)
   } catch(e) {
