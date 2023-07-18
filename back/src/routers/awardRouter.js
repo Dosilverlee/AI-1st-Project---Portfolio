@@ -54,10 +54,10 @@ awardRouter.put('/awards/:userId', login_required, async (req, res, next) => {
 });
 
 
-awardRouter.delete('/awards/:userId', async (req, res, next) => {
+awardRouter.delete('/awards/:userId/:awardId', async (req, res, next) => {
   try {
     // 클라이언트가 요청한 _id값 받아오기
-    const awardId = req.body.id;
+    const { userId, awardId } = req.params;
     const result = await awardService.deleteAward({ awardId });
     res.status(204).json(result)
   } catch(e) {

@@ -54,10 +54,10 @@ certificateRouter.put('/certificates/:userId', login_required, async (req, res, 
 });
 
 
-certificateRouter.delete('/certificates/:userId', login_required, async (req, res, next) => {
+certificateRouter.delete('/certificates/:userId/:certificateId', login_required, async (req, res, next) => {
   try {
     // 클라이언트가 요청한 _id값 받아오기
-    const certificateId = req.body.id;
+    const { userId, certificateId } = req.params
     const result = await certificateService.deleteCertificate({ certificateId });
     res.status(204).json(result)
   } catch(e) {
