@@ -14,7 +14,7 @@ function Network() {
   const [users, setUsers] = useState([]);
   const [id, setId] = useState();
 
-  const [limit, setLimit] = useState(5);
+  const limit = 5;
   const [page, setPage] = useState(1);
   const offset = (page -1) * limit;
   const total = users.length;
@@ -31,9 +31,6 @@ function Network() {
   }
 
   useEffect(() => {
-    console.log(params.userId);
-    console.log(userState.user.id);
-    console.log(id);
     if (params.userId) {
       // 만약 현재 URL이 "/users/:userId" 라면, 이 userId를 유저 id로 설정함.
       setId(params.userId);
@@ -42,9 +39,6 @@ function Network() {
       setId(userState.user.id);
     }
     // "userlist" 엔드포인트로 GET 요청을 하고, users를 response의 data로 세팅함.
-    console.log(params.userId);
-    console.log(userState.user.id);
-    console.log(id);
     Api.get("userlist").then((res) => setUsers(shuffle(res.data).filter((user) => user.id !== id)));
   }, [params, userState, navigate]);
 

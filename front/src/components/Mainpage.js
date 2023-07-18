@@ -51,17 +51,17 @@ function Mainpage() {
   };
 
   return (
-    <Container className="col align-self-center">
-      {userState.user && (<Row>
-        <Col className="col align-self-start" sm="8">
+    <div>
+      {userState.user && (<div>
+        <div>
           <Portfolio />
-        </Col>
-        <Col className="col align-self-end" sm="4">
+        </div>
+        <div>
           <Network />
-        </Col>
-      </Row>)}
+        </div>
+      </div>)}
       <ScrollToTopButton  />
-    </Container>
+    </div>
   );
 }
 

@@ -20,7 +20,7 @@ function ProjectCard({ project, isEditable, setIsEditing }) {
               onClick={handleIsEditingToggle}
               className="mr-3"
             >
-              편집
+              ✏️
             </Button>
           </Col>
         )}

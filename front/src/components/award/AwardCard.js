@@ -1,7 +1,6 @@
 import { Card, Button, Row, Col } from "react-bootstrap";
 
 function AwardCard({ award, isEditable, setIsEditing }) {
-  console.log(award.id);
     return (
     <Card.Text>
       <Row className="align-items-center">

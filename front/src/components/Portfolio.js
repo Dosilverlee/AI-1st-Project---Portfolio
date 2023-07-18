@@ -48,32 +48,24 @@ function Portfolio() {
   }
 
   return (
-    <Container fluid>
-      <Row>
+    <div>
         <User
           portfolioOwnerId={portfolioOwner.id}
           isEditable={portfolioOwner.id === userState.user?.id}
         />
-      </Row>
-      <Row>
         <Educations 
             portfolioOwnerId={portfolioOwner.id}
             isEditable={portfolioOwner.id === userState.user?.id}
         />
-      </Row>
-      <Row>
         <Awards
             portfolioOwnerId={portfolioOwner.id}
             isEditable={portfolioOwner.id === userState.user?.id}
         />
-      </Row>
-      <Row>
         <Projects 
           portfolioOwnerId={portfolioOwner.id}
           isEditable={portfolioOwner.id === userState.user?.id}
         />
-      </Row>
-    </Container>
+    </div>
   );
 }
 
