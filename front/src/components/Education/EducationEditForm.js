@@ -36,7 +36,10 @@ console.log(currentEducation);
           // ...
           const res = await Api.get(`educations/${currentEducation.userId}`);
           setEducations(res.data);
-  
+          
+          // const selectedGrade = Grade[graduation - 1];
+          // console.log("선택된 학위", selectedGrade);
+
           setIsEditing(false);
         })
         .catch((error) => {
@@ -67,44 +70,19 @@ console.log(currentEducation);
               onChange={(e) => setMajor(e.target.value)}
               onBlur={(e) => setMajor(e.target.value)}
             />
-          {/* </Form.Group> */}
-          {/* <Form.Group controlId="useEditName" className="mb-3">
+          </Form.Group>
+          <Form.Group>
+          {Grade.map((item, index) => (
             <Form.Check
               inline
               type={"radio"}
-              label="재학중"
-              id={`inline-radio-1`}
-              checked={graduation === 1}
-              onChange={() => setGraduation(1)}
-              onBlur={() => setGraduation(1)}
-            />
-            <Form.Check
-              inline
-              type={"radio"}
-              label="학사졸업"
-              id={`inline-radio-2`}
-              checked={graduation === 2}
-              onChange={() => setGraduation(2)}
-              onBlur={() => setGraduation(2)}
-            />
-            <Form.Check
-              inline
-              type={"radio"}
-              label="석사졸업"
-              id={`inline-radio-3`}
-              checked={graduation === 3}
-              onChange={() => setGraduation(3)}
-              onBlur={() => setGraduation(3)}
-            />
-            <Form.Check
-              inline
-              type={"radio"}
-              label="박사졸업"
-              id={`inline-radio-4`}
-              checked={graduation === 4}
-              onChange={() => setGraduation(4)}
-              onBlur={() => setGraduation(4)}
-            /> */}
+              label={item}
+              value={index + 1}
+              id={`inline-radio-${index + 1}`}
+              checked={graduation === index + 1}
+              onChange={(e) => setGraduation(Number(e.target.value))}
+              />
+          ))}
           </Form.Group>
           <Form.Group as={Row} className="mt-3 text-center">
             <Col sm={{ span: 12 }}>
@@ -123,6 +101,3 @@ console.log(currentEducation);
 }
 
 export default EducationEditForm;
-
-
-

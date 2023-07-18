@@ -34,8 +34,7 @@ function EducationCard({ education, isEditable, setIsEditing, setEducations }) {
             <CommonButton
               handleDelete={()=> setIsEditing((prev) => !prev)}
               buttonText="편집"
-              
-              />
+            />
           </Col>
           <Col xs lg="1">
             <CommonButton
