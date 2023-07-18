@@ -3,7 +3,7 @@ import { Project } from "../db/models/Project";
 class projectService {
   // 프로젝트 이력 추가
   static async addProject({ userId, title, description }) {
-    const projectData = await Project.findByTitleDescription(title, description);
+    const projectData = await Project.findByTitleDescription(userId, title, description);
     if (projectData) {
       const errorMessage =
         "이미 등록된 프로젝트이력입니다.";

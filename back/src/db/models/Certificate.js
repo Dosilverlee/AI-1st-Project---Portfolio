@@ -17,8 +17,8 @@ class Certificate {
     return Certificate;
   }
 
-  static async findByTitleDescription(title, description) {
-    const Certificate = await CertificateModel.findOne({ title, description});
+  static async findByTitleDescription(userId, title, description) {
+    const Certificate = await CertificateModel.findOne({ userId, title, description});
     return Certificate;
   }
 

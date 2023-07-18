@@ -20,22 +20,20 @@ function Network() {
   const total = users.length;
   const numPages = Math.ceil(total / limit);
 
-  useEffect(() => {
-    function shuffle(sourceArray) {
-      for (var i = 0; i < sourceArray.length - 1; i++) {
-          var j = i + Math.floor(Math.random() * (sourceArray.length - i));
-  
-          var temp = sourceArray[j];
-          sourceArray[j] = sourceArray[i];
-          sourceArray[i] = temp;
-      }
-      return sourceArray;
+  function shuffle(sourceArray) {
+    for (let i = 0; i < sourceArray.length - 1; i++) {
+        let j = i + Math.floor(Math.random() * (sourceArray.length - i));
+        let temp = sourceArray[j];
+        sourceArray[j] = sourceArray[i];
+        sourceArray[i] = temp;
     }
-    // "userlist" 엔드포인트로 GET 요청을 하고, users를 response의 data로 세팅함.
-    Api.get("userlist").then((res) => setUsers(shuffle(res.data)));
-  }, [userState, navigate]);
+    return sourceArray;
+  }
 
   useEffect(() => {
+    console.log(params.userId);
+    console.log(userState.user.id);
+    console.log(id);
     if (params.userId) {
       // 만약 현재 URL이 "/users/:userId" 라면, 이 userId를 유저 id로 설정함.
       setId(params.userId);
@@ -43,11 +41,16 @@ function Network() {
       // 이외의 경우, 즉 URL이 "/" 라면, 전역 상태의 user.id를 유저 id로 설정함.
       setId(userState.user.id);
     }
-  }, [params, userState]);
+    // "userlist" 엔드포인트로 GET 요청을 하고, users를 response의 data로 세팅함.
+    console.log(params.userId);
+    console.log(userState.user.id);
+    console.log(id);
+    Api.get("userlist").then((res) => setUsers(shuffle(res.data).filter((user) => user.id !== id)));
+  }, [params, userState, navigate]);
 
   return (
     <Col>
-      {users.filter((user) => user.id !== id).slice(offset, offset + limit).map((user) => (
+      {users.slice(offset, offset + limit).map((user) => (
         <UserCard key={user.id} user={user} isNetwork />
       ))}
       <Nav total={total} limit={limit} page={page} setPage={setPage}>

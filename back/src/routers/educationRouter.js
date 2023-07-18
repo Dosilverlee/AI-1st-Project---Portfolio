@@ -42,7 +42,7 @@ educationRouter.put('/educations/:userId', login_required, async (req, res, next
 
     const result = await educationService.setEducation({ educationId, toUpdate: { title, description, graduation} });
 
-    res.status(200).json(result)
+    res.status(200).json(result);
   } catch(e) {
     console.log(e);
     next(e);

@@ -20,10 +20,18 @@ class educationService {
     return createdNewEducation;
   }
 
+<<<<<<< HEAD
   //userId로 해당 유저의 학력 내용 전부 가져오기
   static async getEducationsByUserId({ userId }) {
     const educationData = await Education.findEducationsByUserId(userId);
     if (educationData.length === 0) { //5개면 5개
+=======
+  // 학력 이력 가져오기
+  static async getEducationByUserId({ userId }) {
+    // userID로 학력 이력 가져오기
+    const educationData = await Education.findByUserId(userId);
+    if (educationData.length == 0) {
+>>>>>>> 927ab57f1bc7d4421f072a1a134eeef5df332dae
       return [];
     }
 

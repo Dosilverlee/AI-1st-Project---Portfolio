@@ -25,7 +25,7 @@ projectRouter.post('/projects/:userId', login_required, async (req, res, next) =
 
     const result = await projectService.addProject({userId, title, description})
 
-    res.status(200).json({result})
+    res.status(201).json({result})
   } catch(e) {
     console.log(e);
     next(e);
@@ -54,7 +54,7 @@ projectRouter.delete('/projects/:userId', login_required, async (req, res, next)
     // 클라이언트가 요청한 _id값 받아오기
     const projectId = req.body.id;
     const result = await projectService.deleteProject({ projectId });
-    res.status(200).json(result)
+    res.status(204).json(result)
   } catch(e) {
     console.log(e);
     next(e);
