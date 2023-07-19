@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import CertificationCard from "./CertificationCard";
 import CertificationEditForm from "./CertificationEditForm";
 
-
-
 function Certification({ certification, setCertifications, isEditable }) {
   //useState로 isEditing 상태를 생성함.
   const [isEditing, setIsEditing] = useState(false);
@@ -17,9 +15,10 @@ function Certification({ certification, setCertifications, isEditable }) {
         />
       ) : (
         <CertificationCard
-        certification={certification}
+          certification={certification}
           isEditable={isEditable}
           setIsEditing={setIsEditing}
+          setCertifications={setCertifications}
         />
       )}
     </>
