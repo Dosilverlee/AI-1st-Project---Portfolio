@@ -10,7 +10,7 @@ function CertificationEditForm({ currentCertification, setCertifications, setIsE
 
   const [date, setDate] = useState(currentCertification.date);
 
-  const [institution, setInstitution] = useState(currentCertification.institution);
+  const [institute, setInstitute] = useState(currentCertification.institute);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -26,7 +26,7 @@ function CertificationEditForm({ currentCertification, setCertifications, setIsE
       title,
       description,
       date,
-      institution,
+      institute,
     });
 
     
@@ -72,12 +72,12 @@ function CertificationEditForm({ currentCertification, setCertifications, setIsE
         />
       </Form.Group>
 
-      <Form.Group controlId="formBasicInstitution" className="mt-3">
+      <Form.Group controlId="formBasicInstitute" className="mt-3">
         <Form.Control
           type="text"
           placeholder="발행처/기관"
-          value={institution}
-          onChange={(e) => setInstitution(e.target.value)}
+          value={institute}
+          onChange={(e) => setInstitute(e.target.value)}
         />
       </Form.Group>
 

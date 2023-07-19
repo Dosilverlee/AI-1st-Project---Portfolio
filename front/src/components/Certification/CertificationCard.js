@@ -12,7 +12,7 @@ function CertificationCard({ certification, isEditable, setIsEditing }) {
           {/* <br />
           <span className="text-muted">{certification.date}</span>
           <br />
-          <span className="text-muted">{certification.institution}</span> */}
+          <span className="text-muted">{certification.institute}</span> */}
         </Col>
         {isEditable && (
           <Col xs lg="1">

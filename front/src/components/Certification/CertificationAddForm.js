@@ -10,12 +10,12 @@ function CertificationAddForm({ portfolioOwnerId, setCertifications, setIsAdding
 
   const [date, setDate] = useState("");
 
-  const [institution, setInstitution] = useState("");
+  const [institution, setInstitute] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     e.stopPropagation();
-    console.log(title, description, date, institution);
+    console.log(title, description, date, institute);
 
     // portfolioOwnerId를 user_id 변수에 할당함.
     const user_id = portfolioOwnerId;
@@ -25,7 +25,7 @@ function CertificationAddForm({ portfolioOwnerId, setCertifications, setIsAdding
       title,
       description,
       date,
-      institution,
+      institute,
     });
 
   //   // "certificationlist/유저id" 엔드포인트로 get요청함.
@@ -73,12 +73,12 @@ function CertificationAddForm({ portfolioOwnerId, setCertifications, setIsAdding
         />
       </Form.Group>
 
-      <Form.Group controlId="formBasicInstitution" className="mt-3">
+      <Form.Group controlId="formBasicInstitute" className="mt-3">
         <Form.Control
           type="text"
           placeholder="발행처/기관"
-          value={institution}
-          onChange={(e) => setInstitution(e.target.value)}
+          value={institute}
+          onChange={(e) => setInstitute(e.target.value)}
         />
       </Form.Group>
 
