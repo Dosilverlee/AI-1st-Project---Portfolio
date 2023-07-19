@@ -5,6 +5,24 @@ import { userAuthService } from "../services/userService";
 
 const userAuthRouter = Router();
 
+const multer = require("multer");
+
+const storage = multer.diskStorage({
+  // 경로설정
+  destination: function (req, file, cb) {
+    // 에러처리, 경로
+    cb(null, 'uploads/')
+  },
+  // originalname이면 사용자가 입력한 파일명 사용
+  filename: function (req, file, cb) {
+    // 에러처리, 파일명
+    cb(null, file.originalname)
+  }
+})
+
+const upload = multer({ storage: storage });
+
+
 userAuthRouter.post("/user/register", async function (req, res, next) {
   try {
     if (is.emptyObject(req.body)) {
@@ -132,6 +150,31 @@ userAuthRouter.get(
       }
 
       res.status(200).send(currentUserInfo);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+userAuthRouter.put(
+  "/users/:id/profileImage",
+  login_required,
+  upload.single('profileImage'),
+  async function (req, res, next) {
+    try {
+      const user_id = req.params.id;
+
+      if (!req.file) {
+        throw new Error("파일이 없습니다.");
+      }
+
+      const updatedUserInfo = await userAuthService.updateProfileImage(user_id, req.file.path);
+
+      if (updatedUserInfo.errorMessage) {
+        throw new Error(updatedUserInfo.errorMessage);
+      }
+
+      res.status(200).send(updatedUserInfo);
     } catch (error) {
       next(error);
     }
