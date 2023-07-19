@@ -51,17 +51,13 @@ function Mainpage() {
   };
 
   return (
-    <Container className="col align-self-center">
-      {userState.user && (<Row>
-        <Col className="col align-self-start" sm="8">
+    <div style={{backgroundColor: "#f9fafb", display: "flex", justifyContent: "center", alignItems: "center" }}>
+      {userState.user && (<div style={{ width:"1128px" }}>
           <Portfolio />
-        </Col>
-        <Col className="col align-self-end" sm="4">
           <Network />
-        </Col>
-      </Row>)}
+      </div>)}
       <ScrollToTopButton  />
-    </Container>
+    </div>
   );
 }
 

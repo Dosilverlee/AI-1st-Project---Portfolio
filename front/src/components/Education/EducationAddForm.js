@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Form, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
 
-function EducationAddForm({ portfolioOwnerId, setEducations, setIsAdding }) {
+function EducationAddForm({  educations, portfolioOwnerId, setEducations, setIsAdding }) {
   //useState로 title 상태를 생성함.
   const [title, setTitle] = useState("");
   //useState로 description 상태를 생성함.
@@ -16,16 +16,14 @@ function EducationAddForm({ portfolioOwnerId, setEducations, setIsAdding }) {
     const user_id = portfolioOwnerId;
 
     // "Education/create" 엔드포인트로 post요청함.
-    await Api.post("educations", {
-      user_id: portfolioOwnerId,
+    await Api.post("educations/"+ user_id, {
+      user_id,
       title,
       description,
-    });
-
-    // "Educationlist/유저id" 엔드포인트로 get요청함.
-    const res = await Api.get("educations", user_id);
-    // Educations를 response의 data로 세팅함.
-    setEducations(res.data);
+    }).then((res) => {
+      Api.get(`educations/${user_id}`).then((res) => setEducations(res.data));
+    }); 
+  
     // Education을 추가하는 과정이 끝났으므로, isAdding을 false로 세팅함.
     setIsAdding(false);
   };

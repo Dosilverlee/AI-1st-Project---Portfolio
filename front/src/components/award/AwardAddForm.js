@@ -15,7 +15,6 @@ function AwardAddForm({ portfolioOwnerId, setAwards, setIsAdding }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     e.stopPropagation();
-    console.log(title, description, date, institution);
 
     // portfolioOwnerId를 user_id 변수에 할당함.
     const user_id = portfolioOwnerId;
@@ -25,12 +24,11 @@ function AwardAddForm({ portfolioOwnerId, setAwards, setIsAdding }) {
       title,
       description,
       date,
-      institution,
+      institute,
     });
 
   //   // "awardlist/유저id" 엔드포인트로 get요청함.
     const res = await Api.get("awards", user_id);
-  //   console.log(res);
   //   // awards를 response의 data로 세팅함.
     setAwards(res.data);
   //   // award를 추가하는 과정이 끝났으므로, isAdding을 false로 세팅함.
@@ -73,12 +71,12 @@ function AwardAddForm({ portfolioOwnerId, setAwards, setIsAdding }) {
         />
       </Form.Group>
 
-      <Form.Group controlId="formBasicInstitution" className="mt-3">
+      <Form.Group controlId="formBasicInstitute" className="mt-3">
         <Form.Control
           type="text"
           placeholder="주최기관"
-          value={institution}
-          onChange={(e) => setInstitution(e.target.value)}
+          value={institute}
+          onChange={(e) => setInstitute(e.target.value)}
         />
       </Form.Group>
 

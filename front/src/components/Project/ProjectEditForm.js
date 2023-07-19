@@ -15,11 +15,12 @@ function ProjectEditForm({ currentProject, setProjects, setIsEditing }) {
 
     // currentAward의 user_id를 user_id 변수에 할당함.
     const user_id = currentProject.userId;
-    console.log(currentProject);
+    const id = currentProject.id;
+    console.log(id);
     console.log(user_id);
     // "awards/수상 id" 엔드포인트로 PUT 요청함.
-    await Api.put(`projects/${currentProject.id}`, {
-      user_id,
+    await Api.put(`projects/${user_id}`, {
+      id,
       title,
       description,
     });

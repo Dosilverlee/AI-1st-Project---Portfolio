@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Card, Row, Button, Col } from "react-bootstrap";
 
-function UserCard({ user, setIsEditing, isEditable, setIsAdding, isNetwork }) {
+function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
   const navigate = useNavigate();
   return (
     <Card className="mb-2 ms-3 mr-5">
@@ -23,9 +23,11 @@ function UserCard({ user, setIsEditing, isEditable, setIsAdding, isNetwork }) {
                 <Button
                   variant="outline-info"
                   size="sm"
-                  onClick={() => setIsEditing(true)}
+                  onClick={() => {
+                    setIsEditing(true);
+                  }}
                 >
-                  편집
+                  ✏️
                 </Button>
               </Col>
             </Row>

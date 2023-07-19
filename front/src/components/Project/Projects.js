@@ -22,6 +22,13 @@ function Projects({ portfolioOwnerId, isEditable }) {
     <Card>
       <Card.Body>
         <Card.Title>프로젝트이력</Card.Title>
+        {isEditable && (
+          <Row className="mt-3 text-center mb-4">
+            <Col sm={{ span: 20 }}>
+              <Button onClick={() => setIsAdding(true)}>+</Button>
+            </Col>
+          </Row>
+        )}
         {projects.map((project) => (
           <Project
             key={Project.id}
@@ -30,13 +37,6 @@ function Projects({ portfolioOwnerId, isEditable }) {
             isEditable={isEditable}
           />
         ))}
-        {isEditable && (
-          <Row className="mt-3 text-center mb-4">
-            <Col sm={{ span: 20 }}>
-              <Button onClick={() => setIsAdding(true)}>+</Button>
-            </Col>
-          </Row>
-        )}
         {isAdding && (
           <ProjectAddForm
             portfolioOwnerId={portfolioOwnerId}
