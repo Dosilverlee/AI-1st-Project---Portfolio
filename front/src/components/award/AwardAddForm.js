@@ -10,7 +10,7 @@ function AwardAddForm({ portfolioOwnerId, setAwards, setIsAdding }) {
 
   const [date, setDate] = useState("");
 
-  const [institution, setInstitution] = useState("");
+  const [institute, setInstitute] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -27,22 +27,16 @@ function AwardAddForm({ portfolioOwnerId, setAwards, setIsAdding }) {
       institute,
     });
 
-  //   // "awardlist/유저id" 엔드포인트로 get요청함.
+    //   // "awardlist/유저id" 엔드포인트로 get요청함.
     const res = await Api.get("awards", user_id);
-  //   // awards를 response의 data로 세팅함.
+    //   // awards를 response의 data로 세팅함.
     setAwards(res.data);
-  //   // award를 추가하는 과정이 끝났으므로, isAdding을 false로 세팅함.
+    //   // award를 추가하는 과정이 끝났으므로, isAdding을 false로 세팅함.
     setIsAdding(false);
   };
 
-  
-
-  
-
   return (
     <Form onSubmit={handleSubmit}>
-      
-
       <Form.Group controlId="formBasicTitle">
         <Form.Control
           type="text"
@@ -51,7 +45,6 @@ function AwardAddForm({ portfolioOwnerId, setAwards, setIsAdding }) {
           onChange={(e) => setTitle(e.target.value)}
         />
       </Form.Group>
-
 
       <Form.Group controlId="formBasicDescription" className="mt-3">
         <Form.Control
@@ -79,7 +72,6 @@ function AwardAddForm({ portfolioOwnerId, setAwards, setIsAdding }) {
           onChange={(e) => setInstitute(e.target.value)}
         />
       </Form.Group>
-
 
       <Form.Group as={Row} className="mt-3 text-center">
         <Col sm={{ span: 20 }}>
