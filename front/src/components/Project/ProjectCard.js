@@ -3,15 +3,14 @@ import CommonButton from "../buttons/CommonButton";
 import * as Api from "../../api";
 
 function ProjectCard({ project, isEditable, setIsEditing, setProjects }) {
-  const { id, title, description } = project;
-  const handleIsEditingToggle = () => setIsEditing((prev) => !prev);
+  const { title, description } = project;
 
   const handleDeleteProject = () => {
-    Api.delete(`projects/${project.userId}/${project.id}`, id)
+    Api.delete(`projects/${project.userId}/${project.id}`)
       .then(async (response) => {
         // 1. 여기서 정보를 조회하는 Api를 호출한다.
         // 2. 정보를 조회하는 Api가 성공하면, 그 응답값으로 학력정보를 다시 설정해준다.
-        Api.get(`projects/${project.userId}}`).then((res) =>
+        Api.get(`projects/${project.userId}`).then((res) =>
           setProjects(res.data)
         );
       })

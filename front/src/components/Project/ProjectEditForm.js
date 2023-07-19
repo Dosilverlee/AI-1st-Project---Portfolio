@@ -3,7 +3,7 @@ import { Button, Form, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
 
 function ProjectEditForm({ currentProject, setProjects, setIsEditing }) {
-  const { title:projectTitle, description:projectDesc } = currentProject;
+  const { title: projectTitle, description: projectDesc } = currentProject;
   //useState로 title 상태를 생성함.
   const [title, setTitle] = useState(projectTitle);
   //useState로 description 상태를 생성함.
@@ -19,8 +19,7 @@ function ProjectEditForm({ currentProject, setProjects, setIsEditing }) {
     console.log(id);
     console.log(user_id);
     // "awards/수상 id" 엔드포인트로 PUT 요청함.
-    await Api.put(`projects/${user_id}`, {
-      id,
+    await Api.put(`projects/${user_id}/${id}`, {
       title,
       description,
     });
