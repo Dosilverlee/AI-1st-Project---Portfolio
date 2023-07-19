@@ -17,7 +17,7 @@ function Educations({ portfolioOwnerId, isEditable }) {
     }, [portfolioOwnerId]);
   
   return (
-    <Card>
+    <Card className="m-2">
       <Card.Body>
         <Card.Title>학력</Card.Title>
         {educations.map((education) => (

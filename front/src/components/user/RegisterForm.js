@@ -57,9 +57,9 @@ function RegisterForm() {
   };
 
   return (
-    <Container>
-      <Row className="justify-content-md-center mt-5">
-        <Col lg={8}>
+    <div style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
+      <div style={{marginTop:"100px", boxShadow: "0px 4px 12px #00000026"}}>
+        <h2 style={{margin:"20px"}}>회원가입을 해주세요!</h2>
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="registerEmail">
               <Form.Label>이메일 주소</Form.Label>
@@ -137,9 +137,8 @@ function RegisterForm() {
               </Col>
             </Form.Group>
           </Form>
-        </Col>
-      </Row>
-    </Container>
+        </div>
+    </div>
   );
 }
 

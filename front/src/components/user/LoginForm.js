@@ -60,16 +60,16 @@ function LoginForm() {
   };
 
   return (
-    <Container style={{backgroundColor:"#eef3f8"}}>
-      <Row className="justify-content-md-center mt-5">
-        <Col lg={8}>
-          <Form onSubmit={handleSubmit}>
-            <Form.Group controlId="loginEmail">
-              <Form.Label>이메일 주소</Form.Label>
+    <div style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
+      <div style={{marginTop:"100px", boxShadow: "0px 4px 12px #00000026"}}>
+        <h2 style={{margin:"20px"}}>로그인을 해주세요!</h2>
+          <Form onSubmit={handleSubmit} style={{margin:"20px"}}>
+            <Form.Group controlId="loginEmail" style={{width:"300px"}}>
               <Form.Control
                 type="email"
                 autoComplete="on"
                 value={email}
+                placeholder="이메일"
                 onChange={(e) => setEmail(e.target.value)}
               />
               {!isEmailValid && (
@@ -79,16 +79,16 @@ function LoginForm() {
               )}
             </Form.Group>
 
-            <Form.Group controlId="loginPassword" className="mt-3">
-              <Form.Label>비밀번호</Form.Label>
+            <Form.Group controlId="loginPassword" className="mt-3" style={{width:"300px"}}>
               <Form.Control
                 type="password"
                 autoComplete="on"
                 value={password}
+                placeholder="비밀번호"
                 onChange={(e) => setPassword(e.target.value)}
               />
               {!isPasswordValid && (
-                <Form.Text className="text-success">
+                <Form.Text className="text-success" style={{color:"#0A66C2"}}>
                   비밀번호는 4글자 이상입니다.
                 </Form.Text>
               )}
@@ -96,12 +96,14 @@ function LoginForm() {
 
             <Form.Group as={Row} className="mt-3 text-center">
               <Col sm={{ span: 20 }}>
-                <Button variant="primary" type="submit" disabled={!isFormValid}>
+                <Button style={{backgroundColor:"#0A66C2"}} variant="primary" type="submit" disabled={!isFormValid}>
                   로그인
                 </Button>
               </Col>
             </Form.Group>
-
+            <div style={{marginTop:"15px", display: "flex", justifyContent: "center"}}>
+              <span>또는</span>
+            </div>
             <Form.Group as={Row} className="mt-3 text-center">
               <Col sm={{ span: 20 }}>
                 <Button variant="light" onClick={() => navigate("/register")}>
@@ -110,9 +112,8 @@ function LoginForm() {
               </Col>
             </Form.Group>
           </Form>
-        </Col>
-      </Row>
-    </Container>
+        </div>
+    </div>
   );
 }
 

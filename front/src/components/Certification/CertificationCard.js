@@ -24,7 +24,7 @@ function CertificationCard({ certification, isEditable, setIsEditing }) {
               onClick={() => setIsEditing((prev) => !prev)}
               className="mr-3"
             >
-              편집
+              ✏️
             </Button>
             </span>
             </div>
@@ -37,7 +37,7 @@ function CertificationCard({ certification, isEditable, setIsEditing }) {
               onClick={() => setIsEditing((prev) => prev)}
               className="mr-3"
             >
-              삭제
+              🗑️
             </Button>
             </span>
             </div>

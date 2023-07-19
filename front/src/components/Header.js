@@ -27,9 +27,9 @@ function Header() {
   return (
     <div activeKey={location.pathname}>
       <div style={{ height: "134px"  }}>
-        <div style={{display: "inline-block", marginTop:"50px", marginLeft:"20px"}}>
+        <div style={{display: "inline-block", marginTop:"35px", marginLeft:"20px"}}>
           <a href="/"><img
-            style={{ width: "8.8rem", height: "2rem" }}
+            style={{ scale:"0.9" }}
             src={Logo}
           /></a>
         </div>
@@ -41,8 +41,8 @@ function Header() {
             />
           </div>
           <div style={{marginBottom: "5px"}}>
-              <Nav.Link style={{display: "inline-flex", color:"#293138"}} onClick={() => navigate("/")}>나의 페이지</Nav.Link>
-              <Nav.Link style={{display: "inline-flex", color:"#293138"}} onClick={logout}>로그아웃</Nav.Link>
+              <Nav.Link style={{display: "inline-flex", color:"#56687a", fontWeight: "bold"}} onClick={() => navigate("/")}>나의 페이지</Nav.Link>
+              <Nav.Link style={{display: "inline-flex", color:"#56687a", fontWeight: "bold"}} onClick={logout}>로그아웃</Nav.Link>
           </div>
         </div>)}
       </div>
