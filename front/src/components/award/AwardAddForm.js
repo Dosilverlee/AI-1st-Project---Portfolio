@@ -25,7 +25,7 @@ function AwardAddForm({ portfolioOwnerId, setAwards, setIsAdding }) {
       title,
       description,
       date,
-      institution,
+      institute,
     });
 
   //   // "awardlist/유저id" 엔드포인트로 get요청함.
@@ -73,12 +73,12 @@ function AwardAddForm({ portfolioOwnerId, setAwards, setIsAdding }) {
         />
       </Form.Group>
 
-      <Form.Group controlId="formBasicInstitution" className="mt-3">
+      <Form.Group controlId="formBasicInstitute" className="mt-3">
         <Form.Control
           type="text"
           placeholder="주최기관"
-          value={institution}
-          onChange={(e) => setInstitution(e.target.value)}
+          value={institute}
+          onChange={(e) => setInstitute(e.target.value)}
         />
       </Form.Group>
 
