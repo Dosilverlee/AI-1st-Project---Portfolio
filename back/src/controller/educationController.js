@@ -13,12 +13,12 @@ const getEducationsByUserId = async (req, res, next) => {
 
 const addEducation = async (req, res, next) => {
   try {
-    const { title, description } = req.body;
+    const { title, description } = await EducationSchema.validateAsync(req.body);
     const userId = req.params.userId; 
-    const graduation = (req.body.graduation) ? req.body.graduation : 0;
-    
+    const graduation = (req.body.graduation) ? req.body.graduation : 0;    
     const result = await educationService.addEducation({userId, title, description, graduation});
 
+    if (title )
     res.status(200).json({result})
   } catch(e) {
     console.log(e);
@@ -29,10 +29,8 @@ const addEducation = async (req, res, next) => {
 const setEducation = async (req, res, next) => {
   console.log(req.body);
   try {
-    const userId = req.params.userId;
-    const educationId = req.params.educationId;
-    const title = req.body.title;
-    const description = req.body.description;
+    const { userId, educationId } = req.params;
+    const { title, description } = req.body;
     const graduation = (req.body.graduation) ? req.body.graduation : 0;
     
     const result = await educationService.setEducation({ educationId, toUpdate: { title, description, graduation} });
