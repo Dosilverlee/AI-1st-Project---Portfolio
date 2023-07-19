@@ -2,11 +2,14 @@ import React, { useState } from "react";
 import { Button, Form, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
 
+const Grade = ["재학중", "학사 졸업", "석사 졸업", "박사 졸업"];
+
 function EducationAddForm({  educations, portfolioOwnerId, setEducations, setIsAdding }) {
   //useState로 title 상태를 생성함.
   const [title, setTitle] = useState("");
   //useState로 description 상태를 생성함.
   const [description, setDescription] = useState("");
+  const [graduation, setGraduation] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -49,7 +52,19 @@ function EducationAddForm({  educations, portfolioOwnerId, setEducations, setIsA
           onBlur={(e) => setDescription(e.target.value)}
         />
       </Form.Group>
-
+      <Form.Group>
+          {Grade.map((item, index) => (
+            <Form.Check
+              inline
+              type={"radio"}
+              label={item}
+              value={index + 1}
+              id={`inline-radio-${index + 1}`}
+              checked={graduation === index + 1}
+              onChange={(e) => setGraduation(Number(e.target.value))}
+              />
+          ))}
+          </Form.Group>
       <Form.Group as={Row} className="mt-3 text-center">
         <Col sm={{ span: 20 }}>
           <Button variant="primary" type="submit" className="me-3">
