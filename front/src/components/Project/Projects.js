@@ -19,7 +19,7 @@ function Projects({ portfolioOwnerId, isEditable }) {
   }, [portfolioOwnerId]);
 
   return (
-    <Card>
+    <Card className="m-2">
       <Card.Body>
         <Card.Title>프로젝트이력</Card.Title>
         {isEditable && (

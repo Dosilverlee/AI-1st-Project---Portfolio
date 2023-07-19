@@ -38,18 +38,18 @@ function EducationCard({ education, isEditable, setIsEditing, setEducations }) {
         </Col>
         {isEditable && (
           <>
-            <Col xs lg="1">
-              <CommonButton
-                handleDelete={() => setIsEditing((prev) => !prev)}
-                buttonText="편집"
-              />
-            </Col>
-            <Col xs lg="1">
-              <CommonButton
-                handleDelete={handleDeleteEducation}
-                buttonText="삭제"
-              />
-            </Col>
+          <Col xs lg="1">
+            <CommonButton
+              handleDelete={()=> setIsEditing((prev) => !prev)}
+              buttonText="✏️"
+            />
+          </Col>
+          <Col xs lg="1">
+            <CommonButton
+              handleDelete={handleDeleteEducation}
+              buttonText="🗑️"
+            />
+          </Col>
           </>
         )}
       </Row>

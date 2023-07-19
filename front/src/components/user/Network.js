@@ -43,29 +43,31 @@ function Network() {
   }, [params, userState, navigate]);
 
   return (
-    <div style={{display:"inline-block", width: "300px"}}>
+    <div style={{display:"inline-block", width: "35%"}}>
       {users.slice(offset, offset + limit).map((user) => (
         <UserCard key={user.id} user={user} isNetwork />
       ))}
-      <Nav total={total} limit={limit} page={page} setPage={setPage}>
-        <Button onClick={() => setPage(page - 1)} disabled={page === 1}>
-          &lt;
-        </Button>
-        {Array(numPages)
-          .fill()
-          .map((_, i) => (
-            <Button
-              key={i + 1}
-              onClick={() => setPage(i + 1)}
-              aria-current={page === i + 1 ? "page" : null}
-            >
-              {i + 1}
-            </Button>
-          ))}
-        <Button onClick={() => setPage(page + 1)} disabled={page === numPages}>
-          &gt;
-        </Button>
-      </Nav>
+      <div style={{display: "flex", justifyContent: "center"}}>
+        <div total={total} limit={limit} page={page} setPage={setPage}>
+          <button onClick={() => setPage(page - 1)} disabled={page === 1}>
+            &lt;
+          </button>
+          {Array(numPages)
+            .fill()
+            .map((_, i) => (
+              <button
+                key={i + 1}
+                onClick={() => setPage(i + 1)}
+                aria-current={page === i + 1 ? "page" : null}
+              >
+                {i + 1}
+              </button>
+            ))}
+          <button onClick={() => setPage(page + 1)} disabled={page === numPages}>
+            &gt;
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

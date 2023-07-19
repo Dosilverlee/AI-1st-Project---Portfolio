@@ -49,7 +49,7 @@ function Portfolio() {
   }
 
   return (
-    <div style={{ display:"inline-block", width: "804px" }}>
+    <div style={{ display:"inline-block", width: "65%" }}>
         <User
           portfolioOwnerId={portfolioOwner.id}
           isEditable={portfolioOwner.id === userState.user?.id}

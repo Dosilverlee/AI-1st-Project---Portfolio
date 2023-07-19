@@ -1,6 +1,19 @@
 import { Card, Button, Row, Col } from "react-bootstrap";
+import CommonButton from "../buttons/CommonButton";
+import * as Api from '../../api';
 
-function CertificationCard({ certification, isEditable, setIsEditing }) {
+function CertificationCard({ certification, isEditable, setIsEditing, setCertifications }) {
+  const { id, title, description, date, institute } = certification;
+
+  const handleDeleteCertificate = () => {
+    Api.delete(`certificates/${certification.userId}/${certification.id}`, id)
+      .then(async (response) => {
+        // 1. 여기서 정보를 조회하는 Api를 호출한다.
+        // 2. 정보를 조회하는 Api가 성공하면, 그 응답값으로 학력정보를 다시 설정해준다.
+        Api.get(`certificates/${certification.userId}}`).then((res) => setCertifications(res.data));
+      })
+      .catch((error) => {});
+  };
   
     return (
     <Card.Text>
@@ -15,18 +28,20 @@ function CertificationCard({ certification, isEditable, setIsEditing }) {
           <span className="text-muted">{certification.institute}</span>
         </Col>
         {isEditable && (
+          <>
           <Col xs lg="1">
-            
-            <Button
-              variant="outline-info"
-              size="sm"
-              onClick={() => setIsEditing((prev) => !prev)}
-              className="mr-3"
-            >
-              편집
-            </Button>
-            
+            <CommonButton
+              handleDelete={() => setIsEditing((prev) => !prev)}
+              buttonText="편집"
+            />
           </Col>
+          <Col xs lg="1">
+            <CommonButton
+              handleDelete={handleDeleteCertificate}
+              buttonText="삭제"
+            />
+          </Col>
+        </>
         )}
       </Row>
     </Card.Text>
