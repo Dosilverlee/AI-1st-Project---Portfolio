@@ -9,6 +9,7 @@ import Header from "./components/Header";
 import LoginForm from "./components/user/LoginForm";
 import RegisterForm from "./components/user/RegisterForm";
 import Mainpage from "./components/Mainpage";
+import Footer from "./components/Footer/Footer";
 
 export const UserStateContext = createContext(null);
 export const DispatchContext = createContext(null);
@@ -64,6 +65,7 @@ function App() {
               <Route path="/users/:userId" element={<Mainpage />} />
               <Route path="*" element={<Mainpage />} />
             </Routes>
+          <Footer />
         </Router>
       </UserStateContext.Provider>
     </DispatchContext.Provider>
