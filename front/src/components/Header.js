@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { Nav, Row, Col } from "react-bootstrap";
+import { Nav } from "react-bootstrap";
 import { UserStateContext, DispatchContext } from "../App";
 import Logo from '../assets/logo.png'
 
@@ -25,28 +25,28 @@ function Header() {
   };
 
   return (
-    <Nav activeKey={location.pathname}>
-      <div sytle={{ height: "128px" }}>
-        <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+    <div activeKey={location.pathname}>
+      <div style={{ height: "134px"  }}>
+        <div style={{display: "inline-block", marginTop:"50px", marginLeft:"20px"}}>
           <a href="/"><img
             style={{ width: "8.8rem", height: "2rem" }}
             src={Logo}
           /></a>
         </div>
-        {isLogin && (<div style={{marginLeft: "auto"}}>
-          <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+        {isLogin && (<div style={{ display:"inline-block", float: "right" }}>
+          <div style={{ display: "flex", justifyContent: "center", marginTop:"20px", marginBottom: "5px" }}>
             <img
-                style={{ width: "4rem", height: "4rem", marginTop: "20px", marginBottom: "10px" }}
+                style={{ width: "4rem", height: "4rem",  }}
                 src="http://placekitten.com/200/200"
             />
           </div>
-          <div style={{marginBottom: "10px"}}>
-              <Nav.Link style={{display:"inline"}} onClick={() => navigate("/")}>나의 페이지</Nav.Link>
-              <Nav.Link style={{display:"inline"}} onClick={logout}>로그아웃</Nav.Link>
+          <div style={{marginBottom: "5px"}}>
+              <Nav.Link style={{display: "inline-flex", color:"#293138"}} onClick={() => navigate("/")}>나의 페이지</Nav.Link>
+              <Nav.Link style={{display: "inline-flex", color:"#293138"}} onClick={logout}>로그아웃</Nav.Link>
           </div>
         </div>)}
       </div>
-    </Nav>
+    </div>
   );
 }
 
