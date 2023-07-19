@@ -5,9 +5,9 @@ import * as Api from "../../api";
 const Grade = ["재학중", "학사 졸업", "석사 졸업", "박사 졸업"];
 
 function EducationEditForm({ currentEducation, setEducations, setIsEditing }) {
-  const [college, setCollege] = useState("");
-  const [major, setMajor] = useState("");
-  const [graduation, setGraduation] = useState("");
+  const [college, setCollege] = useState(currentEducation.title);
+  const [major, setMajor] = useState(currentEducation.description);
+  const [graduation, setGraduation] = useState(currentEducation.graduation);
   // const { college, major, graduation } = formData;
 
   const handleSubmit = async (e) => {
