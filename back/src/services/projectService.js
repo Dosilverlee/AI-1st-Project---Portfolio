@@ -1,12 +1,15 @@
-import { Project } from "../db/models/Project"; 
+import { Project } from "../db/models/Project";
 
 class projectService {
   // 프로젝트 이력 추가
   static async addProject({ userId, title, description }) {
-    const projectData = await Project.findByTitleDescription(userId, title, description);
+    const projectData = await Project.findByTitleDescription(
+      userId,
+      title,
+      description
+    );
     if (projectData) {
-      const errorMessage =
-        "이미 등록된 프로젝트이력입니다.";
+      const errorMessage = "이미 등록된 프로젝트이력입니다.";
       return { errorMessage };
     }
 
@@ -27,7 +30,7 @@ class projectService {
     }
 
     // 모든 프로젝트 이력을 배열로 변환
-    const projectDataResult = projectData.map(project => ({
+    const projectDataResult = projectData.map((project) => ({
       id: project._id,
       userId: project.userId,
       title: project.title,
@@ -51,13 +54,13 @@ class projectService {
   }
 
   // 프로젝트 이력 삭제하기
-  static async deleteProject({ id }) {
-    let projectData = await Project.findById(id);
-  
+  static async deleteProject({ projectId }) {
+    let projectData = await Project.findById(projectId);
+
     if (projectData.length === 0) {
       throw new Error("삭제할 이력이 없습니다.");
     }
-    const deletedProject = await Project.findByIdAndRemove(certificateData.id);
+    const deletedProject = await Project.findByIdAndRemove(projectId);
     return deletedProject;
   }
 }
