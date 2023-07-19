@@ -16,8 +16,7 @@ function CertificationCard({ certification, isEditable, setIsEditing }) {
         </Col>
         {isEditable && (
           <Col xs lg="1">
-            <div className="mb-3">
-            <span>
+            
             <Button
               variant="outline-info"
               size="sm"
@@ -26,24 +25,6 @@ function CertificationCard({ certification, isEditable, setIsEditing }) {
             >
               편집
             </Button>
-            </span>
-            </div>
-            
-            <div>
-            <span>
-            <Button
-              variant="outline-info"
-              size="sm"
-              onClick={() => setIsEditing((prev) => prev)}
-              className="mr-3"
-            >
-              삭제
-            </Button>
-            </span>
-            </div>
-
-            
-
             
           </Col>
         )}

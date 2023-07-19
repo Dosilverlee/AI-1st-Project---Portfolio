@@ -21,7 +21,7 @@ function CertificationEditForm({ currentCertification, setCertifications, setIsE
     const user_id = currentCertification.userId;
 
     // "certifications/수상 id" 엔드포인트로 PUT 요청함.
-    await Api.put(`certifications/${currentCertification.id}`, {
+    await Api.put(`certificates/${currentCertification.id}`, {
       id:currentCertification.id,
       title,
       description,
@@ -32,7 +32,7 @@ function CertificationEditForm({ currentCertification, setCertifications, setIsE
     
 
     // "certificationlist/유저id" 엔드포인트로 GET 요청함.
-    const res = await Api.get("certifications", user_id);
+    const res = await Api.get("certificates", user_id);
     // certifications를 response의 data로 세팅함.
     setCertifications(res.data);
     // 편집 과정이 끝났으므로, isEditing을 false로 세팅함.

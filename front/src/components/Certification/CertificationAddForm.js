@@ -21,7 +21,7 @@ function CertificationAddForm({ portfolioOwnerId, setCertifications, setIsAdding
     const user_id = portfolioOwnerId;
 
     // "certification/create" 엔드포인트로 post요청함.
-    await Api.post("certifications/" + portfolioOwnerId, {
+    await Api.post("certificates/" + portfolioOwnerId, {
       title,
       description,
       date,
@@ -29,7 +29,7 @@ function CertificationAddForm({ portfolioOwnerId, setCertifications, setIsAdding
     });
 
   //   // "certificationlist/유저id" 엔드포인트로 get요청함.
-    const res = await Api.get("certifications", user_id);
+    const res = await Api.get("certificates", user_id);
     console.log(res);
   //   // certifications를 response의 data로 세팅함.
     setCertifications(res.data);
