@@ -13,12 +13,11 @@ const getEducationsByUserId = async (req, res, next) => {
 
 const addEducation = async (req, res, next) => {
   try {
-    const { title, description } = await EducationSchema.validateAsync(req.body);
+    const { title, description } = req.body;
     const userId = req.params.userId; 
     const graduation = (req.body.graduation) ? req.body.graduation : 0;    
     const result = await educationService.addEducation({userId, title, description, graduation});
 
-    if (title )
     res.status(200).json({result})
   } catch(e) {
     console.log(e);
