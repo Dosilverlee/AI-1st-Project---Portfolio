@@ -10,7 +10,7 @@ function AwardEditForm({ currentAward, setAwards, setIsEditing }) {
 
   const [date, setDate] = useState(currentAward.date);
 
-  const [institution, setInstitution] = useState(currentAward.institution);
+  const [institute, setInstitute] = useState(currentAward.institute);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -26,7 +26,7 @@ function AwardEditForm({ currentAward, setAwards, setIsEditing }) {
       title,
       description,
       date,
-      institution,
+      institute,
     });
 
     
@@ -63,7 +63,7 @@ function AwardEditForm({ currentAward, setAwards, setIsEditing }) {
         />
       </Form.Group>
 
-      {/* <Form.Group controlId="formBasicDate" className="mt-3">
+      <Form.Group controlId="formBasicDate" className="mt-3">
         <Form.Control
           type="text"
           placeholder="수상날짜"
@@ -72,14 +72,14 @@ function AwardEditForm({ currentAward, setAwards, setIsEditing }) {
         />
       </Form.Group>
 
-      <Form.Group controlId="formBasicInstitution" className="mt-3">
+      <Form.Group controlId="formBasicInstitute" className="mt-3">
         <Form.Control
           type="text"
           placeholder="주최기관"
-          value={institution}
-          onChange={(e) => setInstitution(e.target.value)}
+          value={institute}
+          onChange={(e) => setInstitute(e.target.value)}
         />
-      </Form.Group> */}
+      </Form.Group>
 
       <Form.Group as={Row} className="mt-3 text-center mb-4">
         <Col sm={{ span: 20 }}>
