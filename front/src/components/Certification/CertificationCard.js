@@ -1,17 +1,18 @@
 import { Card, Button, Row, Col } from "react-bootstrap";
 
-function AwardCard({ award, isEditable, setIsEditing }) {
+function CertificationCard({ certification, isEditable, setIsEditing }) {
+  console.log(certification.id);
     return (
     <Card.Text>
       <Row className="align-items-center">
         <Col>
-          <span>{award.title}</span>
+          <span>{certification.title}</span>
           <br />
-          <span className="text-muted">{award.description}</span>
+          <span className="text-muted">{certification.description}</span>
           {/* <br />
-          <span className="text-muted">{award.date}</span>
+          <span className="text-muted">{certification.date}</span>
           <br />
-          <span className="text-muted">{award.institution}</span> */}
+          <span className="text-muted">{certification.institution}</span> */}
         </Col>
         {isEditable && (
           <Col xs lg="1">
@@ -51,4 +52,4 @@ function AwardCard({ award, isEditable, setIsEditing }) {
   );
 }
 
-export default AwardCard;
+export default CertificationCard;

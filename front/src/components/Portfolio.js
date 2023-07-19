@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Container, Col, Row } from "react-bootstrap";
 import Educations from "./Education/Educations";
+import Certifications from "./Certification/Certifications"
 
 import { UserStateContext } from "../App";
 import * as Api from "../api";
@@ -48,32 +49,28 @@ function Portfolio() {
   }
 
   return (
-    <Container fluid>
-      <Row>
+    <div style={{ display:"inline-block", width: "804px" }}>
         <User
           portfolioOwnerId={portfolioOwner.id}
           isEditable={portfolioOwner.id === userState.user?.id}
         />
-      </Row>
-      <Row>
         <Educations 
             portfolioOwnerId={portfolioOwner._id}
             isEditable={portfolioOwner.id === userState.user?.id}
         />
-      </Row>
-      <Row>
         <Awards
             portfolioOwnerId={portfolioOwner.id}
             isEditable={portfolioOwner.id === userState.user?.id}
         />
-      </Row>
-      <Row>
         <Projects 
           portfolioOwnerId={portfolioOwner.id}
           isEditable={portfolioOwner.id === userState.user?.id}
         />
-      </Row>
-    </Container>
+        <Certifications 
+          portfolioOwnerId={portfolioOwner.id}
+          isEditable={portfolioOwner.id === userState.user?.id}
+        />
+    </div>
   );
 }
 
