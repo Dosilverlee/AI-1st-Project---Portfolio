@@ -39,8 +39,8 @@ class certificateService {
   }
 
   // 수상 이력 수정하기
-  static async setCertificate({ id, toUpdate }) {
-    let certificateData = await Certificate.findById(id);
+  static async setCertificate({ certificateId, toUpdate }) {
+    let certificateData = await Certificate.findById(certificateId);
 
     if (certificateData === 0) {
       const errorMessage = "자격 이력이 없습니다. 다시 한 번 확인해 주세요.";
@@ -52,8 +52,8 @@ class certificateService {
   }
 
   // 수상 이력 삭제하기
-  static async deleteCertificate({ id }) {
-    let certificateData = await Certificate.findById(id);
+  static async deleteCertificate({ certificateId }) {
+    let certificateData = await Certificate.findById(certificateId);
   
     if (certificateData === 0) {
       throw new Error("삭제할 이력이 없습니다.");
