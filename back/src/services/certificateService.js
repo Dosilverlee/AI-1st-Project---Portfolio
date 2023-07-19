@@ -2,15 +2,15 @@ import { Certificate } from "../db/models/Certificate";
 
 class certificateService {
   // 수상 이력 추가
-  static async addCertificate({ userId, title, description }) {
-    const certificateData = await Certificate.findByUserId(userId);
-    if (certificateData.length > 1) {
+  static async addCertificate({ userId, title, description, date, institute }) {
+    const certificateData = await Certificate.findByTitleDescription(userId, title, description);
+    if (certificateData) {
       const errorMessage =
         "이미 등록된 자격이력입니다.";
       return { errorMessage };
     }
 
-    const newCertificate = { userId, title, description };
+    const newCertificate = { userId, title, description, date, institute };
 
     // db에 저장
     const createdNewCertificate = await Certificate.create(newCertificate);
@@ -32,6 +32,8 @@ class certificateService {
       userId: certificate.userId,
       title: certificate.title,
       description: certificate.description,
+      date : certificate.date,
+      institute : certificate.institute,
     }));
 
     return certificateDataResult;
@@ -46,7 +48,7 @@ class certificateService {
       return { errorMessage };
     }
 
-    const updatedCertificate = await Certificate.update(id, toUpdate);
+    const updatedCertificate = await Certificate.update(certificateData.id, toUpdate);
     return updatedCertificate;
   }
 
@@ -57,7 +59,7 @@ class certificateService {
     if (certificateData === 0) {
       throw new Error("삭제할 이력이 없습니다.");
     }
-    const deletedCertificate = await Certificate.findByIdAndRemove(id);
+    const deletedCertificate = await Certificate.findByIdAndRemove(certificateData.id);
     return deletedCertificate;
   }
 }

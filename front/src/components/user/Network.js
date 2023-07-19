@@ -14,26 +14,21 @@ function Network() {
   const [users, setUsers] = useState([]);
   const [id, setId] = useState();
 
-  const [limit, setLimit] = useState(5);
+  const limit = 5;
   const [page, setPage] = useState(1);
   const offset = (page -1) * limit;
   const total = users.length;
   const numPages = Math.ceil(total / limit);
 
-  useEffect(() => {
-    function shuffle(sourceArray) {
-      for (var i = 0; i < sourceArray.length - 1; i++) {
-          var j = i + Math.floor(Math.random() * (sourceArray.length - i));
-  
-          var temp = sourceArray[j];
-          sourceArray[j] = sourceArray[i];
-          sourceArray[i] = temp;
-      }
-      return sourceArray;
+  function shuffle(sourceArray) {
+    for (let i = 0; i < sourceArray.length - 1; i++) {
+        let j = i + Math.floor(Math.random() * (sourceArray.length - i));
+        let temp = sourceArray[j];
+        sourceArray[j] = sourceArray[i];
+        sourceArray[i] = temp;
     }
-    // "userlist" 엔드포인트로 GET 요청을 하고, users를 response의 data로 세팅함.
-    Api.get("userlist").then((res) => setUsers(shuffle(res.data)));
-  }, [userState, navigate]);
+    return sourceArray;
+  }
 
   useEffect(() => {
     if (params.userId) {
@@ -43,11 +38,13 @@ function Network() {
       // 이외의 경우, 즉 URL이 "/" 라면, 전역 상태의 user.id를 유저 id로 설정함.
       setId(userState.user.id);
     }
-  }, [params, userState]);
+    // "userlist" 엔드포인트로 GET 요청을 하고, users를 response의 data로 세팅함.
+    Api.get("userlist").then((res) => setUsers(shuffle(res.data).filter((user) => user.id !== id)));
+  }, [params, userState, navigate]);
 
   return (
-    <Col>
-      {users.filter((user) => user.id !== id).slice(offset, offset + limit).map((user) => (
+    <div style={{display:"inline-block", width: "300px"}}>
+      {users.slice(offset, offset + limit).map((user) => (
         <UserCard key={user.id} user={user} isNetwork />
       ))}
       <Nav total={total} limit={limit} page={page} setPage={setPage}>
@@ -69,7 +66,7 @@ function Network() {
           &gt;
         </Button>
       </Nav>
-    </Col>
+    </div>
   );
 }
 

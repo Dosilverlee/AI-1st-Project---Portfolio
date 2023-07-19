@@ -14,6 +14,14 @@ const AwardSchema = new Schema(
       type: String,
       required: true,
     },
+    date: {
+      type: String,
+      required: false,
+    },
+    institute: {
+      type: String,
+      required: false,
+    },
   }
 );
 

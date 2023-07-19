@@ -2,15 +2,15 @@ import { Award } from "../db/models/Award";
 
 class awardService {
   // 수상 이력 추가
-  static async addAward({ userId, title, description }) {
-    const awardData = await Award.findByUserId(userId);
-    if (awardData.length > 1) {
+  static async addAward({ userId, title, description, date, institute }) {
+    const awardData = await Award.findByTitleDescription(userId, title, description);
+    if (awardData) {
       const errorMessage =
         "이미 등록된 수상이력입니다.";
       return { errorMessage };
     }
 
-    const newAward = { userId, title, description };
+    const newAward = { userId, title, description, date, institute };
 
     // db에 저장
     const createdNewAward = await Award.create(newAward);
@@ -32,6 +32,8 @@ class awardService {
       userId: award.userId,
       title: award.title,
       description: award.description,
+      date : award.date,
+      institute : award.institute,
     }));
 
     return awardDataResult;
@@ -46,7 +48,8 @@ class awardService {
       return { errorMessage };
     }
 
-    const updatedAward = await Award.update(id, toUpdate);
+    const updatedAward = await Award.update(awardData.id, toUpdate);
+
     return updatedAward;
   }
 
@@ -57,7 +60,7 @@ class awardService {
     if (awardData === 0) {
       throw new Error("삭제할 이력이 없습니다.");
     }
-    const deletedAward = await Award.findByIdAndRemove(id);
+    const deletedAward = await Award.findByIdAndRemove(awardData.id);
     return deletedAward;
   }
 }

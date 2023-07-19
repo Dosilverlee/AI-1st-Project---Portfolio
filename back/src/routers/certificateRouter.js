@@ -17,15 +17,17 @@ certificateRouter.get('/certificates/:userId', async (req, res, next) => {
 });
 
 
-certificateRouter.post('/certificates/:userId', login_required, async (req, res, next) => {
+certificateRouter.post('/certificates/:userId', async (req, res, next) => {
   try {
     const userId = req.params.userId; 
     const title = req.body.title;
     const description = req.body.description;
+    const date = (req.body.date) ? req.body.date : "이력 없음";
+    const institute = (req.body.institute) ? req.body.institute : "이력 없음";
 
-    const result = await certificateService.addCertificate({userId, title, description})
+    const result = await certificateService.addCertificate({userId, title, description, date, institute})
 
-    res.status(200).json({result})
+    res.status(201).json({result})
   } catch(e) {
     console.log(e);
     next(e);
@@ -33,13 +35,17 @@ certificateRouter.post('/certificates/:userId', login_required, async (req, res,
 
 });
 
-certificateRouter.put('/certificates/:userId', login_required, async (req, res, next) => {
+certificateRouter.put('/certificates/:userId/:certificateId', login_required, async (req, res, next) => {
   console.log(req.body);
   try {
-    const id = req.body.id;
+    const userId = req.params.userId;
+    const certificateId = req.params.certificateId;
     const title = req.body.title;
     const description = req.body.description;
-    const result = await certificateService.setCertificate({ id, toUpdate: { title, description } });
+    const date = (req.body.date) ? req.body.date : "이력 없음";
+    const institute = (req.body.institute) ? req.body.institute : "이력 없음";
+
+    const result = await certificateService.setCertificate({ certificateId, toUpdate: { title, description, date, institute } });
 
     res.status(200).json(result)
   } catch(e) {
@@ -49,12 +55,11 @@ certificateRouter.put('/certificates/:userId', login_required, async (req, res, 
 });
 
 
-certificateRouter.delete('/certificates/:userId', login_required, async (req, res, next) => {
+certificateRouter.delete('/certificates/:userId/:certificateId', login_required, async (req, res, next) => {
   try {
-    // 클라이언트가 요청한 _id값 받아오기
-    const id = req.body.id;
-    const result = await certificateService.deleteCertificate({ id });
-    res.status(200).json(result)
+    const certificateId = req.params.certificateId;
+    const result = await certificateService.deleteCertificate({ certificateId });
+    res.status(204).json(result)
   } catch(e) {
     console.log(e);
     next(e);
