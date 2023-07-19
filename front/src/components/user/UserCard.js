@@ -4,7 +4,7 @@ import { Card, Row, Button, Col } from "react-bootstrap";
 function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
   const navigate = useNavigate();
   return (
-    <Card className="mb-2 ms-3 mr-5">
+    <Card className="m-2">
       <Card.Body>
         <Card.Img
           style={{ width: "8rem", height: "8rem" }}
@@ -36,6 +36,7 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
 
         {isNetwork && (
           <Card.Link
+            style={{color:"#0A66C2"}}
             className="mt-3"
             href="#"
             onClick={() => {

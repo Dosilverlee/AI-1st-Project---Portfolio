@@ -15,18 +15,20 @@ function CertificationCard({ certification, isEditable, setIsEditing }) {
           <span className="text-muted">{certification.institute}</span>
         </Col>
         {isEditable && (
+          <>
           <Col xs lg="1">
-            
-            <Button
-              variant="outline-info"
-              size="sm"
-              onClick={() => setIsEditing((prev) => !prev)}
-              className="mr-3"
-            >
-              편집
-            </Button>
-            
+            <CommonButton
+              handleDelete={() => setIsEditing((prev) => !prev)}
+              buttonText="편집"
+            />
           </Col>
+          <Col xs lg="1">
+            <CommonButton
+              handleDelete={handleDeleteAward}
+              buttonText="삭제"
+            />
+          </Col>
+        </>
         )}
       </Row>
     </Card.Text>
