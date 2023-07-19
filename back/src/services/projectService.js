@@ -38,8 +38,8 @@ class projectService {
   }
 
   // 프로젝트 이력 수정하기
-  static async setProject({ id, toUpdate }) {
-    let projectData = await Project.findById(id);
+  static async setProject({ projectId, toUpdate }) {
+    let projectData = await Project.findById(projectId);
 
     if (projectData === 0) {
       const errorMessage = "자격 이력이 없습니다. 다시 한 번 확인해 주세요.";
