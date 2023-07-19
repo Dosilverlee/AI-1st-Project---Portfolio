@@ -10,7 +10,7 @@ function CertificationEditForm({ currentCertification, setCertifications, setIsE
 
   const [date, setDate] = useState(currentCertification.date);
 
-  const [institution, setInstitution] = useState(currentCertification.institution);
+  const [institute, setInstitute] = useState(currentCertification.institute);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,18 +21,17 @@ function CertificationEditForm({ currentCertification, setCertifications, setIsE
     const user_id = currentCertification.userId;
 
     // "certifications/수상 id" 엔드포인트로 PUT 요청함.
-    await Api.put(`certifications/${currentCertification.id}`, {
-      id:currentCertification.id,
+    await Api.put(`certificates/${currentCertification.userId}/${currentCertification.id}`, {
       title,
       description,
       date,
-      institution,
+      institute,
     });
 
     
 
     // "certificationlist/유저id" 엔드포인트로 GET 요청함.
-    const res = await Api.get("certifications", user_id);
+    const res = await Api.get("certificates", user_id);
     // certifications를 response의 data로 세팅함.
     setCertifications(res.data);
     // 편집 과정이 끝났으므로, isEditing을 false로 세팅함.
@@ -72,12 +71,12 @@ function CertificationEditForm({ currentCertification, setCertifications, setIsE
         />
       </Form.Group>
 
-      <Form.Group controlId="formBasicInstitution" className="mt-3">
+      <Form.Group controlId="formBasicInstitute" className="mt-3">
         <Form.Control
           type="text"
           placeholder="발행처/기관"
-          value={institution}
-          onChange={(e) => setInstitution(e.target.value)}
+          value={institute}
+          onChange={(e) => setInstitute(e.target.value)}
         />
       </Form.Group>
 

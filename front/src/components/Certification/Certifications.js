@@ -14,7 +14,6 @@ function Certifications({ portfolioOwnerId, isEditable }) {
     // "certificationlist/유저id"로 GET 요청하고, response의 data로 Certifications를 세팅함.
     Api.get("certifications", portfolioOwnerId).then((res) => setCertifications(res.data));
     setIsAdding(false);
-    console.log(portfolioOwnerId);
   }, [portfolioOwnerId]);
 
   return (
