@@ -125,6 +125,31 @@ class userAuthService {
 
     return user;
   }
+
+
+  // 1./users/:id/profileImage 경로로 요청이 들어오면 로그인여부 확인후
+  // 2.const user_id = req.params.id;에 있는 user_id값을 가져와서
+  // 3.const updatedUserInfo = await userAuthService.updateProfileImage(user_id, req.file.path) 를 통해서 몽고db에서 user를 찾고,
+  // 4.req.file.path로 이미지파일 경로를 몽고db의 user데이터 안에 저장
+  // 5.updatedUserInfo로 유저가 변경한 이미지 경로를 정보 반환
+  static async updateProfileImage(user_id, profileImagePath) {
+    try {
+      const user = await User.findById({ user_id });
+  
+      if (!user) {
+        return { errorMessage: '유저 없음' };
+      }
+  
+      user.profileImage = profileImagePath;
+  
+      const savedUser = await user.save();
+  
+      return savedUser;
+  
+    } catch (error) {
+      return { errorMessage: error.message };
+    }
+  }
 }
 
 export { userAuthService };
