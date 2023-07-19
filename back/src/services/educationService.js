@@ -1,9 +1,7 @@
 import { Education } from "../db/models/Educations"; 
 
 class educationService {
-  
   //학력 추가
-  //title, description이 동시에 같지 않으면
   static async addEducation({ userId, title, description, graduation }) {
     const educationData = await Education.findEducationByTitleAndDescription(userId, title, description);
     if (educationData) {

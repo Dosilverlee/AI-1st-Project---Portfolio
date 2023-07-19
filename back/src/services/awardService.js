@@ -20,7 +20,6 @@ class awardService {
 
   // 수상 이력 가져오기
   static async getAwardByUserId({ userId }) {
-    // userID로 수상이력 가져오기
     const awardData = await Award.findByUserId(userId);
     if (awardData.length === 0) {
       return [];

@@ -20,13 +20,12 @@ class certificateService {
 
   // 수상 이력 가져오기
   static async getCertificateByUserId({ userId }) {
-    // userID로 수상이력 가져오기
     const certificateData = await Certificate.findByUserId(userId);
     if (certificateData.length === 0) {
       return [];
     }
 
-    // 모든 수상 이력을 배열로 변환
+    // 모든 자격 이력을 배열로 변환
     const certificateDataResult = certificateData.map(certificate => ({
       id: certificate._id,
       userId: certificate.userId,
