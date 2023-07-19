@@ -14,7 +14,6 @@ function Awards({ portfolioOwnerId, isEditable }) {
     // "awardlist/유저id"로 GET 요청하고, response의 data로 awards를 세팅함.
     Api.get("awards", portfolioOwnerId).then((res) => setAwards(res.data));
     setIsAdding(false);
-    console.log(portfolioOwnerId);
   }, [portfolioOwnerId]);
 
   return (
