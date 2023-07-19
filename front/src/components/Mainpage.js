@@ -51,14 +51,10 @@ function Mainpage() {
   };
 
   return (
-    <div>
-      {userState.user && (<div>
-        <div>
+    <div style={{backgroundColor: "#f9fafb", display: "flex", justifyContent: "center", alignItems: "center" }}>
+      {userState.user && (<div style={{ width:"1128px" }}>
           <Portfolio />
-        </div>
-        <div>
           <Network />
-        </div>
       </div>)}
       <ScrollToTopButton  />
     </div>

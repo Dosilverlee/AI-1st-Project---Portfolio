@@ -43,7 +43,7 @@ function Network() {
   }, [params, userState, navigate]);
 
   return (
-    <Col>
+    <div style={{display:"inline-block", width: "300px"}}>
       {users.slice(offset, offset + limit).map((user) => (
         <UserCard key={user.id} user={user} isNetwork />
       ))}
@@ -66,7 +66,7 @@ function Network() {
           &gt;
         </Button>
       </Nav>
-    </Col>
+    </div>
   );
 }
 
