@@ -36,6 +36,7 @@ const addUser = async (req, res, next) => {
 
 const getUser = async (req, res, next) => {
   try {
+    logger.info("getUser");
     // req (request) 에서 데이터 가져오기
     const email = req.body.email;
     const password = req.body.password;
@@ -44,6 +45,7 @@ const getUser = async (req, res, next) => {
     const user = await userAuthService.getUser({ email, password });
 
     if (user.errorMessage) {
+      logger.error("getUser 오류");
       throw new Error(user.errorMessage);
     }
 
@@ -55,6 +57,7 @@ const getUser = async (req, res, next) => {
 
 const getUsers = async (req, res, next) => {
   try {
+    logger.info("getUsers");
     // 전체 사용자 목록을 얻음
     const users = await userAuthService.getUsers();
     res.status(200).send(users);
@@ -65,6 +68,7 @@ const getUsers = async (req, res, next) => {
 
 const setUser = async (req, res, next) => {
   try {
+    logger.info("setUser");
     // URI로부터 사용자 id를 추출함.
     const user_id = req.params.id;
     // body data 로부터 업데이트할 사용자 정보를 추출함.
@@ -79,6 +83,7 @@ const setUser = async (req, res, next) => {
     const updatedUser = await userAuthService.setUser({ user_id, toUpdate });
 
     if (updatedUser.errorMessage) {
+      logger.error("setUser 오류");
       throw new Error(updatedUser.errorMessage);
     }
 
@@ -90,10 +95,12 @@ const setUser = async (req, res, next) => {
 
 const getUserInfo = async (req, res, next) => {
   try {
+    logger.info("getUserInfo");
     const user_id = req.params.id;
     const currentUserInfo = await userAuthService.getUserInfo({ user_id });
 
     if (currentUserInfo.errorMessage) {
+      logger.error("getUserInfo 오류");
       throw new Error(currentUserInfo.errorMessage);
     }
 
@@ -105,9 +112,11 @@ const getUserInfo = async (req, res, next) => {
 
 const updateUserProfileImage = async (req, res, next) => {
   try {
+    logger.info("updateUserProfileImage");
     const user_id = req.params.id;
 
     if (!req.file) {
+      logger.error("NO PROFILE IMAGE UPLOAD");
       throw new Error("파일이 없습니다.");
     }
 
