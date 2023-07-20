@@ -1,6 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Container, Col, Row } from "react-bootstrap";
 import { UserStateContext } from "../App";
 import { throttle } from "lodash";
 import Portfolio from "./Portfolio";

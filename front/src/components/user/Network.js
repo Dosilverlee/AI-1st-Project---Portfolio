@@ -1,6 +1,5 @@
 import React, { useEffect, useContext, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Container, Col, Row, Nav, Button } from "react-bootstrap";
 
 import * as Api from "../../api";
 import UserCard from "./UserCard";

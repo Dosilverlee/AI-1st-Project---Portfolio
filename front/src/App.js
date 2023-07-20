@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useReducer, createContext } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Container, Col, Row } from "react-bootstrap";
 
 import * as Api from "./api";
 import { loginReducer } from "./reducer";

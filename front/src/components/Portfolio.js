@@ -1,6 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Container, Col, Row } from "react-bootstrap";
 import Educations from "./Education/Educations";
 import Certifications from "./Certification/Certifications"
 
