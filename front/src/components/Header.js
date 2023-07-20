@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Nav } from "react-bootstrap";
 import { UserStateContext, DispatchContext } from "../App";
-import Logo from '../assets/logo.png'
+import Logo from '../assets/logo.gif'
 
 function Header() {
   const navigate = useNavigate();
@@ -27,9 +27,9 @@ function Header() {
   return (
     <div activeKey={location.pathname}>
       <div style={{ height: "134px"  }}>
-        <div style={{display: "inline-block", marginTop:"35px", marginLeft:"20px"}}>
+        <div style={{display: "inline-block"}}>
           <a href="/"><img
-            style={{ scale:"0.9" }}
+            style={{ width:"134px", height:"134px"}}
             src={Logo}
           /></a>
         </div>
