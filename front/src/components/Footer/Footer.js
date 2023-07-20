@@ -1,13 +1,7 @@
 // 페이지 최하단 Footer 부분
 function Footer() {
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        background: "#E4E4E4",
-      }}
-    >
+    <div style={{minWidth:"833px", display: "flex", justifyContent: "center", background: "#E4E4E4"}}>
       <div
         style={{
           width: "1128px",

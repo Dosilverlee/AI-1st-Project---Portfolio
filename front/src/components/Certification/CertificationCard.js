@@ -25,27 +25,27 @@ function CertificationCard({
 
   return (
     <Card.Text>
-      <div style={{ display: "inline-block" }}>
-        <span>{certification.title}</span>
-        <br />
-        <span className="text-muted">{certification.description}</span>
-        <br />
-        <span className="text-muted">{certification.date}</span>
-        <br />
-        <span className="text-muted">{certification.institute}</span>
-      </div>
-      {isEditable && (
-        <div style={{ display: "inline-block", float: "right" }}>
-          <CommonButton
-            handleDelete={handleDeleteCertificate}
-            buttonText="🗑️"
-          />
-          <CommonButton
-            handleDelete={() => setIsEditing((prev) => !prev)}
-            buttonText="✏️"
-          />
+      <div style={{display:"inline-block", width:"100%"}}>
+          <span>{certification.title}</span>
+          {isEditable && (
+            <div style={{display:"inline-block", float:"right"}}>
+              <CommonButton
+                handleDelete={handleDeleteCertificate}
+                buttonText="🗑️"
+              />
+              <CommonButton
+                handleDelete={() => setIsEditing((prev) => !prev)}
+                buttonText="✏️"
+              />
+            </div>
+        )}
+          <br />
+          <span className="text-muted">{certification.description}</span>
+          <br />
+          <span className="text-muted">{certification.date}</span>
+          <br />
+          <span className="text-muted">{certification.institute}</span>
         </div>
-      )}
     </Card.Text>
   );
 }

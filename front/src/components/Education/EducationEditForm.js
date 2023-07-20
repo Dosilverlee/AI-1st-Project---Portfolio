@@ -73,10 +73,10 @@ function EducationEditForm({ currentEducation, setEducations, setIsEditing }) {
           </Form.Group>
           <Form.Group as={Row} className="mt-3 text-center">
             <Col sm={{ span: 12 }}>
-              <Button variant="primary" type="submit" className="me-3">
+              <Button style={{color:"black", backgroundColor:"#DED5FE", border:"none"}} variant="primary" type="submit" className="me-3">
                 확인
               </Button>
-              <Button variant="secondary" onClick={() => setIsEditing(false)}>
+              <Button style={{color:"black", backgroundColor:"#E4E4E4", border:"none"}} variant="secondary" onClick={() => setIsEditing(false)}>
                 취소
               </Button>
             </Col>
