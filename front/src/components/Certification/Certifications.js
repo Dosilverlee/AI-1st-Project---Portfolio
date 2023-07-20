@@ -19,9 +19,14 @@ function Certifications({ portfolioOwnerId, isEditable }) {
   }, [portfolioOwnerId]);
 
   return (
-    <Card className="m-2">
+    <Card className="m-2" style={{borderRadius:"0.5em"}}>
       <Card.Body>
-        <Card.Title>자격증/면허증</Card.Title>
+        <div>
+          <Card.Title style={{display:"inline-block", fontWeight: "bold"}}>자격증/면허증</Card.Title>
+          {isEditable && (
+            <button style={{display:"inline-block", float:"right", background:"white", border:"none"}} onClick={() => setIsAdding(true)}>➕</button>
+          )}
+        </div>
         {certifications.map((certification) => (
           <Certification
             key={certification.id}
@@ -30,13 +35,6 @@ function Certifications({ portfolioOwnerId, isEditable }) {
             isEditable={isEditable}
           />
         ))}
-        {isEditable && (
-          <Row className="mt-3 text-center mb-4">
-            <Col sm={{ span: 20 }}>
-              <Button onClick={() => setIsAdding(true)}>+</Button>
-            </Col>
-          </Row>
-        )}
         {isAdding && (
           <CertificationAddForm
             portfolioOwnerId={portfolioOwnerId}

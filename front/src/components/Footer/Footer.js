@@ -1,37 +1,101 @@
 function Footer() {
   return (
-    <div
-      style={{
-        width: "100%",
-        height: "200px",
-        background: "#E4E4E4",
-        marginTop: "30px",
-        padding: "30px",
-      }}
-    >
-      
-      <span
+    <div style={{display: "flex", justifyContent: "center", background: "#E4E4E4"}}>
+      <div
         style={{
-          display: "flex",
-          justifyContent: "left",
-          marginTop: "10px",
-          marginBottom: "30px",
+          width: "1128px",
+          height: "200px",
+          padding: "30px",
+          color: "#929292",
+          fontFamily: "Arial, sans-serif",
         }}
       >
-        <img
-          style={{ width: "100px", height: "35px" }}
-          src="https://elice.io/_next/image?url=%2Fimages%2Felice_logo_gray.png&w=2048&q=100"
-        />
-      </span>
-      <span style={{fontSize:"10px"}}>
-        주소 : 서울특별시 강남구 선릉로 433, 신관 6층 대표자 김재원 | 통신판매업
-        신고번호 제2022-서울강남-04515호 | 직업정보제공사업 신고번호:
-        J1200020220004 | 사업자등록번호 581-88-00303| 전화 070-4633-2017 |
-        이메일 contact@elice.io
-      </span>
-      <span>
-        서비스 이용약관
-      </span>
+        <span
+          style={{
+            display: "flex",
+            justifyContent: "left",
+            marginTop: "0px",
+            marginBottom: "15px",
+          }}
+        >
+          <img
+            style={{ width: "100px", height: "35px" }}
+            src="https://elice.io/_next/image?url=%2Fimages%2Felice_logo_gray.png&w=2048&q=100"
+          />
+        </span>
+        <div style={{ fontSize: "12px", }}>
+          주소 : 아름다운 이 땅에 금수강산에 단군할아버지가 터 잡으심
+        </div>
+        <div style={{ fontSize: "12px"}}>
+          팀장 정현수 | 통신판매업 신고번호 제2023-우리집-0515호 |
+          직업정보제공사업 신고번호: J00700dd999828254 | 사업자등록번호
+          486-33-00755
+        </div>
+
+        <div style={{ fontSize: "12px"}}>
+          전화 070-377-7777 | 이메일 DoNotContactUs@testelice.io
+        </div>
+
+        <div style={{ display: "flex", alignItems: "center", marginTop: "5px", }}>
+          <span
+            style={{
+              fontSize: "12px",
+              color: "#616161",
+              fontWeight: "520",
+              marginRight: "20px",
+            }}
+          >
+            서비스 이용약관
+          </span>
+          <span
+            style={{
+              fontSize: "12px",
+              color: "#616161",
+              fontWeight: "520",
+              marginRight: "20px",
+            }}
+          >
+            개인정보처리방침
+          </span>
+          <span
+            style={{
+              fontSize: "12px",
+              color: "#616161",
+              fontWeight: "520",
+              marginRight: "20px",
+            }}
+          >
+            업데이트소식
+          </span>
+          <span
+            style={{
+              fontSize: "12px",
+              color: "#616161",
+              fontWeight: "520",
+              marginRight: "20px",
+            }}
+          >
+            고객센터
+          </span>
+          <span
+            style={{
+              fontSize: "12px",
+              color: "#616161",
+              fontWeight: "520",
+              marginRight: "20px",
+            }}
+          >
+            채용소식
+          </span>
+        </div>
+
+        <div style={{marginTop: "10px"}}>
+        <span style={{ fontSize: "12px", color: "#757575" }}>
+          Copyright ⓒ 2016 - 2023 Elice Inc. All Rights Reserved.
+        </span>
+        </div>
+        
+      </div>
     </div>
   );
 }

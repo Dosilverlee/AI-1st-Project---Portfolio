@@ -28,45 +28,51 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
     }
   }
   return (
-    <Card className="m-2">
+    <Card className="m-2" style={{borderRadius:"0.5em"}}>
       <Card.Body>
+      <div>
         <Card.Img
-          style={{ width: "8rem", height: "8rem" }}
+          style={{ display:"inline-block", width: "8rem", height: "8rem", borderRadius:"100%" }}
           className="mb-3"
           src="http://placekitten.com/200/200"
           alt="랜덤 고양이 사진 (http://placekitten.com API 사용)"
         />
         
-        {
-          isEditable&&<form encType='multipart/form-data' onSubmit={handleSubmit}>
+        {isEditable && (
+          <form style={{ display:"inline-block", float:"right"}} encType='multipart/form-data' onSubmit={handleSubmit}>
+            <h4>프로필 이미지 변경하기(가안)</h4>
             <input type='file' name='file' onChange={onFileChange}/>
+            <br></br><br></br>
             <button type='submit'>업로드</button>
-        </form>}
+          </form>
+        )}
+      </div>
+
         <Card.Title>{user?.name}</Card.Title>
         <Card.Subtitle className="mb-2 text-muted">{user?.email}</Card.Subtitle>
         <Card.Text>{user?.description}</Card.Text>
 
         {isEditable && (
-                <button
-                  style ={{
-                    display:"inline-block", 
-                    float:"right", 
-                    background:"white", 
-                    border:"none"
-                  }}
-                  variant="outline-info"
-                  size="sm"
-                  onClick={() => {
-                    setIsEditing(true);
-                  }}
-                >
-                  ✏️
-                </button>
+          <button
+            style ={{
+              display:"inline-block", 
+              float:"right", 
+              background:"white", 
+              border:"none"
+            }}
+            variant="outline-info"
+            size="sm"
+            onClick={() => {
+              setIsEditing(true);
+            }}
+          >
+            ✏️
+          </button>
         )}
 
         {isNetwork && (
           <Card.Link
-            style={{color:"#0A66C2"}}
+            style={{color:"#0A66C2", textDecoration:"none"}}
             className="mt-3"
             href="#"
             onClick={() => {

@@ -18,12 +18,12 @@ function Educations({ portfolioOwnerId, isEditable }) {
   console.log(portfolioOwnerId);
 
   return (
-    <Card className="m-2">
+    <Card className="m-2" style={{borderRadius:"0.5em"}}>
       <Card.Body>
         <div>
-          <Card.Title style={{display:"inline-block"}}>학력</Card.Title>
+          <Card.Title style={{display:"inline-block", fontWeight: "bold" }}>학력</Card.Title>
           {isEditable && (
-                <button style={{display:"inline-block", float:"right", background:"white", border:"none"}} onClick={() => setIsAdding(true)}>➕</button>
+            <button style={{display:"inline-block", float:"right", background:"white", border:"none"}} onClick={() => setIsAdding(true)}>➕</button>
           )}
         </div>
         {educations.map((education) => (
