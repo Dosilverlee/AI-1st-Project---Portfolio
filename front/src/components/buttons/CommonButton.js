@@ -3,22 +3,22 @@ import { Button } from "react-bootstrap";
 
 export default function CommonButton({ 
     handleDelete,
-    buttonText, 
-    bgColor, 
-    fontColor
+    buttonText,
 }) {
     return (
-    <Button
+    <button
         onClick={handleDelete}
         style ={{
-            background: bgColor,
-            Color: fontColor,
+            display:"inline-block", 
+            float:"right", 
+            background:"white", 
+            border:"none"
         }}
         variant="outline-info"
         size="sm"
         className="mr-3"
     >
         {buttonText}
-    </Button>
+    </button>
     );
 }

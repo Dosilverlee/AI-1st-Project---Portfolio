@@ -47,10 +47,13 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
         <Card.Text>{user?.description}</Card.Text>
 
         {isEditable && (
-          <Col>
-            <Row className="mt-3 text-center text-info">
-              <Col sm={{ span: 20 }}>
-                <Button
+                <button
+                  style ={{
+                    display:"inline-block", 
+                    float:"right", 
+                    background:"white", 
+                    border:"none"
+                  }}
                   variant="outline-info"
                   size="sm"
                   onClick={() => {
@@ -58,10 +61,7 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
                   }}
                 >
                   ✏️
-                </Button>
-              </Col>
-            </Row>
-          </Col>
+                </button>
         )}
 
         {isNetwork && (

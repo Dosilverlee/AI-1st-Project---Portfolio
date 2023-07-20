@@ -20,7 +20,12 @@ function Educations({ portfolioOwnerId, isEditable }) {
   return (
     <Card className="m-2">
       <Card.Body>
-        <Card.Title>학력</Card.Title>
+        <div>
+          <Card.Title style={{display:"inline-block"}}>학력</Card.Title>
+          {isEditable && (
+                <button style={{display:"inline-block", float:"right", background:"white", border:"none"}} onClick={() => setIsAdding(true)}>➕</button>
+          )}
+        </div>
         {educations.map((education) => (
           <Education
             key={education.id}
@@ -29,13 +34,6 @@ function Educations({ portfolioOwnerId, isEditable }) {
             isEditable={isEditable}
           />
         ))}
-        {isEditable && (
-          <Row className="mt-3 text-center mb-4">
-            <Col sm={{ span: 20 }}>
-              <Button onClick={() => setIsAdding(true)}>+</Button>
-            </Col>
-          </Row>
-        )}
         {isAdding && (
           <EducationAddForm
             educations={educations}

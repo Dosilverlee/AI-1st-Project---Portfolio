@@ -21,6 +21,7 @@ function Mainpage() {
     }
   }, [params, userState, navigate]);
 
+  // 스크롤을 내렸을 때 페이지의 최상단으로 돌아가게 해주는 버튼 함수
   function ScrollToTopButton() {
     const useScrollToggle = () => {
       const [scrollFlag, setScrollFlag] = useState(false);

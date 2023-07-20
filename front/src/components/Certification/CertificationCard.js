@@ -39,13 +39,13 @@ function CertificationCard({
             <Col xs lg="1">
               <CommonButton
                 handleDelete={() => setIsEditing((prev) => !prev)}
-                buttonText="편집"
+                buttonText="✏️"
               />
             </Col>
             <Col xs lg="1">
               <CommonButton
                 handleDelete={handleDeleteCertificate}
-                buttonText="삭제"
+                buttonText="🗑️"
               />
             </Col>
           </>

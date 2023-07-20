@@ -30,13 +30,13 @@ function ProjectCard({ project, isEditable, setIsEditing, setProjects }) {
             <Col xs lg="1">
               <CommonButton
                 handleDelete={() => setIsEditing((prev) => !prev)}
-                buttonText="편집"
+                buttonText="✏️"
               />
             </Col>
             <Col xs lg="1">
               <CommonButton
                 handleDelete={handleDeleteProject}
-                buttonText="삭제"
+                buttonText="🗑️"
               />
             </Col>
           </>

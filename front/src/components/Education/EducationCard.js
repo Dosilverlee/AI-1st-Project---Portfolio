@@ -28,31 +28,25 @@ function EducationCard({ education, isEditable, setIsEditing, setEducations }) {
 
   return (
     <Card.Text>
-      <Row className="align-items-center">
-        <Col>
+        <div style={{display:"inline-block"}}>
           <span>{title}</span>
           <br />
           <span className="text-muted">{description}</span>
           <br />
           <span>{convertGradeText(graduation)}</span>
-        </Col>
+        </div>
         {isEditable && (
-          <>
-            <Col xs lg="1">
-              <CommonButton
-                handleDelete={() => setIsEditing((prev) => !prev)}
-                buttonText="편집"
-              />
-            </Col>
-            <Col xs lg="1">
+          <div style={{display:"inline-block", float:"right"}}>
               <CommonButton
                 handleDelete={handleDeleteEducation}
-                buttonText="삭제"
+                buttonText="🗑️"
               />
-            </Col>
-          </>
+              <CommonButton
+                handleDelete={() => setIsEditing((prev) => !prev)}
+                buttonText="✏️"
+              />
+          </div>
         )}
-      </Row>
     </Card.Text>
   );
 }
