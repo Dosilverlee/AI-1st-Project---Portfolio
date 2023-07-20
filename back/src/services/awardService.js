@@ -39,8 +39,8 @@ class awardService {
   }
 
   // 수상 이력 수정하기
-  static async setAward({ id, toUpdate }) {
-    let awardData = await Award.findById(id);
+  static async setAward({ awardId, toUpdate }) {
+    let awardData = await Award.findById(awardId);
 
     if (awardData === 0) {
       const errorMessage = "프로젝트 이력이 없습니다. 다시 한 번 확인해 주세요.";
@@ -53,8 +53,8 @@ class awardService {
   }
 
   // 수상 이력 삭제하기
-  static async deleteAward({ id }) {
-    let awardData = await Award.findById(id);
+  static async deleteAward({ awardId }) {
+    let awardData = await Award.findById(awardId);
   
     if (awardData === 0) {
       throw new Error("삭제할 이력이 없습니다.");

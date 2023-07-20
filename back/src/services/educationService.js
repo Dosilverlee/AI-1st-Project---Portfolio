@@ -38,8 +38,8 @@ class educationService {
   }
 
   // 학력 내용 수정
-  static async setEducation({ id, toUpdate }) {
-    const educationData = await Education.findEducationByEducationId(id);
+  static async setEducation({ educationId, toUpdate }) {
+    const educationData = await Education.findEducationByEducationId(educationId);
 
     if (educationData === 0) {
       const errorMessage = "학력 이력이 없습니다. 다시 한 번 확인해 주세요.";
@@ -52,8 +52,8 @@ class educationService {
   }
 
   // 학력 삭제하기
-  static async deleteEducation({ id }) {
-    const educationData= await Education.findEducationByEducationId(id);
+  static async deleteEducation({ educationId }) {
+    const educationData= await Education.findEducationByEducationId(educationId);
   
 
     if (educationData === 0) {

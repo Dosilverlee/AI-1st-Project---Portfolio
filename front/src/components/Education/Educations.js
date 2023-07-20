@@ -5,17 +5,18 @@ import Education from "./Education";
 import EducationAddForm from "./EducationAddForm";
 
 function Educations({ portfolioOwnerId, isEditable }) {
-    const [educations, setEducations] = useState([]);
-    const [isAdding, setIsAdding] = useState(false);
-  
-    console.log(portfolioOwnerId);
-  
-    useEffect(() => {
-      Api.get(`educations/${portfolioOwnerId}`)
-        .then((res) => setEducations(res.data));
-        setIsAdding(false);
-    }, [portfolioOwnerId]);
-  
+  const [educations, setEducations] = useState([]);
+  const [isAdding, setIsAdding] = useState(false);
+
+  useEffect(() => {
+    Api.get(`educations/${portfolioOwnerId}`).then((res) =>
+      setEducations(res.data)
+    );
+    setIsAdding(false);
+  }, [portfolioOwnerId]);
+
+  console.log(portfolioOwnerId);
+
   return (
     <Card className="m-2">
       <Card.Body>

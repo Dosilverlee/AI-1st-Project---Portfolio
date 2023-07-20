@@ -3,14 +3,16 @@ import CommonButton from "../buttons/CommonButton";
 import * as Api from "../../api";
 
 function AwardCard({ award, isEditable, setIsEditing, setAwards }) {
-  const { id, title, description } = award;
+  const { title, description } = award;
 
   const handleDeleteAward = () => {
-    Api.delete(`awards/${award.userId}/${award.id}`, id)
+    Api.delete(`awards/${award.userId}/${award.id}`)
       .then(async (response) => {
         // 1. 여기서 정보를 조회하는 Api를 호출한다.
         // 2. 정보를 조회하는 Api가 성공하면, 그 응답값으로 학력정보를 다시 설정해준다.
-        Api.get(`awards/${award.userId}}`).then((res) => setAwards(res.data));
+        await Api.get(`awards/${award.userId}`).then((res) =>
+          setAwards(res.data)
+        );
       })
       .catch((error) => {});
   };

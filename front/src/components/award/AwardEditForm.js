@@ -15,21 +15,18 @@ function AwardEditForm({ currentAward, setAwards, setIsEditing }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     e.stopPropagation();
-    
 
     // currentAward의 user_id를 user_id 변수에 할당함.
     const user_id = currentAward.userId;
 
     // "awards/수상 id" 엔드포인트로 PUT 요청함.
-    await Api.put(`awards/${currentAward.id}`, {
-      id:currentAward.id,
+    await Api.put(`awards/${currentAward.userId}/${currentAward.id}`, {
+      id: currentAward.id,
       title,
       description,
       date,
       institute,
     });
-
-    
 
     // "awardlist/유저id" 엔드포인트로 GET 요청함.
     const res = await Api.get("awards", user_id);
@@ -37,10 +34,7 @@ function AwardEditForm({ currentAward, setAwards, setIsEditing }) {
     setAwards(res.data);
     // 편집 과정이 끝났으므로, isEditing을 false로 세팅함.
     setIsEditing(false);
-    
   };
-
-  
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -52,7 +46,6 @@ function AwardEditForm({ currentAward, setAwards, setIsEditing }) {
           onChange={(e) => setTitle(e.target.value)}
         />
       </Form.Group>
-
 
       <Form.Group controlId="formBasicDescription" className="mt-3">
         <Form.Control
