@@ -13,7 +13,7 @@ class Award {
   }
 
   static async findById(id) {
-    const award = await AwardModel.findOne(ObjectTypeHandler(id));
+    const award = await AwardModel.findOne({ _id : ObjectTypeHandler(id) });
     return award;
   }
 

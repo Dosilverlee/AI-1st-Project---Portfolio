@@ -13,7 +13,7 @@ class Education {
   }
 
   static async findEducationByEducationId(id) {
-    const education = await EducationModel.findOne(ObjectTypeHandler(id));
+    const education = await EducationModel.findOne({ _id : ObjectTypeHandler(id) });
     return education;
   }
 

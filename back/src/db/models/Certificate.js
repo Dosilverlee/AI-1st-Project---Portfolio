@@ -13,7 +13,7 @@ class Certificate {
   }
 
   static async findById(id) {
-    const Certificate = await CertificateModel.findOne(ObjectTypeHandler(id));
+    const Certificate = await CertificateModel.findOne({ _id : ObjectTypeHandler(id) });
     return Certificate;
   }
 

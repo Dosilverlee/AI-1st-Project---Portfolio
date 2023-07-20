@@ -13,7 +13,7 @@ class Project {
   }
 
   static async findById(id) {
-    const Project = await ProjectModel.findOne(ObjectTypeHandler(id));
+    const Project = await ProjectModel.findOne({ _id : ObjectTypeHandler(id) });
     return Project;
   }
 
