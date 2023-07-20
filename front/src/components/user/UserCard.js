@@ -77,17 +77,20 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
         )}
 
         {isNetwork && (
-          <Card.Link
-            style={{color:"#0A66C2", textDecoration:"none"}}
-            className="mt-3"
-            href="#"
-            onClick={() => {
-              navigate(`/users/${user.id}`);
-            }}
-          >
-            프로필 보러가기
-          </Card.Link>
+          <div style={{marginTop:"5px"}}>
+            <Card.Link
+              style={{color:"#6700e6", textDecoration:"none"}}
+              className="mt-3"
+              href="#"
+              onClick={() => {
+                navigate(`/users/${user.id}`);
+              }}
+            >
+              프로필 보러가기
+            </Card.Link>
+          </div>
         )}
+
       </Card.Body>
     </Card>
   );
