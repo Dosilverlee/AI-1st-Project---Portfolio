@@ -51,13 +51,14 @@ function Network() {
       ))}
       <div style={{display: "flex", justifyContent: "center"}}>
         <div total={total} limit={limit} page={page} setPage={setPage}>
-          <button onClick={() => setPage(page - 1)} disabled={page === 1}>
+          <button style ={{ background:"white", border:"none" }} onClick={() => setPage(page - 1)} disabled={page === 1}>
             &lt;
           </button>
           {Array(numPages)
             .fill()
             .map((_, i) => (
               <button
+                style ={{ background:"white", border:"none" }}
                 key={i + 1}
                 onClick={() => setPage(i + 1)}
                 aria-current={page === i + 1 ? "page" : null}
@@ -65,7 +66,7 @@ function Network() {
                 {i + 1}
               </button>
             ))}
-          <button onClick={() => setPage(page + 1)} disabled={page === numPages}>
+          <button style ={{ background:"white", border:"none" }} onClick={() => setPage(page + 1)} disabled={page === numPages}>
             &gt;
           </button>
         </div>

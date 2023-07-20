@@ -19,33 +19,27 @@ function AwardCard({ award, isEditable, setIsEditing, setAwards }) {
 
   return (
     <Card.Text>
-      <Row className="align-items-center">
-        <Col>
-          <span>{title}</span>
-          <br />
-          <span className="text-muted">{description}</span>
-          <br />
-          <span className="text-muted">{award.date}</span>
-          <br />
-          <span className="text-muted">{award.institute}</span>
-        </Col>
-        {isEditable && (
-          <>
-            <Col xs lg="1">
-              <CommonButton
-                handleDelete={() => setIsEditing((prev) => !prev)}
-                buttonText="✏️"
-              />
-            </Col>
-            <Col xs lg="1">
-              <CommonButton
-                handleDelete={handleDeleteAward}
-                buttonText="🗑️"
-              />
-            </Col>
-          </>
-        )}
-      </Row>
+      <div style={{display:"inline-block"}}>
+        <span>{title}</span>
+        <br />
+        <span className="text-muted">{description}</span>
+        <br />
+        <span className="text-muted">{award.date}</span>
+        <br />
+        <span className="text-muted">{award.institute}</span>
+      </div>
+      {isEditable && (
+        <div style={{display:"inline-block", float:"right"}}>
+          <CommonButton
+            handleDelete={handleDeleteAward}
+            buttonText="🗑️"
+          />
+          <CommonButton
+            handleDelete={() => setIsEditing((prev) => !prev)}
+            buttonText="✏️"
+          />
+        </div>
+      )}
     </Card.Text>
   );
 }

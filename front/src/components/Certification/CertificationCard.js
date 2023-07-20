@@ -24,8 +24,7 @@ function CertificationCard({
 
   return (
     <Card.Text>
-      <Row className="align-items-center">
-        <Col>
+      <div style={{display:"inline-block"}}>
           <span>{certification.title}</span>
           <br />
           <span className="text-muted">{certification.description}</span>
@@ -33,24 +32,19 @@ function CertificationCard({
           <span className="text-muted">{certification.date}</span>
           <br />
           <span className="text-muted">{certification.institute}</span>
-        </Col>
+        </div>
         {isEditable && (
-          <>
-            <Col xs lg="1">
-              <CommonButton
-                handleDelete={() => setIsEditing((prev) => !prev)}
-                buttonText="✏️"
-              />
-            </Col>
-            <Col xs lg="1">
-              <CommonButton
-                handleDelete={handleDeleteCertificate}
-                buttonText="🗑️"
-              />
-            </Col>
-          </>
+          <div style={{display:"inline-block", float:"right"}}>
+            <CommonButton
+              handleDelete={handleDeleteCertificate}
+              buttonText="🗑️"
+            />
+            <CommonButton
+              handleDelete={() => setIsEditing((prev) => !prev)}
+              buttonText="✏️"
+            />
+          </div>
         )}
-      </Row>
     </Card.Text>
   );
 }
