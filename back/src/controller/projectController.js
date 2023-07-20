@@ -1,5 +1,5 @@
 import { projectService } from "../services/projectService";
-import { logger } from "../log/winstonLogger";
+import { logger } from "../winstonLogger";
 
 const getProjectByUserId = async (req, res, next) => {
   try {

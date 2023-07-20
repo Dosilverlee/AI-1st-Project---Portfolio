@@ -1,5 +1,5 @@
 import { certificateService } from "../services/certificateService";
-import { logger } from "../log/winstonLogger";
+import { logger } from "../winstonLogger";
 
 const getCertificateByUserId = async (req, res, next) => {
   try {

@@ -1,5 +1,5 @@
 import { educationService } from "../services/educationService";
-import { logger } from "../log/winstonLogger";
+import { logger } from "../winstonLogger";
 
 const getEducationsByUserId = async (req, res, next) => {
   try {

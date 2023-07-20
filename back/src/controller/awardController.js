@@ -1,5 +1,5 @@
 import { awardService } from "../services/awardService";
-import { logger } from "../log/winstonLogger";
+import { logger } from "../winstonLogger";
 
 const getAwardByUserId = async (req, res, next) => {
   try {
