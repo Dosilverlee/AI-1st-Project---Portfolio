@@ -43,7 +43,7 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
             }}
             className="mb-3"
             src={
-              user.profileImage
+              user && user.profileImage
                 ? "http://localhost:5001/" + user.profileImage
                 : "http://placekitten.com/200/200"
             }
