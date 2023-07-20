@@ -57,7 +57,7 @@ function RegisterForm() {
   };
 
   return (
-    <div style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
+    <div style={{paddingTop:"134px", display: "flex", justifyContent: "center", alignItems: "center"}}>
       <div style={{marginTop:"100px", boxShadow: "0px 4px 12px #00000026"}}>
         <h2 style={{margin:"20px"}}>회원가입을 해주세요!</h2>
           <Form onSubmit={handleSubmit} style={{margin:"20px"}}>
