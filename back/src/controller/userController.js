@@ -1,8 +1,10 @@
 import is from "@sindresorhus/is";
 import { userAuthService } from "../services/userService";
+import { logger } from "../winstonLogger";
 
 const addUser = async (req, res, next) => {
   try {
+    logger.info("addUser");
     if (is.emptyObject(req.body)) {
       throw new Error(
         "headers의 Content-Type을 application/json으로 설정해주세요"
@@ -22,6 +24,7 @@ const addUser = async (req, res, next) => {
     });
 
     if (newUser.errorMessage) {
+      logger.error("addUser 오류");
       throw new Error(newUser.errorMessage);
     }
 
