@@ -5,7 +5,7 @@ import * as Api from "../../api";
 import Project from "./Project";
 import ProjectAddForm from "./ProjectAddForm";
 
-function Projects({ portfolioOwnerId, isEditable }) {햣
+function Projects({ portfolioOwnerId, isEditable }) {
   //useState로 projects 상태를 생성함.
   const [projects, setProjects] = useState([]);
   //useState로 isAdding 상태를 생성함.
