@@ -5,7 +5,7 @@ import { throttle } from "lodash";
 import Portfolio from "./Portfolio";
 import Network from "./user/Network";
 
-import scroll_to_top_button from "../assets/scroll_to_top_button.png"
+import scroll_to_top_button from "../assets/scroll_to_top_button2.png";
 
 function Mainpage() {
   const navigate = useNavigate();
@@ -24,14 +24,14 @@ function Mainpage() {
   function ScrollToTopButton() {
     const useScrollToggle = () => {
       const [scrollFlag, setScrollFlag] = useState(false);
-  
+
       const updateScroll = () => {
         const { scrollY } = window;
         scrollY > 10 ? setScrollFlag(true) : setScrollFlag(false);
       };
       const handleScroll = throttle(updateScroll, 100);
-  
-      useEffect(()=> {
+
+      useEffect(() => {
         window.addEventListener("scroll", handleScroll);
         return () => {
           window.removeEventListener("scroll", handleScroll);
@@ -43,19 +43,26 @@ function Mainpage() {
     const scrollFlag = useScrollToggle(false);
     const moveToTop = () => (document.documentElement.scrollTop = 0);
 
-    return (scrollFlag && (
-      <div style={{position:'fixed', bottom:'1rem', right:'1rem'}}>
-        <img src={scroll_to_top_button} onClick={moveToTop} style={{cursor:'pointer'}} />
-      </div>
-    ));
-  };
+    return (
+      scrollFlag && (
+        <div style={{ position: "fixed", bottom: "1rem", right: "1rem" }}>
+          <img
+            src={scroll_to_top_button}
+            onClick={moveToTop}
+            style={{ cursor: "pointer", width: "50px", height: "50px" }}
+          />
+        </div>
+      )
+    );
+  }
 
   return (
     <div style={{backgroundColor: "#DED5FE", paddingTop:"134px", display: "flex", justifyContent: "center" }}>
       {userState.user && (<div style={{ width:"1128px", marginTop: "30px", marginBottom: "30px", display: "flex", alignItems: "stretch" }}>
           <Portfolio />
           <Network />
-      </div>)}
+        </div>
+      )}
       <ScrollToTopButton />
     </div>
   );
