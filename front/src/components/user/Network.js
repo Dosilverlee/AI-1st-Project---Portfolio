@@ -39,12 +39,12 @@ function Network() {
       setId(userState.user.id);
     }
     // "userlist" 엔드포인트로 GET 요청을 하고, users를 response의 data로 세팅함.
-    Api.get("userlist").then((res) => setUsers(shuffle(res.data).filter((user) => user.id !== id)));
+    Api.get("userlist").then((res) => setUsers(shuffle(res.data)));
   }, [params, userState, navigate]);
 
   return (
     <div style={{display:"inline-block", width: "35%"}}>
-      {users.slice(offset, offset + limit).map((user) => (
+      {users.filter((user) => user.id !== id).slice(offset, offset + limit).map((user) => (
         <UserCard key={user.id} user={user} isNetwork />
       ))}
       <div style={{display: "flex", justifyContent: "center"}}>

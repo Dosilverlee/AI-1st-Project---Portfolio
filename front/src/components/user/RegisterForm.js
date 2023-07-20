@@ -60,13 +60,13 @@ function RegisterForm() {
     <div style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
       <div style={{marginTop:"100px", boxShadow: "0px 4px 12px #00000026"}}>
         <h2 style={{margin:"20px"}}>회원가입을 해주세요!</h2>
-          <Form onSubmit={handleSubmit}>
-            <Form.Group controlId="registerEmail">
-              <Form.Label>이메일 주소</Form.Label>
+          <Form onSubmit={handleSubmit} style={{margin:"20px"}}>
+            <Form.Group controlId="registerEmail" style={{width:"300px"}}>
               <Form.Control
                 type="email"
                 autoComplete="off"
                 value={email}
+                placeholder="이메일"
                 onChange={(e) => setEmail(e.target.value)}
               />
               {!isEmailValid && (
@@ -76,12 +76,12 @@ function RegisterForm() {
               )}
             </Form.Group>
 
-            <Form.Group controlId="registerPassword" className="mt-3">
-              <Form.Label>비밀번호</Form.Label>
+            <Form.Group controlId="registerPassword" className="mt-3" style={{width:"300px"}}>
               <Form.Control
                 type="password"
                 autoComplete="off"
                 value={password}
+                placeholder="비밀번호"
                 onChange={(e) => setPassword(e.target.value)}
               />
               {!isPasswordValid && (
@@ -91,12 +91,12 @@ function RegisterForm() {
               )}
             </Form.Group>
 
-            <Form.Group controlId="registerConfirmPassword" className="mt-3">
-              <Form.Label>비밀번호 재확인</Form.Label>
+            <Form.Group controlId="registerConfirmPassword" className="mt-3" style={{width:"300px"}}>
               <Form.Control
                 type="password"
                 autoComplete="off"
                 value={confirmPassword}
+                placeholder="비밀번호 확인"
                 onChange={(e) => setConfirmPassword(e.target.value)}
               />
               {!isPasswordSame && (
@@ -106,12 +106,12 @@ function RegisterForm() {
               )}
             </Form.Group>
 
-            <Form.Group controlId="registerName" className="mt-3">
-              <Form.Label>이름</Form.Label>
+            <Form.Group controlId="registerName" className="mt-3" style={{width:"300px"}}>
               <Form.Control
                 type="text"
                 autoComplete="off"
                 value={name}
+                placeholder="이름"
                 onChange={(e) => setName(e.target.value)}
               />
               {!isNameValid && (
@@ -123,12 +123,14 @@ function RegisterForm() {
 
             <Form.Group as={Row} className="mt-3 text-center">
               <Col sm={{ span: 20 }}>
-                <Button variant="primary" type="submit" disabled={!isFormValid}>
+                <Button style={{backgroundColor:"#0A66C2"}} variant="primary" type="submit" disabled={!isFormValid}>
                   회원가입
                 </Button>
               </Col>
             </Form.Group>
-
+            <div style={{marginTop:"15px", display: "flex", justifyContent: "center"}}>
+              <span>또는</span>
+            </div>
             <Form.Group as={Row} className="mt-3 text-center">
               <Col sm={{ span: 20 }}>
                 <Button variant="light" onClick={() => navigate("/login")}>
