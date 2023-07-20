@@ -43,7 +43,7 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
             <h4>프로필 이미지 변경하기(가안)</h4>
             <input type='file' name='file' onChange={onFileChange}/>
             <br></br><br></br>
-            <button type='submit'>업로드</button>
+            <button type='submit'>파일 올리기</button>
           </form>
         )}
       </div>
@@ -72,7 +72,7 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
 
         {isNetwork && (
           <Card.Link
-            style={{color:"#0A66C2", textDecoration:"none"}}
+            style={{color:"#6700e6", textDecoration:"none"}}
             className="mt-3"
             href="#"
             onClick={() => {

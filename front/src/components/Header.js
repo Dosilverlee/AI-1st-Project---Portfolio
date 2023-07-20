@@ -2,8 +2,8 @@ import React, { useContext } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Nav } from "react-bootstrap";
 import { UserStateContext, DispatchContext } from "../App";
-import LogoPNG from '../assets/logo.png'
-import LogoGIF from '../assets/logo.gif'
+import Logo from '../assets/logo.png'
+import Rabbit from '../assets/rabbit.png'
 
 function Header() {
   const navigate = useNavigate();
@@ -31,12 +31,12 @@ function Header() {
         <div style={{ width:"1128px", height: "134px" }}>
           <div style={{display: "inline-block", marginLeft:"20px"}}>
             <a href="/"><img
-              style={{ height:"67px"}}
-              src={LogoPNG}
+              style={{ height:"33.5px"}}
+              src={Logo}
             /></a>
             <a href="/"><img
-              style={{ height:"134px"}}
-              src={LogoGIF}
+              style={{ marginLeft:"15px", height:"134px"}}
+              src={Rabbit}
             /></a>
           </div>
           {isLogin && (<div style={{ display:"inline-block", float: "right" }}>
@@ -47,8 +47,8 @@ function Header() {
               />
             </div>
             <div style={{marginBottom: "5px"}}>
-                <Nav.Link style={{display: "inline-flex", color:"#56687a", fontWeight: "bold"}} onClick={() => navigate("/")}>나의 페이지</Nav.Link>
-                <Nav.Link style={{display: "inline-flex", color:"#56687a", fontWeight: "bold"}} onClick={logout}>로그아웃</Nav.Link>
+                <Nav.Link style={{display: "inline-flex", color:"#6700e6", fontWeight: "bold"}} onClick={() => navigate("/")}>나의 페이지</Nav.Link>
+                <Nav.Link style={{display: "inline-flex", color:"#6700e6", fontWeight: "bold"}} onClick={logout}>로그아웃</Nav.Link>
             </div>
           </div>)}
         </div>
