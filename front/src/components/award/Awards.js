@@ -1,3 +1,4 @@
+// 수상내역 목록을 표시하는 기능을 담당하며, 필요한 경우 새로운 내역을 추가할 수 있는 폼 제공
 import React, { useEffect, useState } from "react";
 import { Card, Button, Row, Col } from "react-bootstrap";
 import * as Api from "../../api";
@@ -11,18 +12,30 @@ function Awards({ portfolioOwnerId, isEditable }) {
   const [isAdding, setIsAdding] = useState(false);
 
   useEffect(() => {
-    // "awardlist/유저id"로 GET 요청하고, response의 data로 awards를 세팅함.
+    // 기존에 저장된 수상내역을 화면에 불러오기 위해 Api get 요청, response의 data로 세팅
     Api.get("awards", portfolioOwnerId).then((res) => setAwards(res.data));
     setIsAdding(false);
   }, [portfolioOwnerId]);
 
   return (
-    <Card className="m-2" style={{borderRadius:"0.5em"}}>
+    <Card className="m-2" style={{ borderRadius: "0.5em" }}>
       <Card.Body>
         <div>
-          <Card.Title style={{display:"inline-block", fontWeight: "bold"}}>수상</Card.Title>
+          <Card.Title style={{ display: "inline-block", fontWeight: "bold" }}>
+            수상
+          </Card.Title>
           {isEditable && (
-            <button style={{display:"inline-block", float:"right", background:"white", border:"none"}} onClick={() => setIsAdding(true)}>➕</button>
+            <button
+              style={{
+                display: "inline-block",
+                float: "right",
+                background: "white",
+                border: "none",
+              }}
+              onClick={() => setIsAdding(true)}
+            >
+              ➕
+            </button>
           )}
         </div>
         {awards.map((award) => (
