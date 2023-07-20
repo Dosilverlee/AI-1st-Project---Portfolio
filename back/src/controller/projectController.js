@@ -17,10 +17,8 @@ const getProjectByUserId = async (req, res, next) => {
 const addProject = async (req, res, next) => {
   try {
     logger.info("addProject");
-    const userId = req.params.userId; 
-    const title = req.body.title;
-    const description = req.body.description;
-
+    const { userId } = req.params;
+    const { title, description } = req.body;
     const result = await projectService.addProject({userId, title, description})
 
     res.status(201).json({result})
@@ -34,10 +32,8 @@ const addProject = async (req, res, next) => {
 const setProject = async (req, res, next) => {
   try {
     logger.info("setProject");
-    const userId = req.params.userId;
-    const projectId = req.params.projectId;
-    const title = req.body.title;
-    const description = req.body.description;
+    const { userId, projectId} = req.params;
+    const { title, description } = req.body;
     const result = await projectService.setProject({ projectId, toUpdate: { title, description } });
 
     res.status(200).json(result)

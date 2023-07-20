@@ -17,15 +17,12 @@ const getAwardByUserId = async (req, res, next) => {
 const addAward = async (req, res, next) => {
   try {
     logger.info("addAward");
-    const userId = req.params.userId; 
-    const title = req.body.title;
-    const description = req.body.description;
+    const { userId } = req.params;
+    const { title, description } = req.body;
     const date = (req.body.date) ? req.body.date : "이력 없음";
     const institute = (req.body.institute) ? req.body.institute : "이력 없음";
 
-    const result = await awardService.addAward({userId, title, description, date, institute})
-    console.log(result)
-
+    const result = await awardService.addAward({userId, title, description, date, institute});
     res.status(201).json({result})
   } catch(e) {
     logger.error("addAward 오류");
@@ -37,10 +34,8 @@ const addAward = async (req, res, next) => {
 const setAward = async (req, res, next) => {
   try {
     logger.info("setAward");
-    const userId = req.params.userId;
-    const awardId = req.params.awardId;
-    const title = req.body.title;
-    const description = req.body.description;
+    const { userId, awardId } = req.params;
+    const { title, description } = req.body;
     const date = (req.body.date) ? req.body.date : "이력 없음";
     const institute = (req.body.institute) ? req.body.institute : "이력 없음";
 

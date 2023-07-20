@@ -17,9 +17,8 @@ const getCertificateByUserId = async (req, res, next) => {
 const addCertificate = async (req, res, next) => {
   try {
     logger.info("addCertificate");
-    const userId = req.params.userId; 
-    const title = req.body.title;
-    const description = req.body.description;
+    const { userId } = req.params;
+    const { title, description } = req.body;
     const date = (req.body.date) ? req.body.date : "이력 없음";
     const institute = (req.body.institute) ? req.body.institute : "이력 없음";
 
@@ -36,10 +35,8 @@ const addCertificate = async (req, res, next) => {
 const setCertificate = async (req, res, next) => {
   logger.info("setCertificate");
   try {
-    const userId = req.params.userId;
-    const certificateId = req.params.certificateId;
-    const title = req.body.title;
-    const description = req.body.description;
+    const { userId, certificateId } = req.params;
+    const { title, description } = req.body;
     const date = (req.body.date) ? req.body.date : "이력 없음";
     const institute = (req.body.institute) ? req.body.institute : "이력 없음";
 
