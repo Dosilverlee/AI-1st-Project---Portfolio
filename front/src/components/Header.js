@@ -26,7 +26,7 @@ function Header() {
   };
 
   return (
-    <div activeKey={location.pathname} style={{ width:"100%", backgroundColor:"white", position:"fixed", zIndex:"1"}}>
+    <div activeKey={location.pathname} style={{ width:"100%", minWidth:"528px", backgroundColor:"white", position:"fixed", zIndex:"1"}}>
       <div style={{ display: "flex", justifyContent: "center" }}>
         <div style={{ width:"1128px", height: "134px" }}>
           <div style={{display: "inline-block", marginLeft:"20px"}}>

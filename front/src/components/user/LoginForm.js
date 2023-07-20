@@ -96,7 +96,7 @@ function LoginForm() {
 
             <Form.Group as={Row} className="mt-3 text-center">
               <Col sm={{ span: 20 }}>
-                <Button style={{backgroundColor:"#0A66C2"}} variant="primary" type="submit" disabled={!isFormValid}>
+                <Button style={{color:"black", backgroundColor:"#DED5FE", border:"none"}} variant="primary" type="submit" disabled={!isFormValid}>
                   로그인
                 </Button>
               </Col>

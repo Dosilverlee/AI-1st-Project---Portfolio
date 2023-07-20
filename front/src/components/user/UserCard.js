@@ -39,19 +39,17 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
         />
         
         {isEditable && (
-          <form style={{ display:"inline-block", float:"right"}} encType='multipart/form-data' onSubmit={handleSubmit}>
-            <h4>프로필 이미지 변경하기(가안)</h4>
-            <input type='file' name='file' onChange={onFileChange}/>
-            <br></br><br></br>
-            <button type='submit'>파일 올리기</button>
+          <form style={{width:"100%", display:"inline-block"}} encType='multipart/form-data' onSubmit={handleSubmit}>
+            <input style={{ background:"white", border:"none"}} type='file' name='file' onChange={onFileChange}/>
+            <Button style={{ float:"right", margin:"5px", color:"black", background:"#DED5FE", border:"none"}} type='submit'>📸프로필 사진 업로드</Button>
           </form>
         )}
       </div>
-
-        <Card.Title>{user?.name}</Card.Title>
+      <div style={{display:"inline-block"}}>
+        <Card.Title style={{paddingRight:"40px"}}>{user?.name}</Card.Title>
         <Card.Subtitle className="mb-2 text-muted">{user?.email}</Card.Subtitle>
         <Card.Text>{user?.description}</Card.Text>
-
+      </div>
         {isEditable && (
           <button
             style ={{
@@ -67,20 +65,22 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
             }}
           >
             ✏️
-          </button>
+        </button>
         )}
 
         {isNetwork && (
-          <Card.Link
-            style={{color:"#6700e6", textDecoration:"none"}}
-            className="mt-3"
-            href="#"
-            onClick={() => {
-              navigate(`/users/${user.id}`);
-            }}
-          >
-            프로필 보러가기
-          </Card.Link>
+          <div style={{marginTop:"5px"}}>
+            <Card.Link
+              style={{color:"#6700e6", textDecoration:"none"}}
+              className="mt-3"
+              href="#"
+              onClick={() => {
+                navigate(`/users/${user.id}`);
+              }}
+            >
+              프로필 보러가기
+            </Card.Link>
+          </div>
         )}
       </Card.Body>
     </Card>

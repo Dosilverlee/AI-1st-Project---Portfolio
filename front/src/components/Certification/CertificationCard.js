@@ -24,8 +24,20 @@ function CertificationCard({
 
   return (
     <Card.Text>
-      <div style={{display:"inline-block"}}>
+      <div style={{display:"inline-block", width:"100%"}}>
           <span>{certification.title}</span>
+          {isEditable && (
+            <div style={{display:"inline-block", float:"right"}}>
+              <CommonButton
+                handleDelete={handleDeleteCertificate}
+                buttonText="🗑️"
+              />
+              <CommonButton
+                handleDelete={() => setIsEditing((prev) => !prev)}
+                buttonText="✏️"
+              />
+            </div>
+        )}
           <br />
           <span className="text-muted">{certification.description}</span>
           <br />
@@ -33,18 +45,6 @@ function CertificationCard({
           <br />
           <span className="text-muted">{certification.institute}</span>
         </div>
-        {isEditable && (
-          <div style={{display:"inline-block", float:"right"}}>
-            <CommonButton
-              handleDelete={handleDeleteCertificate}
-              buttonText="🗑️"
-            />
-            <CommonButton
-              handleDelete={() => setIsEditing((prev) => !prev)}
-              buttonText="✏️"
-            />
-          </div>
-        )}
     </Card.Text>
   );
 }

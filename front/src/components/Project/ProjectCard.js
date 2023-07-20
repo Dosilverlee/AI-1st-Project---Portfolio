@@ -19,23 +19,24 @@ function ProjectCard({ project, isEditable, setIsEditing, setProjects }) {
 
   return (
     <Card.Text>
-      <div style={{display:"inline-block"}}>
+      <div style={{display:"inline-block", width:"100%"}}>
         <span>{title}</span>
+        {isEditable && (
+          <div style={{display:"inline-block", float:"right"}}>
+            <CommonButton
+              handleDelete={handleDeleteProject}
+              buttonText="🗑️"
+            />
+            <CommonButton
+              handleDelete={() => setIsEditing((prev) => !prev)}
+              buttonText="✏️"
+            />
+          </div>
+        )}
         <br />
         <span className="text-muted">{description}</span>
       </div>
-      {isEditable && (
-        <div style={{display:"inline-block", float:"right"}}>
-          <CommonButton
-            handleDelete={handleDeleteProject}
-            buttonText="🗑️"
-          />
-          <CommonButton
-            handleDelete={() => setIsEditing((prev) => !prev)}
-            buttonText="✏️"
-          />
-        </div>
-      )}
+      
     </Card.Text>
   );
 }
