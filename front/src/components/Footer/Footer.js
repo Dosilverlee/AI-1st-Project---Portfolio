@@ -1,6 +1,13 @@
+// 페이지 최하단 Footer 부분
 function Footer() {
   return (
-    <div style={{display: "flex", justifyContent: "center", background: "#E4E4E4"}}>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        background: "#E4E4E4",
+      }}
+    >
       <div
         style={{
           width: "1128px",
@@ -23,20 +30,22 @@ function Footer() {
             src="https://elice.io/_next/image?url=%2Fimages%2Felice_logo_gray.png&w=2048&q=100"
           />
         </span>
-        <div style={{ fontSize: "12px", }}>
+        <div style={{ fontSize: "12px" }}>
           주소 : 아름다운 이 땅에 금수강산에 단군할아버지가 터 잡으심
         </div>
-        <div style={{ fontSize: "12px"}}>
+        <div style={{ fontSize: "12px" }}>
           팀장 정현수 | 통신판매업 신고번호 제2023-우리집-0515호 |
           직업정보제공사업 신고번호: J00700dd999828254 | 사업자등록번호
           486-33-00755
         </div>
 
-        <div style={{ fontSize: "12px"}}>
+        <div style={{ fontSize: "12px" }}>
           전화 070-377-7777 | 이메일 DoNotContactUs@testelice.io
         </div>
 
-        <div style={{ display: "flex", alignItems: "center", marginTop: "5px", }}>
+        <div
+          style={{ display: "flex", alignItems: "center", marginTop: "5px" }}
+        >
           <span
             style={{
               fontSize: "12px",
@@ -89,12 +98,11 @@ function Footer() {
           </span>
         </div>
 
-        <div style={{marginTop: "10px"}}>
-        <span style={{ fontSize: "12px", color: "#757575" }}>
-          Copyright ⓒ 2016 - 2023 Elice Inc. All Rights Reserved.
-        </span>
+        <div style={{ marginTop: "10px" }}>
+          <span style={{ fontSize: "12px", color: "#757575" }}>
+            Copyright ⓒ 2016 - 2023 Elice Inc. All Rights Reserved.
+          </span>
         </div>
-        
       </div>
     </div>
   );

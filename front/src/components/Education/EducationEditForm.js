@@ -1,3 +1,4 @@
+// 기존의 학력 정보를 수정하기 위한 폼을 생성하고, 수정된 내용을 서버에 전송하여 업데이트하는 기능을 담당
 import React, { useState } from "react";
 import { Button, Form, Card, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
@@ -8,8 +9,8 @@ function EducationEditForm({ currentEducation, setEducations, setIsEditing }) {
   const [college, setCollege] = useState(currentEducation.title);
   const [major, setMajor] = useState(currentEducation.description);
   const [graduation, setGraduation] = useState(currentEducation.graduation);
-  // const { college, major, graduation } = formData;
 
+  // Form 요소에 onSubmit 이벤트 핸들러로 handleSubmit 함수를 연결하여 폼 제출을 처리
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -20,34 +21,18 @@ function EducationEditForm({ currentEducation, setEducations, setIsEditing }) {
       graduation,
     };
 
-    // const newFormData = {
-    //   id: currentEducation.id,
-    //   title: college,
-    //   description: major,
-    // }
-
-    // 폼 데이터를 API로 전송
+    // 기존의 내역에서 바뀐 입력 값을 서버로 재전송하기 위해 Api put 호출
     await Api.put(
       `educations/${currentEducation.userId}/${currentEducation.id}`,
       formData
-    )
-      .then(async (response) => {
-        // 성공적으로 처리된 경우
-        console.log("학력 정보가 업데이트되었습니다.");
-        // 필요한 업데이트 작업 수행
-        // ...
-        const res = await Api.get(`educations/${currentEducation.userId}`);
-        setEducations(res.data);
+    );
 
-        // const selectedGrade = Grade[graduation - 1];
-        // console.log("선택된 학위", selectedGrade);
-
-        setIsEditing(false);
-      })
-      .catch((error) => {
-        // 에러 발생 시 처리
-        // console.log("학력 정보 업데이트 중 에러 발생:", error);
-      });
+    // put 호출 뒤 저장된 값을 화면에 다시 불러오기 위해 get 요청
+    const res = await Api.get(`educations/${currentEducation.userId}`);
+    // educations를 response의 data로 세팅함.
+    setEducations(res.data);
+    // 편집 과정이 끝났으므로, isEditing을 false로 세팅함.
+    setIsEditing(false);
   };
 
   return (

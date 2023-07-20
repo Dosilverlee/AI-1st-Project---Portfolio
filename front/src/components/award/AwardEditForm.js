@@ -1,17 +1,16 @@
+// 기존의 수상 내역을 수정하기 위한 폼을 생성하고, 수정된 내용을 서버에 전송하여 업데이트하는 기능을 담당
 import React, { useState } from "react";
 import { Button, Form, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
 
 function AwardEditForm({ currentAward, setAwards, setIsEditing }) {
-  //useState로 title 상태를 생성함.
+  //useState로 title 등 상태를 생성함.
   const [title, setTitle] = useState(currentAward.title);
-  //useState로 description 상태를 생성함.
   const [description, setDescription] = useState(currentAward.description);
-
   const [date, setDate] = useState(currentAward.date);
-
   const [institute, setInstitute] = useState(currentAward.institute);
 
+  // Form 요소에 onSubmit 이벤트 핸들러로 handleSubmit 함수를 연결하여 폼 제출을 처리
   const handleSubmit = async (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -19,7 +18,7 @@ function AwardEditForm({ currentAward, setAwards, setIsEditing }) {
     // currentAward의 user_id를 user_id 변수에 할당함.
     const user_id = currentAward.userId;
 
-    // "awards/수상 id" 엔드포인트로 PUT 요청함.
+    // 기존의 내역에서 바뀐 입력 값을 서버로 재전송하기 위해 Api put 호출
     await Api.put(`awards/${currentAward.userId}/${currentAward.id}`, {
       id: currentAward.id,
       title,
@@ -28,7 +27,7 @@ function AwardEditForm({ currentAward, setAwards, setIsEditing }) {
       institute,
     });
 
-    // "awardlist/유저id" 엔드포인트로 GET 요청함.
+    // put 호출 뒤 저장된 값을 화면에 다시 불러오기 위해 get 요청
     const res = await Api.get("awards", user_id);
     // awards를 response의 data로 세팅함.
     setAwards(res.data);
