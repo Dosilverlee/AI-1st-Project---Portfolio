@@ -60,7 +60,7 @@ class projectService {
     if (projectData.length === 0) {
       throw new Error("삭제할 이력이 없습니다.");
     }
-    const deletedProject = await Project.findByIdAndRemove(projectId);
+    const deletedProject = await Project.findByIdAndRemove(projectData.id);
     return deletedProject;
   }
 }
