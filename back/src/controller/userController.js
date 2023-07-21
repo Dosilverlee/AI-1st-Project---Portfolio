@@ -105,6 +105,23 @@ const getUserInfo = async (req, res, next) => {
   }
 }
 
+const getUserInfoOther = async (req, res, next) => {
+  try {
+    logger.info("getUserInfo");
+    const user_id = req.params.id
+    const currentUserInfo = await userAuthService.getUserInfo({ user_id });
+
+    if (currentUserInfo.errorMessage) {
+      logger.error(currentUserInfo.errorMessage);
+      throw new Error(currentUserInfo.errorMessage);
+    }
+    logger.info("getUserInfo");
+    res.status(200).send(currentUserInfo);
+  } catch (error) {
+    next(error);
+  }
+}
+
 const updateUserProfileImage = async (req, res, next) => {
   try {
     const user_id = req.params.id;
@@ -133,5 +150,6 @@ export const userController = {
   getUsers,
   setUser,
   getUserInfo,
+  getUserInfoOther,
   updateUserProfileImage
 };

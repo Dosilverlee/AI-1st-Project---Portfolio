@@ -23,7 +23,7 @@ userAuthRouter.post("/user/login", userController.getUser);
 userAuthRouter.get("/userlist", login_required, userController.getUsers);
 userAuthRouter.get("/user/current", login_required, userController.getUserInfo);
 userAuthRouter.put("/users/:id", login_required, userController.setUser);
-userAuthRouter.get("/users/:id", login_required, userController.getUserInfo);
+userAuthRouter.get("/users/:id", login_required, userController.getUserInfoOther);
 userAuthRouter.put("/users/:id/profileImage", login_required, upload.single('profileImage'), userController.updateUserProfileImage);
 
 export { userAuthRouter };
