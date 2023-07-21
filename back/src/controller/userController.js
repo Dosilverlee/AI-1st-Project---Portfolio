@@ -91,7 +91,7 @@ const setUser = async (req, res, next) => {
 const getUserInfo = async (req, res, next) => {
   try {
     logger.info("getUserInfo");
-    const user_id = req.params.id;
+    const user_id = req.currentUserId
     const currentUserInfo = await userAuthService.getUserInfo({ user_id });
 
     if (currentUserInfo.errorMessage) {
