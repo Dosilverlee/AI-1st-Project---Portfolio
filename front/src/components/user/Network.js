@@ -41,7 +41,10 @@ function Network() {
     }
     // "userlist" 엔드포인트로 GET 요청을 하고, users를 response의 data에 위에서 만든 셔플함수를 적용하여 세팅함.
     Api.get("userlist").then((res) => setUsers(shuffle(res.data)));
-  }, [params, userState, navigate]);
+  }, []);
+  // 07.21 || 최초 1회만 userlist가 호출되면 될 것으로 보여 의존성을 모두 삭제했습니다.
+  // 07.21 || userState에 현재 회원정보를 담고, 업데이트를 치는 시점이 있어서, 여기에 userState 의존성이 들어가면
+  // 07.21 || 다시 페칭해오면서... 데이터가 다시 셔플되는 문제가 있습니다.
 
   return (
     <div style={{ display: "inline-block", width: "35%" }}>

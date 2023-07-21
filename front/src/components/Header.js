@@ -9,11 +9,11 @@ function Header() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const userState = useContext(UserStateContext);
+  const { currentUserProfile, user } = useContext(UserStateContext);
   const dispatch = useContext(DispatchContext);
 
   // 전역상태에서 user가 null이 아니라면 로그인 성공 상태임.
-  const isLogin = !!userState.user;
+  const isLogin = !!user;
 
   // 로그아웃 클릭 시 실행되는 함수
   const logout = () => {
@@ -24,6 +24,12 @@ function Header() {
     // 기본 페이지로 돌아감.
     navigate("/");
   };
+
+  const profileImgSource =
+    `http://localhost:5001/${currentUserProfile?.profileImage}` ??
+    "http://placekitten.com/200/200";
+  // 07.21 || 프로필 이미지가 없는 유저는 키튼 이미지로 보여줍니다.
+  // 또한, 헤더의 프로필 이미지를 전역 유저 프로필 상태로 관리합니다.
 
   return (
     <div
@@ -50,13 +56,7 @@ function Header() {
             </a>
           </div>
           {isLogin && (
-            <div
-              style={{
-                display: "inline-block",
-                float: "right",
-                alignItems: "center",
-              }}
-            >
+            <div style={{ display: "inline-block", float: "right" }}>
               <div
                 style={{
                   display: "flex",
@@ -71,13 +71,12 @@ function Header() {
                     height: "4rem",
                     borderRadius: "100%",
                   }}
-                  src="http://placekitten.com/200/200"
+                  src={profileImgSource}
                 />
               </div>
-              <div style={{ marginBottom: "5px", marginLeft: "50px" }}>
+              <div style={{ marginBottom: "5px" }}>
                 <Nav.Link
                   style={{
-                    padding: "8px 16px",
                     display: "inline-flex",
                     color: "#6700e6",
                     fontWeight: "bold",
@@ -88,7 +87,6 @@ function Header() {
                 </Nav.Link>
                 <Nav.Link
                   style={{
-                    padding: "8px 16px",
                     display: "inline-flex",
                     color: "#6700e6",
                     fontWeight: "bold",
@@ -116,7 +114,7 @@ function Header() {
                 </div>
               </div>
             </div>
-            )}
+          )}
         </div>
       </div>
     </div>
