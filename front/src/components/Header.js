@@ -30,7 +30,7 @@ function Header() {
       activeKey={location.pathname}
       style={{
         width: "100%",
-        minWidth: "528px",
+        minWidth: "643px",
         backgroundColor: "white",
         position: "fixed",
         zIndex: "1",
