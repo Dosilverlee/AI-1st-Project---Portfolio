@@ -5,7 +5,7 @@ import { throttle } from "lodash";
 import Portfolio from "./Portfolio";
 import Network from "./user/Network";
 
-import scroll_to_top_button from "../assets/scroll_to_top_button2.png";
+import scroll_to_top_button from "../assets/scroll_to_top_button.png";
 
 function Mainpage() {
   const navigate = useNavigate();

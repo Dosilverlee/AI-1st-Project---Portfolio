@@ -4,8 +4,8 @@ import { logger } from "../winstonLogger";
 
 const addUser = async (req, res, next) => {
   try {
-    logger.info("addUser");
     if (is.emptyObject(req.body)) {
+      logger.error("header의 Content-Type이 json이 아님");
       throw new Error(
         "headers의 Content-Type을 application/json으로 설정해주세요"
       );
@@ -22,10 +22,10 @@ const addUser = async (req, res, next) => {
     });
 
     if (newUser.errorMessage) {
-      logger.error("addUser 오류");
+      logger.error(newUser.errorMessage);
       throw new Error(newUser.errorMessage);
     }
-
+    logger.info("addUser");
     res.status(201).json(newUser);
   } catch (error) {
     next(error);
@@ -34,7 +34,6 @@ const addUser = async (req, res, next) => {
 
 const getUser = async (req, res, next) => {
   try {
-    logger.info("getUser");
     // req (request) 에서 데이터 가져오기
     const { email, password } = req.body;
 
@@ -42,10 +41,10 @@ const getUser = async (req, res, next) => {
     const user = await userAuthService.getUser({ email, password });
 
     if (user.errorMessage) {
-      logger.error("getUser 오류");
+      logger.error(user.errorMessage);
       throw new Error(user.errorMessage);
     }
-
+    logger.info("getUser");
     res.status(200).send(user);
   } catch (error) {
     next(error);
@@ -54,9 +53,9 @@ const getUser = async (req, res, next) => {
 
 const getUsers = async (req, res, next) => {
   try {
-    logger.info("getUsers");
     // 전체 사용자 목록을 얻음
     const users = await userAuthService.getUsers();
+    logger.info("getUsers");
     res.status(200).send(users);
   } catch (error) {
     next(error);
@@ -65,7 +64,6 @@ const getUsers = async (req, res, next) => {
 
 const setUser = async (req, res, next) => {
   try {
-    logger.info("setUser");
     // URI로부터 사용자 id를 추출함.
     const user_id = req.params.id;
     // body data 로부터 업데이트할 사용자 정보를 추출함.
@@ -80,10 +78,10 @@ const setUser = async (req, res, next) => {
     const updatedUser = await userAuthService.setUser({ user_id, toUpdate });
 
     if (updatedUser.errorMessage) {
-      logger.error("setUser 오류");
+      logger.error(updatedUser.errorMessage);
       throw new Error(updatedUser.errorMessage);
     }
-
+    logger.info("setUser");
     res.status(200).json(updatedUser);
   } catch (error) {
     next(error);
@@ -97,10 +95,10 @@ const getUserInfo = async (req, res, next) => {
     const currentUserInfo = await userAuthService.getUserInfo({ user_id });
 
     if (currentUserInfo.errorMessage) {
-      logger.error("getUserInfo 오류");
+      logger.error(currentUserInfo.errorMessage);
       throw new Error(currentUserInfo.errorMessage);
     }
-
+    logger.info("getUserInfo");
     res.status(200).send(currentUserInfo);
   } catch (error) {
     next(error);
@@ -109,7 +107,6 @@ const getUserInfo = async (req, res, next) => {
 
 const updateUserProfileImage = async (req, res, next) => {
   try {
-    logger.info("updateUserProfileImage");
     const user_id = req.params.id;
 
     if (!req.file) {
@@ -120,9 +117,10 @@ const updateUserProfileImage = async (req, res, next) => {
     const updatedUserInfo = await userAuthService.updateUserProfileImage(user_id, req.file.path);
 
     if (updatedUserInfo.errorMessage) {
+      logger.error(updatedUserInfo.errorMessage);
       throw new Error(updatedUserInfo.errorMessage);
     }
-
+    logger.info("updateUserProfileImage");
     res.status(200).send(updatedUserInfo);
   } catch (error) {
     next(error);

@@ -56,13 +56,8 @@ function App() {
     <DispatchContext.Provider value={dispatch}>
       <UserStateContext.Provider value={userState}>
         <Router>
-          <div
-            style={{
-              height: "100%",
-            }}
-          >
             <Header />
-            <div style={{ minHeight: "calc(100vh - 334px)" }}>
+            <div style={{ minHeight: "calc(100vh - 200px)" }}>
               <Routes>
                 <Route path="/" exact element={<Mainpage />} />
                 <Route path="/login" element={<LoginForm />} />
@@ -72,7 +67,6 @@ function App() {
               </Routes>
             </div>
             <Footer />
-          </div>
         </Router>
       </UserStateContext.Provider>
     </DispatchContext.Provider>
