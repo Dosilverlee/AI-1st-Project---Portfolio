@@ -98,18 +98,16 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
                   }}
                 >
                   <span>
-                  <img
-                    style={{
-                      width: "30px",
-                      height: "30px",
-                      marginRight: "5px",
-                    }}
-                    src="https://cdn.icon-icons.com/icons2/2234/PNG/512/add_photo_camera_icon_134644.png"
-                  ></img>
-                </span>
-                    <span style={{fontSize:"13px"}}>
-                    프로필 사진 수정  
-                    </span>
+                    <img
+                      style={{
+                        width: "30px",
+                        height: "30px",
+                        marginRight: "5px",
+                      }}
+                      src="https://cdn.icon-icons.com/icons2/2234/PNG/512/add_photo_camera_icon_134644.png"
+                    ></img>
+                  </span>
+                  <span style={{ fontSize: "13px" }}>📸프로필 사진 수정</span>
                 </div>
               </label>
             </div>
