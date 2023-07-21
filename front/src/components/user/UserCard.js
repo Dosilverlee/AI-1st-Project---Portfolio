@@ -18,7 +18,7 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
 
     Api.putImage(`users/${currentUserProfile.id}/profileImage`, formData)
       .then(() => {
-        window.alert("업로드에 성공하였습니다.");
+        window.alert("업로드에 성공하였습니다.🥳");
 
         Api.get(`users`, currentUserProfile.id).then((res) => {
           dispatch({
