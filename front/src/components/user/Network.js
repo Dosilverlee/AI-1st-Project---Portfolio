@@ -16,17 +16,17 @@ function Network() {
   // Network 페이지의 pagination을 하기 위한 설정
   const limit = 5;
   const [page, setPage] = useState(1);
-  const offset = (page -1) * limit;
+  const offset = (page - 1) * limit;
   const total = users.length - 1;
   const numPages = Math.ceil(total / limit);
 
   // Network 페이지에서 UserCard를 랜덤하게 보여주기 위한 셔플 함수
   function shuffle(sourceArray) {
     for (let i = 0; i < sourceArray.length - 1; i++) {
-        let j = i + Math.floor(Math.random() * (sourceArray.length - i));
-        let temp = sourceArray[j];
-        sourceArray[j] = sourceArray[i];
-        sourceArray[i] = temp;
+      let j = i + Math.floor(Math.random() * (sourceArray.length - i));
+      let temp = sourceArray[j];
+      sourceArray[j] = sourceArray[i];
+      sourceArray[i] = temp;
     }
     return sourceArray;
   }
@@ -44,20 +44,31 @@ function Network() {
   }, [params, userState, navigate]);
 
   return (
-    <div style={{display:"inline-block", width: "35%"}}>
-      {users.filter((user) => user.id !== id).slice(offset, offset + limit).map((user) => (
-        <UserCard key={user.id} user={user} isNetwork />
-      ))}
-      <div style={{display: "flex", justifyContent: "center"}}>
+    <div style={{ display: "inline-block", width: "35%" }}>
+      {users
+        .filter((user) => user.id !== id)
+        .slice(offset, offset + limit)
+        .map((user) => (
+          <UserCard key={user.id} user={user} isNetwork />
+        ))}
+      <div style={{ display: "flex", justifyContent: "center" }}>
         <div total={total} limit={limit} page={page} setPage={setPage}>
-          <button style ={{ color:"#6700e6", background:"white", border:"none" }} onClick={() => setPage(page - 1)} disabled={page === 1}>
+          <button
+            style={{ color: "#6700e6", background: "white", border: "none" }}
+            onClick={() => setPage(page - 1)}
+            disabled={page === 1}
+          >
             &lt;
           </button>
           {Array(numPages)
             .fill()
             .map((_, i) => (
               <button
-                style ={{ color:"#6700e6", background:"white", border:"none" }}
+                style={{
+                  color: "#6700e6",
+                  background: "white",
+                  border: "none",
+                }}
                 key={i + 1}
                 onClick={() => setPage(i + 1)}
                 aria-current={page === i + 1 ? "page" : null}
@@ -65,7 +76,11 @@ function Network() {
                 {i + 1}
               </button>
             ))}
-          <button style ={{ color:"#6700e6", background:"white", border:"none" }} onClick={() => setPage(page + 1)} disabled={page === numPages}>
+          <button
+            style={{ color: "#6700e6", background: "white", border: "none" }}
+            onClick={() => setPage(page + 1)}
+            disabled={page === numPages}
+          >
             &gt;
           </button>
         </div>

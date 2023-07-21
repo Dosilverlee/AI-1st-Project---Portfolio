@@ -6,6 +6,7 @@ import * as Api from "../../api";
 function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
   const navigate = useNavigate();
   const [profileImage, setProfileImage] = useState("");
+
   function handleSubmit(e) {
     e.preventDefault();
     const formData = new FormData();
@@ -13,10 +14,10 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
 
     Api.putImage(`users/${user.id}/profileImage`, formData)
       .then(() => {
-        window.alert("업로드에 성공하였습니다.");
+        window.alert("업로드에 성공하였습니다.🥳");
       })
       .catch(() => {
-        window.alert("업로드에 실패하였습니다.");
+        window.alert("업로드에 실패하였습니다.😭");
       });
   }
   const onFileChange = (e) => {
@@ -26,38 +27,73 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
       if (file) {
         setProfileImage(file);
       }
-    } catch (e) {
-      console.log(e);
-    }
+    } catch (e) {}
   };
   return (
     <Card className="m-2" style={{ borderRadius: "0.5em" }}>
       <Card.Body>
-      <div>
-        <Card.Img
-          style={{ display:"inline-block", width: "8rem", height: "8rem", borderRadius:"100%" }}
-          className="mb-3"
-          src={
-            user && user.profileImage
-              ? "http://localhost:5001/" + user.profileImage
-              : "http://placekitten.com/200/200"
-          }
-          alt="랜덤 고양이 사진 (http://placekitten.com API 사용)"
-        />
-        
-        {isEditable && (
-          <form style={{width:"100%", display:"inline-block"}} encType='multipart/form-data' onSubmit={handleSubmit}>
-            <input style={{ background:"white", border:"none"}} type='file' name='file' onChange={onFileChange}/>
-            <Button style={{ float:"right", margin:"5px", color:"black", background:"#DED5FE", border:"none"}} type='submit'>📸프로필 사진 업로드</Button>
-          </form>
-        )}
-      </div>
+        <div>
+          <Card.Img
+            style={{
+              display: "inline-block",
+              width: "8rem",
+              height: "8rem",
+              borderRadius: "100%",
+            }}
+            className="mb-3"
+            src={
+              user && user.profileImage
+                ? "http://localhost:5001/" + user.profileImage
+                : "http://placekitten.com/200/200"
+            }
+            alt="랜덤 고양이 사진 (http://placekitten.com API 사용)"
+          />
 
-      <div style={{display:"inline-block"}}>
-        <Card.Title style={{paddingRight:"40px"}}>{user?.name}</Card.Title>
-        <Card.Subtitle className="mb-2 text-muted">{user?.email}</Card.Subtitle>
-        <Card.Text>{user?.description}</Card.Text>
-      </div>
+          {isEditable && (
+            <form
+              style={{ width: "100%", display: "inline-block" }}
+              encType="multipart/form-data"
+              onSubmit={handleSubmit}
+            >
+              <input
+                style={{ background: "white", border: "none" }}
+                type="file"
+                name="file"
+                onChange={onFileChange}
+              />
+              <Button
+                style={{
+                  float: "right",
+                  margin: "5px",
+                  color: "black",
+                  background: "#DED5FE",
+                  border: "none",
+                }}
+                type="submit"
+              >
+                <span>
+                  <img
+                    style={{
+                      width: "30px",
+                      height: "30px",
+                      marginRight: "5px",
+                    }}
+                    src="https://cdn.icon-icons.com/icons2/2234/PNG/512/add_photo_camera_icon_134644.png"
+                  ></img>
+                </span>
+                프로필 사진 업로드
+              </Button>
+            </form>
+          )}
+        </div>
+
+        <div style={{ display: "inline-block" }}>
+          <Card.Title style={{ paddingRight: "40px" }}>{user?.name}</Card.Title>
+          <Card.Subtitle className="mb-2 text-muted">
+            {user?.email}
+          </Card.Subtitle>
+          <Card.Text>{user?.description}</Card.Text>
+        </div>
         {isEditable && (
           <button
             style={{
@@ -73,13 +109,13 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
             }}
           >
             ✏️
-        </button>
+          </button>
         )}
 
         {isNetwork && (
-          <div style={{marginTop:"5px"}}>
+          <div style={{ marginTop: "5px" }}>
             <Card.Link
-              style={{color:"#6700e6", textDecoration:"none"}}
+              style={{ color: "#6700e6", textDecoration: "none" }}
               className="mt-3"
               href="#"
               onClick={() => {
@@ -90,7 +126,6 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
             </Card.Link>
           </div>
         )}
-
       </Card.Body>
     </Card>
   );

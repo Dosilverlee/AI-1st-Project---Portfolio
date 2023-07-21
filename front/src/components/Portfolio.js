@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Educations from "./Education/Educations";
-import Certifications from "./Certification/Certifications"
+import Certifications from "./Certification/Certifications";
 
 import { UserStateContext } from "../App";
 import * as Api from "../api";
@@ -48,27 +48,27 @@ function Portfolio() {
   }
 
   return (
-    <div style={{ display:"inline-block", width: "65%" }}>
-        <User
-          portfolioOwnerId={portfolioOwner.id}
-          isEditable={portfolioOwner.id === userState.user?.id}
-        />
-        <Educations 
-            portfolioOwnerId={portfolioOwner._id}
-            isEditable={portfolioOwner.id === userState.user?.id}
-        />
-        <Awards
-            portfolioOwnerId={portfolioOwner.id}
-            isEditable={portfolioOwner.id === userState.user?.id}
-        />
-        <Projects 
-          portfolioOwnerId={portfolioOwner.id}
-          isEditable={portfolioOwner.id === userState.user?.id}
-        />
-        <Certifications 
-          portfolioOwnerId={portfolioOwner.id}
-          isEditable={portfolioOwner.id === userState.user?.id}
-        />
+    <div style={{ display: "inline-block", width: "65%" }}>
+      <User
+        portfolioOwnerId={portfolioOwner.id}
+        isEditable={portfolioOwner.id === userState.user?.id}
+      />
+      <Educations
+        portfolioOwnerId={portfolioOwner._id}
+        isEditable={portfolioOwner.id === userState.user?.id}
+      />
+      <Awards
+        portfolioOwnerId={portfolioOwner.id}
+        isEditable={portfolioOwner.id === userState.user?.id}
+      />
+      <Projects
+        portfolioOwnerId={portfolioOwner.id}
+        isEditable={portfolioOwner.id === userState.user?.id}
+      />
+      <Certifications
+        portfolioOwnerId={portfolioOwner.id}
+        isEditable={portfolioOwner.id === userState.user?.id}
+      />
     </div>
   );
 }

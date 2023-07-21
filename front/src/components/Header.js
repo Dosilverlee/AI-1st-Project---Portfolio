@@ -2,8 +2,8 @@ import React, { useContext } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Nav } from "react-bootstrap";
 import { UserStateContext, DispatchContext } from "../App";
-import Logo from '../assets/logo.png'
-import Rabbit from '../assets/rabbit.png'
+import Logo from "../assets/logo.png";
+import Rabbit from "../assets/rabbit.png";
 
 function Header() {
   const navigate = useNavigate();
@@ -26,25 +26,95 @@ function Header() {
   };
 
   return (
-    <div activeKey={location.pathname} style={{ width:"100%", minWidth:"528px", backgroundColor:"white", position:"fixed", zIndex:"1"}}>
+    <div
+      activeKey={location.pathname}
+      style={{
+        width: "100%",
+        minWidth: "528px",
+        backgroundColor: "white",
+        position: "fixed",
+        zIndex: "1",
+      }}
+    >
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <div style={{ width:"1128px", height: "134px" }}>
-          <div style={{display: "inline-block", marginLeft:"20px"}}>
-            <a href="/"><img
-              style={{ height:"33.5px"}}
-              src={Logo}
-            /></a>
-            <a href="/"><img
-              style={{ marginLeft:"15px", height:"134px"}}
-              src={Rabbit}
-            /></a>
-          </div>
-          {isLogin && (<div style={{ display:"inline-block", float: "right" }}>
-            <div style={{ display: "flex", justifyContent: "center", marginTop:"20px", marginBottom: "5px" }}>
+        <div style={{ width: "1128px", height: "134px" }}>
+          <div style={{ display: "inline-block", marginLeft: "20px" }}>
+            <a href="/">
+              <img style={{ height: "33.5px" }} src={Logo} />
+            </a>
+            <a href="/">
               <img
-                  style={{ width: "4rem", height: "4rem", borderRadius:"100%" }}
-                  src="http://placekitten.com/200/200"
+                style={{ marginLeft: "15px", height: "134px" }}
+                src={Rabbit}
               />
+            </a>
+          </div>
+          {isLogin && (
+            <div
+              style={{
+                display: "inline-block",
+                float: "right",
+                alignItems: "center",
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  marginTop: "20px",
+                  marginBottom: "5px",
+                }}
+              >
+                <img
+                  style={{
+                    width: "4rem",
+                    height: "4rem",
+                    borderRadius: "100%",
+                  }}
+                  src="http://placekitten.com/200/200"
+                />
+              </div>
+              <div style={{ marginBottom: "5px", marginLeft: "50px" }}>
+                <Nav.Link
+                  style={{
+                    padding: "8px 16px",
+                    display: "inline-flex",
+                    color: "#6700e6",
+                    fontWeight: "bold",
+                  }}
+                  onClick={() => navigate("/")}
+                >
+                  나의 페이지
+                </Nav.Link>
+                <Nav.Link
+                  style={{
+                    padding: "8px 16px",
+                    display: "inline-flex",
+                    color: "#6700e6",
+                    fontWeight: "bold",
+                  }}
+                  onClick={logout}
+                >
+                  로그아웃
+                </Nav.Link>
+                <div
+                  style={{
+                    display: "inline-block",
+                    marginLeft: "5px",
+                    alignItems: "center",
+                    paddingLeft: "10px",
+                  }}
+                >
+                  <img
+                    style={{
+                      width: "50px",
+                      height: "50px",
+                    }}
+                    src="https://cdn-icons-png.flaticon.com/512/1514/1514935.png"
+                    alt="carrot"
+                  />
+                </div>
+              </div>
             </div>
             <div style={{marginBottom: "5px"}}>
                 <Nav.Link style={{padding:"8px 16px", display: "inline-flex", color:"#6700e6", fontWeight: "bold"}} onClick={() => navigate("/")}>나의 페이지</Nav.Link>
