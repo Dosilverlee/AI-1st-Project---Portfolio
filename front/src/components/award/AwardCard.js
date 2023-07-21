@@ -1,5 +1,5 @@
 // 등록된 수상내역 카드형태로 보여줌. 필요시 수상내역 삭제 & 편집 기능
-import { Card, Row, Col } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import CommonButton from "../buttons/CommonButton";
 import * as Api from "../../api";
 

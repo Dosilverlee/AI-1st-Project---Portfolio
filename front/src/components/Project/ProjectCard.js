@@ -1,5 +1,5 @@
 // 등록된 프로젝트 이력 카드형태로 보여줌. 필요시 학력 삭제 & 편집 기능
-import { Card, Button, Row, Col } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import CommonButton from "../buttons/CommonButton";
 import * as Api from "../../api";
 
