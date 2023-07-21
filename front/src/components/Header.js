@@ -47,8 +47,8 @@ function Header() {
               />
             </div>
             <div style={{marginBottom: "5px"}}>
-                <Nav.Link style={{display: "inline-flex", color:"#6700e6", fontWeight: "bold"}} onClick={() => navigate("/")}>나의 페이지</Nav.Link>
-                <Nav.Link style={{display: "inline-flex", color:"#6700e6", fontWeight: "bold"}} onClick={logout}>로그아웃</Nav.Link>
+                <Nav.Link style={{padding:"8px 16px", display: "inline-flex", color:"#6700e6", fontWeight: "bold"}} onClick={() => navigate("/")}>나의 페이지</Nav.Link>
+                <Nav.Link style={{padding:"8px 16px", display: "inline-flex", color:"#6700e6", fontWeight: "bold"}} onClick={logout}>로그아웃</Nav.Link>
             </div>
           </div>)}
         </div>
